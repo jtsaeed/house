@@ -8,18 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		23DC45A020B041FF009E9C3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */; };
+		23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A620B0436F009E9C3D /* AuthService.swift */; };
+		23DC45A920B0437B009E9C3D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A820B0437B009E9C3D /* DataService.swift */; };
 		23E82E0520A348650073981E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E82E0420A348650073981E /* AppDelegate.swift */; };
 		23E82E0720A348650073981E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E82E0620A348650073981E /* HomeViewController.swift */; };
 		23E82E0920A348650073981E /* ChoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E82E0820A348650073981E /* ChoresViewController.swift */; };
 		23E82E0C20A348660073981E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0A20A348660073981E /* Main.storyboard */; };
 		23E82E0E20A348670073981E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0D20A348670073981E /* Assets.xcassets */; };
 		23E82E1120A348670073981E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0F20A348670073981E /* LaunchScreen.storyboard */; };
+		23F4D47D20B04A2F00446A5B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4D47C20B04A2F00446A5B /* LoginViewController.swift */; };
 		C4966389EDDFAE86F7343C3B /* Pods_house.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434973F18E889D11359FC786 /* Pods_house.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
 		23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		23DC45A620B0436F009E9C3D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		23DC45A820B0437B009E9C3D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		23E82E0120A348650073981E /* house.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = house.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23E82E0420A348650073981E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		23E82E0620A348650073981E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +33,7 @@
 		23E82E0D20A348670073981E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23E82E1020A348670073981E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23E82E1220A348670073981E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F4D47C20B04A2F00446A5B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		434973F18E889D11359FC786 /* Pods_house.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_house.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.debug.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,6 +62,8 @@
 		23DC45A120B0424B009E9C3D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				23DC45A620B0436F009E9C3D /* AuthService.swift */,
+				23DC45A820B0437B009E9C3D /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -86,6 +94,7 @@
 			children = (
 				23E82E0620A348650073981E /* HomeViewController.swift */,
 				23E82E0820A348650073981E /* ChoresViewController.swift */,
+				23F4D47C20B04A2F00446A5B /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -211,12 +220,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-house/Pods-house-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -251,9 +262,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23F4D47D20B04A2F00446A5B /* LoginViewController.swift in Sources */,
 				23E82E0920A348650073981E /* ChoresViewController.swift in Sources */,
 				23E82E0520A348650073981E /* AppDelegate.swift in Sources */,
 				23E82E0720A348650073981E /* HomeViewController.swift in Sources */,
+				23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */,
+				23DC45A920B0437B009E9C3D /* DataService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
