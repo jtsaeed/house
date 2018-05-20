@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6420B0F59A000682EB /* ChoreCell.swift */; };
 		2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6620B0F67A000682EB /* UIViewX.swift */; };
+		2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6820B1914B000682EB /* MoneyViewController.swift */; };
 		23AA095C20B082A10020FEC9 /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095B20B082A10020FEC9 /* Chore.swift */; };
 		23AA095E20B083300020FEC9 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095D20B083300020FEC9 /* Debt.swift */; };
 		23AA096020B085600020FEC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095F20B085600020FEC9 /* User.swift */; };
@@ -29,6 +30,7 @@
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
 		2381BD6420B0F59A000682EB /* ChoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCell.swift; sourceTree = "<group>"; };
 		2381BD6620B0F67A000682EB /* UIViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
+		2381BD6820B1914B000682EB /* MoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyViewController.swift; sourceTree = "<group>"; };
 		23AA095B20B082A10020FEC9 /* Chore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chore.swift; sourceTree = "<group>"; };
 		23AA095D20B083300020FEC9 /* Debt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
 		23AA095F20B085600020FEC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				23E82E0620A348650073981E /* HomeViewController.swift */,
 				23E82E0820A348650073981E /* ChoresViewController.swift */,
 				23F4D47C20B04A2F00446A5B /* LoginViewController.swift */,
+				2381BD6820B1914B000682EB /* MoneyViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				23F4D47D20B04A2F00446A5B /* LoginViewController.swift in Sources */,
+				2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */,
 				23E82E0920A348650073981E /* ChoresViewController.swift in Sources */,
 				2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */,
 				23E82E0520A348650073981E /* AppDelegate.swift in Sources */,

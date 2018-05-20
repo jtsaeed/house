@@ -19,8 +19,9 @@ class DataService {
     var REF_CHORES = DB_BASE.child("chores")
     var REF_DEBTS = DB_BASE.child("debts")
     
-    func createChore(withContent content: String) {
+    func createChore(withContent content: String, completion: @escaping (_ success: Bool) -> ()) {
         REF_CHORES.childByAutoId().updateChildValues(["content": content])
+        completion(true)
     }
     
     func createDebt(from receiverId: String, for payerId: String, withAmount amount: Int) {
@@ -45,7 +46,7 @@ class DataService {
         REF_CHORES.observeSingleEvent(of: .value) { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for chore in snapshot {
-                    let choreId = chore.value as! String
+                    let choreId = chore.key
                     let content = chore.childSnapshot(forPath: "content").value as! String
                     
                     chores.append(Chore(choreId: choreId, content: content))
@@ -53,7 +54,7 @@ class DataService {
                 
                 handler(chores)
             } else {
-                // TODO: Comprehensive error
+                // TODO: Comprehensive error handler
             }
         }
         
