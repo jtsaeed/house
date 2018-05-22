@@ -19,16 +19,15 @@ class DataService {
     var REF_CHORES = DB_BASE.child("chores")
     var REF_DEBTS = DB_BASE.child("debts")
     
-    func createChore(withContent content: String, completion: @escaping (_ success: Bool) -> ()) {
+    func createChore(with content: String) {
         REF_CHORES.childByAutoId().updateChildValues(["content": content])
-        completion(true)
     }
     
-    func createDebt(from receiverId: String, for payerId: String, withAmount amount: Int) {
-        REF_DEBTS.childByAutoId().updateChildValues(["amount": amount, "receiverId": receiverId, "payerId": payerId])
+    func createDebt(from receiverId: String, for payerId: String, with amount: Int, and reason: String) {
+        REF_DEBTS.childByAutoId().updateChildValues([ "receiverId": receiverId, "payerId": payerId, "amount": amount, "reason": reason ])
     }
     
-    func getUser(handler: @escaping (_ user: User) -> ()) {
+    func getUserData(handler: @escaping (_ user: User) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
@@ -37,6 +36,14 @@ class DataService {
             let email = snapshot.childSnapshot(forPath: "email").value as! String
             
             handler(User(userId: userId, name: name, nickname: nickname, email: email))
+        }
+    }
+    
+    func getUserNickname(for Id: String, handler: @escaping (_ name: String) -> ()) {
+        REF_USERS.child(Id).observeSingleEvent(of: .value) { (snapshot) in
+            let nickname = snapshot.childSnapshot(forPath: "nickname").value as! String
+            
+            handler(nickname)
         }
     }
     

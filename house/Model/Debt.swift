@@ -13,6 +13,7 @@ struct Debt {
     
     let reciverId: String
     let payerId: String
+    let reason: String
     var value: Int
     
     mutating func decrease(by amount: Int) {

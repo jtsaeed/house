@@ -16,8 +16,6 @@ class ChoresViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        initTableView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,10 +33,6 @@ class ChoresViewController: UIViewController {
  TABLEVIEW
  */
 extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
-    func initTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chores.count
@@ -60,23 +54,27 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
  UTIL
  */
 extension ChoresViewController {
-    func loadChores() {
+    private func loadChores() {
         DataService.instance.getChores { (pulledChores) in
             self.chores = pulledChores
             self.tableView.reloadData()
         }
     }
     
-    func presentAddNewChoreDialog() {
+    private func presentAddNewChoreDialog() {
         let alert = UIAlertController(title: "What chore?", message: nil, preferredStyle: .alert)
         
         alert.addTextField { (textfield) in
             textfield.placeholder = "Type here..."
         }
         
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             if let choreName = alert.textFields?.first?.text {
-                DataService.instance.createChore(withContent: choreName)
+                DataService.instance.createChore(with: choreName)
                 self.loadChores()
             }
         }))

@@ -32,7 +32,7 @@ extension HomeViewController {
  */
 extension HomeViewController {
     private func setNavigationTitle() {
-        DataService.instance.getUser { (user) in
+        DataService.instance.getUserData { (user) in
             self.navigationItem.title = "Hello \(user.nickname)!"
         }
     }
