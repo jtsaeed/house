@@ -16,6 +16,8 @@ class ChoresViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,7 +46,7 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let chore = chores[indexPath.row]
-        cell.configure(with: chore.content)
+        cell.configure(with: chore)
         
         return cell
     }
@@ -54,6 +56,7 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
  UTIL
  */
 extension ChoresViewController {
+    
     private func loadChores() {
         DataService.instance.getChores { (pulledChores) in
             self.chores = pulledChores

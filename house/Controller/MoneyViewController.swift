@@ -11,25 +11,38 @@ import Firebase
 
 class MoneyViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var debts = [Debt]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
     }
-    @IBAction func addButtonPressed(_ sender: Any) {
-        presentAddNewDebtDialog()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        loadDebts()
     }
 }
 
+/*
+ TABLEVIEW
+ */
 extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return debts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "debtCell") else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "debtCell") as? DebtCell else {
             return UITableViewCell()
         }
+        
+        let debt = debts[indexPath.row]
+        cell.configure(with: debt)
         
         return cell
     }
@@ -39,6 +52,14 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
  UTIL
  */
 extension MoneyViewController {
+    
+    private func loadDebts() {
+        DataService.instance.getDebts { (pulledDebts) in
+            self.debts = pulledDebts
+            self.tableView.reloadData()
+        }
+    }
+    
     private func presentAddNewDebtDialog() {
         let alert = UIAlertController(title: "Enter debt details", message: nil, preferredStyle: .alert)
         

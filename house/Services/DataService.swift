@@ -39,6 +39,25 @@ class DataService {
         }
     }
     
+    func getUsersNicknameIdPair(handler: @escaping (_ pairs: [String: String]) -> ()) {
+        var pairs = [String: String]()
+        
+        REF_USERS.observeSingleEvent(of: .value) { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for user in snapshot {
+                    let id = user.key
+                    let nickname = user.childSnapshot(forPath: "nickname").value as! String
+                    
+                    pairs[nickname] = id
+                }
+                
+                handler(pairs)
+            } else {
+                // TODO: Comprehensive error handler
+            }
+        }
+    }
+    
     func getUserNickname(for Id: String, handler: @escaping (_ name: String) -> ()) {
         REF_USERS.child(Id).observeSingleEvent(of: .value) { (snapshot) in
             let nickname = snapshot.childSnapshot(forPath: "nickname").value as! String
@@ -64,6 +83,44 @@ class DataService {
                 // TODO: Comprehensive error handler
             }
         }
+    }
+    
+    func getDebts(handler: @escaping (_ debts: [Debt]) -> ()) {
+        var debts = [Debt]()
         
+        REF_DEBTS.observeSingleEvent(of: .value) { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for debt in snapshot {
+                    let userId = Auth.auth().currentUser?.uid
+                    
+                    let receiverId = debt.childSnapshot(forPath: "receiverId").value as! String
+                    let payerId = debt.childSnapshot(forPath: "payerId").value as! String
+                    
+                    if receiverId == userId || payerId == userId {
+                        let debtId = debt.key
+                        let reason = debt.childSnapshot(forPath: "reason").value as! String
+                        let amount = debt.childSnapshot(forPath: "amount").value as! Int
+                        let isPaying = (payerId == userId)
+                        
+                        debts.append(Debt(debtId: debtId, isPaying: isPaying, receiverId: receiverId, payerId: payerId, reason: reason, amount: amount))
+                    }
+                }
+                
+                handler(debts)
+            } else {
+                // TODO: Comprehensive error handler
+            }
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -13,7 +13,7 @@ class ChoreCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     
-    func configure(with title: String) {
-        titleLabel.text = title
+    func configure(with chore: Chore) {
+        titleLabel.text = chore.content
     }
 }

@@ -77,7 +77,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="debtCell" rowHeight="104" id="8GL-yS-CSA" customClass="ChoreCell" customModule="house" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="debtCell" rowHeight="104" id="8GL-yS-CSA" customClass="DebtCell" customModule="house" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8GL-yS-CSA" id="ZN1-hr-Xh5">
@@ -88,11 +88,36 @@
                                                     <rect key="frame" x="15" y="12" width="345" height="80"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfL-81-XCI" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                            <rect key="frame" x="265" y="0.0" width="80" height="80"/>
+                                                            <rect key="frame" x="225" y="0.0" width="120" height="80"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNe-dh-iyy" customClass="UIViewX" customModule="house" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="0.0"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                                                            <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dlI-5r-yuH">
+                                                                    <rect key="frame" x="17.5" y="25.5" width="86" height="29"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="80" id="EYz-uf-HEc"/>
+                                                                <constraint firstItem="dlI-5r-yuH" firstAttribute="centerX" secondItem="nfL-81-XCI" secondAttribute="centerX" id="Bb1-5B-fRY"/>
+                                                                <constraint firstItem="dlI-5r-yuH" firstAttribute="centerY" secondItem="nfL-81-XCI" secondAttribute="centerY" id="Cj7-kZ-E9E"/>
+                                                                <constraint firstAttribute="width" constant="120" id="EYz-uf-HEc"/>
                                                                 <constraint firstAttribute="height" constant="80" id="Q7r-gt-xSJ"/>
+                                                                <constraint firstItem="dlI-5r-yuH" firstAttribute="centerY" secondItem="nfL-81-XCI" secondAttribute="centerY" id="eon-g1-szB"/>
+                                                                <constraint firstItem="dlI-5r-yuH" firstAttribute="centerX" secondItem="nfL-81-XCI" secondAttribute="centerX" id="q1M-Ri-oN0"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -126,7 +151,7 @@
                                                         <constraint firstAttribute="bottom" secondItem="aLy-cB-4OY" secondAttribute="bottom" constant="8" id="0Dk-N0-zhu"/>
                                                         <constraint firstItem="aLy-cB-4OY" firstAttribute="top" secondItem="3P2-fk-DIl" secondAttribute="top" constant="8" id="1gG-1r-Jko"/>
                                                         <constraint firstAttribute="trailing" secondItem="nfL-81-XCI" secondAttribute="trailing" id="50v-z3-JPy"/>
-                                                        <constraint firstItem="nfL-81-XCI" firstAttribute="leading" secondItem="aLy-cB-4OY" secondAttribute="trailing" constant="8" id="Bwn-hM-0VN"/>
+                                                        <constraint firstItem="nfL-81-XCI" firstAttribute="leading" secondItem="aLy-cB-4OY" secondAttribute="trailing" constant="-32" id="Bwn-hM-0VN"/>
                                                         <constraint firstItem="nfL-81-XCI" firstAttribute="top" secondItem="3P2-fk-DIl" secondAttribute="top" id="Crj-eo-7HX"/>
                                                         <constraint firstItem="aLy-cB-4OY" firstAttribute="leading" secondItem="3P2-fk-DIl" secondAttribute="leading" constant="16" id="MLB-61-oBJ"/>
                                                         <constraint firstAttribute="height" constant="80" id="e7F-W6-tRB"/>
@@ -158,8 +183,11 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
-                                            <outlet property="subtitleLabel" destination="fPh-Ad-eGW" id="i2H-zK-9or"/>
-                                            <outlet property="titleLabel" destination="cRl-zp-Vpm" id="nOL-Vp-qQV"/>
+                                            <outlet property="amountLabel" destination="dlI-5r-yuH" id="Nb7-Em-csI"/>
+                                            <outlet property="detailLabel" destination="fPh-Ad-eGW" id="0Jw-of-9cX"/>
+                                            <outlet property="roundedAccent" destination="nfL-81-XCI" id="pIM-GE-e5l"/>
+                                            <outlet property="squareAccent" destination="ZNe-dh-iyy" id="5RV-5c-Yxp"/>
+                                            <outlet property="typeLabel" destination="cRl-zp-Vpm" id="7K5-Z7-Lyx"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -182,14 +210,33 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="AOx-Se-4Ci">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="addButtonPressed:" destination="RfX-Sy-hMk" id="R7e-Mb-dFK"/>
+                                <segue destination="2q2-VO-WPC" kind="show" id="yAq-3C-vd6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="1oW-kV-8B7" id="yGg-lu-AeT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMr-uv-Eqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1740" y="1076.311844077961"/>
+        </scene>
+        <!--New Debt-->
+        <scene sceneID="VO1-ON-ZK1">
+            <objects>
+                <viewController title="New Debt" id="2q2-VO-WPC" customClass="NewDebtViewController" customModule="house" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uNQ-AI-VcG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="tdX-Ts-ZtD"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uBh-eC-3dZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2562" y="1076"/>
         </scene>
         <!--Chores-->
         <scene sceneID="wg7-f3-ORb">
@@ -285,7 +332,7 @@
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="4"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.099823416095890405" colorSpace="custom" customColorSpace="sRGB"/>
@@ -454,7 +501,14 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="osf-pn-LF7">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

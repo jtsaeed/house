@@ -11,16 +11,17 @@ import Foundation
 struct Debt {
     let debtId: String
     
-    let reciverId: String
+    let isPaying: Bool
+    let receiverId: String
     let payerId: String
     let reason: String
-    var value: Int
+    var amount: Int
     
     mutating func decrease(by amount: Int) {
-        value -= amount
+        self.amount -= amount
     }
     
     mutating func increase(by amount: Int) {
-        value += amount
+        self.amount += amount
     }
 }
