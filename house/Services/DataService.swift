@@ -85,6 +85,10 @@ class DataService {
         }
     }
     
+    func deleteChore(with choreId: String) {
+        REF_CHORES.child(choreId).removeValue()
+    }
+    
     func getDebts(handler: @escaping (_ debts: [Debt]) -> ()) {
         var debts = [Debt]()
         

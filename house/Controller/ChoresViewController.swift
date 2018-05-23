@@ -41,7 +41,7 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource, Swip
         guard orientation == .right else { return nil }
         
         let clearAction = SwipeAction(style: .destructive, title: nil) { (action, indexPath) in
-            // DO THINGS
+            self.clearChore(at: indexPath)
         }
         clearAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
         clearAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
@@ -84,6 +84,14 @@ extension ChoresViewController {
             self.chores = pulledChores
             self.tableView.reloadData()
         }
+    }
+    
+    private func clearChore(at indexPath: IndexPath) {
+        let choreId = chores[indexPath.row].choreId
+        DataService.instance.deleteChore(with: choreId)
+        chores.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.reloadData()
     }
     
     private func presentAddNewChoreDialog() {
