@@ -77,7 +77,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="debtCell" rowHeight="104" id="8GL-yS-CSA" customClass="DebtCell" customModule="house" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="debtCell" rowHeight="104" id="8GL-yS-CSA" customClass="DebtCell" customModule="house" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8GL-yS-CSA" id="ZN1-hr-Xh5">
@@ -164,13 +164,13 @@
                                                             <real key="value" value="8"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="1"/>
+                                                            <real key="value" value="4"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.099823416100000006" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                                            <real key="value" value="2"/>
+                                                            <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -250,7 +250,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="choreCell" rowHeight="104" id="QAa-lb-zMr" customClass="ChoreCell" customModule="house" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="choreCell" rowHeight="104" id="QAa-lb-zMr" customClass="ChoreCell" customModule="house" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="104"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QAa-lb-zMr" id="n2X-Yw-oVN">
@@ -260,53 +260,17 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDX-AP-h0u" userLabel="Backing" customClass="UIViewX" customModule="house" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="12" width="345" height="80"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X82-fq-DgN" userLabel="Text Back" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                            <rect key="frame" x="265" y="0.0" width="80" height="80"/>
-                                                            <subviews>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LbL-5Y-Xpt" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
-                                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="80" id="OYi-PA-pcD"/>
-                                                                        <constraint firstAttribute="width" constant="40" id="PIj-1d-4YS"/>
-                                                                    </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="0.0"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                            <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </view>
-                                                            </subviews>
-                                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="80" id="Qcy-d0-BDu"/>
-                                                                <constraint firstItem="LbL-5Y-Xpt" firstAttribute="top" secondItem="X82-fq-DgN" secondAttribute="top" id="bOO-0I-M4J"/>
-                                                                <constraint firstAttribute="width" constant="80" id="cqV-rA-pVJ"/>
-                                                                <constraint firstItem="LbL-5Y-Xpt" firstAttribute="leading" secondItem="X82-fq-DgN" secondAttribute="leading" id="gwp-4l-NxI"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="8"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                                    <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </view>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-kT-Smc">
-                                                            <rect key="frame" x="16" y="8" width="241" height="64"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-kT-Smc">
+                                                            <rect key="frame" x="16" y="8" width="313" height="64"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chore Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exD-14-213">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="122.5" height="36"/>
+                                                                    <rect key="frame" x="95.5" y="0.0" width="122.5" height="36"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="posted some time ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQl-gU-Idd">
-                                                                    <rect key="frame" x="0.0" y="28" width="144" height="36"/>
+                                                                    <rect key="frame" x="84.5" y="28" width="144" height="36"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -318,10 +282,8 @@
                                                     <constraints>
                                                         <constraint firstItem="TXf-kT-Smc" firstAttribute="leading" secondItem="XDX-AP-h0u" secondAttribute="leading" constant="16" id="0iO-74-65y"/>
                                                         <constraint firstItem="TXf-kT-Smc" firstAttribute="top" secondItem="XDX-AP-h0u" secondAttribute="top" constant="8" id="N6W-BU-sQ6"/>
-                                                        <constraint firstItem="X82-fq-DgN" firstAttribute="leading" secondItem="TXf-kT-Smc" secondAttribute="trailing" constant="8" id="QHl-RV-m1X"/>
+                                                        <constraint firstAttribute="trailing" secondItem="TXf-kT-Smc" secondAttribute="trailing" constant="16" id="YoV-aG-5MQ"/>
                                                         <constraint firstAttribute="bottom" secondItem="TXf-kT-Smc" secondAttribute="bottom" constant="8" id="fmJ-Ej-0pQ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="X82-fq-DgN" secondAttribute="trailing" id="gEb-v6-0AE"/>
-                                                        <constraint firstItem="X82-fq-DgN" firstAttribute="top" secondItem="XDX-AP-h0u" secondAttribute="top" id="jDy-Pl-xhB"/>
                                                         <constraint firstAttribute="height" constant="80" id="khF-nU-cIO"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
@@ -338,7 +300,7 @@
                                                             <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.099823416095890405" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                                            <real key="value" value="2"/>
+                                                            <real key="value" value="0.0"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>

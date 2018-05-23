@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwipeCellKit
 
 class MoneyViewController: UIViewController {
 
@@ -31,7 +32,35 @@ class MoneyViewController: UIViewController {
 /*
  TABLEVIEW
  */
-extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
+extension MoneyViewController: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let clearAction = SwipeAction(style: .destructive, title: nil) { (action, indexPath) in
+            // DO THINGS
+        }
+        clearAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        clearAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        clearAction.image = #imageLiteral(resourceName: "ClearCell")
+        
+        let editAction = SwipeAction(style: .default, title: nil) { (action, indexPath) in
+            // DO THINGS
+        }
+        editAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        editAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        editAction.image = #imageLiteral(resourceName: "EditCell")
+        
+        return [clearAction, editAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+//        options.expansionStyle = .destructive
+        options.transitionStyle = .drag
+        return options
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return debts.count
     }
@@ -40,6 +69,7 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "debtCell") as? DebtCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         
         let debt = debts[indexPath.row]
         cell.configure(with: debt)
@@ -47,6 +77,10 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
+/*
+ TABLEVIEW SWIPES
+ */
 
 /*
  UTIL
