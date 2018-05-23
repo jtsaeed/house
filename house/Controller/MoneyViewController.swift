@@ -32,34 +32,7 @@ class MoneyViewController: UIViewController {
 /*
  TABLEVIEW
  */
-extension MoneyViewController: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let clearAction = SwipeAction(style: .destructive, title: nil) { (action, indexPath) in
-            // DO THINGS
-        }
-        clearAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        clearAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        clearAction.image = #imageLiteral(resourceName: "ClearCell")
-        
-        let editAction = SwipeAction(style: .default, title: nil) { (action, indexPath) in
-            // DO THINGS
-        }
-        editAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        editAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        editAction.image = #imageLiteral(resourceName: "EditCell")
-        
-        return [clearAction, editAction]
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        var options = SwipeTableOptions()
-//        options.expansionStyle = .destructive
-        options.transitionStyle = .drag
-        return options
-    }
+extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return debts.count
@@ -81,6 +54,33 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource, Swipe
 /*
  TABLEVIEW SWIPES
  */
+extension MoneyViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let clearAction = SwipeAction(style: .destructive, title: nil) { (action, indexPath) in
+            self.clearDebt(at: indexPath)
+        }
+        clearAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        clearAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        clearAction.image = #imageLiteral(resourceName: "ClearCell")
+        
+        let editAction = SwipeAction(style: .default, title: nil) { (action, indexPath) in
+            self.presentEditDebtDialog(for: indexPath.row)
+        }
+        editAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        editAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        editAction.image = #imageLiteral(resourceName: "EditCell")
+        
+        return [clearAction, editAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.transitionStyle = .drag
+        return options
+    }
+}
 
 /*
  UTIL
@@ -94,19 +94,19 @@ extension MoneyViewController {
         }
     }
     
-    private func presentAddNewDebtDialog() {
-        let alert = UIAlertController(title: "Enter debt details", message: nil, preferredStyle: .alert)
+    private func clearDebt(at indexPath: IndexPath) {
+        let debtId = debts[indexPath.row].debtId
+        DataService.instance.deleteDebt(with: debtId)
+        debts.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.reloadData()
+    }
+    
+    private func presentEditDebtDialog(for index: Int) {
+        let alert = UIAlertController(title: "Enter new amount", message: nil, preferredStyle: .alert)
         
         alert.addTextField { (textfield) in
-            textfield.placeholder = "For person..."
-        }
-        
-        alert.addTextField { (textfield) in
-            textfield.placeholder = "With reason..."
-        }
-        
-        alert.addTextField { (textfield) in
-            textfield.placeholder = "For amount..."
+            textfield.placeholder = "amount"
         }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
@@ -114,13 +114,13 @@ extension MoneyViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            guard let receiverId = Auth.auth().currentUser?.uid else { return }
-            guard let payerId = alert.textFields?[0].text else { return }
-            guard let reason = alert.textFields?[1].text else { return }
-            guard let amountString = alert.textFields?[2].text else { return }
-            guard let amount = Int(amountString) else { return }
-            
-            DataService.instance.createDebt(from: receiverId, for: payerId, with: amount, and: reason)
+            guard let newAmountString = alert.textFields?[0].text else { return }
+            if let newAmount = Int(newAmountString) {
+                self.debts[index].changeAmount(with: newAmount)
+                self.tableView.reloadData()
+            } else {
+                // TODO: Comprehensive error
+            }
         }))
         
         self.present(alert, animated: true, completion: nil)

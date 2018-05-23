@@ -17,11 +17,9 @@ struct Debt {
     let reason: String
     var amount: Int
     
-    mutating func decrease(by amount: Int) {
-        self.amount -= amount
-    }
-    
-    mutating func increase(by amount: Int) {
-        self.amount += amount
+    mutating func changeAmount(with newAmount: Int) {
+        self.amount = newAmount
+        
+        DataService.instance.changeDebtAmount(for: debtId, with: newAmount)
     }
 }

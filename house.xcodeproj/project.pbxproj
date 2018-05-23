@@ -30,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
+		2358D55120B59E4500DC29A6 /* house.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = house.entitlements; sourceTree = "<group>"; };
 		235FF43F20B441CF00770EBB /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
 		235FF44120B4448E00770EBB /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
 		2381BD6420B0F59A000682EB /* ChoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCell.swift; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		23E82E0320A348650073981E /* house */ = {
 			isa = PBXGroup;
 			children = (
+				2358D55120B59E4500DC29A6 /* house.entitlements */,
 				23DC45A220B04251009E9C3D /* Extensions */,
 				23DC45A120B0424B009E9C3D /* Services */,
 				23DC45A320B04256009E9C3D /* Model */,
@@ -201,6 +203,14 @@
 				TargetAttributes = {
 					23E82E0020A348650073981E = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -448,6 +458,7 @@
 			baseConfigurationReference = 9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = house/house.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
@@ -467,6 +478,7 @@
 			baseConfigurationReference = 1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = house/house.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;

@@ -12,4 +12,8 @@ struct Chore {
     let choreId: String
     
     let content: String
+    
+    func clearChore() {
+        DataService.instance.deleteChore(with: choreId)
+    }
 }

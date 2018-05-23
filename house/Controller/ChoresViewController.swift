@@ -35,27 +35,7 @@ class ChoresViewController: UIViewController {
 /*
  TABLEVIEW
  */
-extension ChoresViewController: UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard orientation == .right else { return nil }
-        
-        let clearAction = SwipeAction(style: .destructive, title: nil) { (action, indexPath) in
-            self.clearChore(at: indexPath)
-        }
-        clearAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        clearAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
-        clearAction.image = #imageLiteral(resourceName: "ClearCell")
-        
-        return [clearAction]
-    }
-    
-    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
-        var options = SwipeTableOptions()
-        //        options.expansionStyle = .destructive
-        options.transitionStyle = .drag
-        return options
-    }
+extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return chores.count
@@ -75,6 +55,30 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource, Swip
 }
 
 /*
+ TABLEVIEW SWIPES
+ */
+extension ChoresViewController: SwipeTableViewCellDelegate {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let clearAction = SwipeAction(style: .destructive, title: nil) { (action, indexPath) in
+            self.clearChore(at: indexPath)
+        }
+        clearAction.backgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        clearAction.highlightedBackgroundColor = UIColor(red:0.95, green:0.95, blue:0.95, alpha:1.0)
+        clearAction.image = #imageLiteral(resourceName: "ClearCell")
+        
+        return [clearAction]
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeTableOptions {
+        var options = SwipeTableOptions()
+        options.transitionStyle = .drag
+        return options
+    }
+}
+
+/*
  UTIL
  */
 extension ChoresViewController {
@@ -87,8 +91,7 @@ extension ChoresViewController {
     }
     
     private func clearChore(at indexPath: IndexPath) {
-        let choreId = chores[indexPath.row].choreId
-        DataService.instance.deleteChore(with: choreId)
+        chores[indexPath.row].clearChore()
         chores.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.reloadData()
@@ -108,7 +111,7 @@ extension ChoresViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             if let choreName = alert.textFields?.first?.text {
                 DataService.instance.createChore(with: choreName)
-                self.loadChores()
+                self.tableView.reloadData()
             }
         }))
         

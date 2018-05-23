@@ -116,6 +116,14 @@ class DataService {
             }
         }
     }
+    
+    func changeDebtAmount(for debtId: String, with newAmount: Int) {
+        REF_DEBTS.child(debtId).setValue(["amount", newAmount])
+    }
+    
+    func deleteDebt(with debtId: String) {
+        REF_DEBTS.child(debtId).removeValue()
+    }
 }
 
 
