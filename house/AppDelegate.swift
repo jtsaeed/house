@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         firebaseSetup()
         notificationsSetup()
         clearIconBadge()
-        authenticate()
+        
+        if let user = Auth.auth().currentUser {
+            
+        } else {
+            displayLogin()
+        }
         
         return true
     }
@@ -48,10 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        /*
         if let token = Messaging.messaging().fcmToken {
             DataService.instance.saveToken(token)
             Messaging.messaging().subscribe(toTopic: "funhouse")
         }
+ */
     }
     
     private func firebaseSetup() {
@@ -65,17 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         UIApplication.shared.registerForRemoteNotifications()
     }
     
-    private func authenticate() {
-        if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let authVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            window?.makeKeyAndVisible()
-            window?.rootViewController?.present(authVC, animated: true, completion: nil)
-        }
-    }
-    
     private func clearIconBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    private func displayLogin() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let authVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        window?.makeKeyAndVisible()
+        window?.rootViewController?.present(authVC, animated: true, completion: nil)
     }
 }
 

@@ -15,33 +15,48 @@ class DataService {
     static let instance = DataService()
     
     var REF_BASE = DB_BASE
+    var REF_HOUSES = DB_BASE.child("houses")
     var REF_USERS = DB_BASE.child("users")
     var REF_CHORES = DB_BASE.child("chores")
     var REF_DEBTS = DB_BASE.child("debts")
     
-    func saveToken(_ token: String) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
-        REF_USERS.child(userId).updateChildValues(["fcmToken": token])
-    }
-    
-    func createChore(with content: String) {
-        REF_CHORES.childByAutoId().updateChildValues(["content": content])
-    }
-    
-    func createDebt(from receiverId: String, for payerId: String, with amount: Int, and reason: String) {
-        REF_DEBTS.childByAutoId().updateChildValues([ "receiverId": receiverId, "payerId": payerId, "amount": amount, "reason": reason ])
-    }
-    
-    func getUserData(handler: @escaping (_ user: User) -> ()) {
+    private func attemptDatabaseAccess(handler: @escaping (_ userId: String, _ houseId: String) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
-            guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
-            guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
-            guard let email = snapshot.childSnapshot(forPath: "email").value as? String else { return }
+            guard let houseId = snapshot.childSnapshot(forPath: "houseId").value as? String else { return }
             
-            handler(User(userId: userId, name: name, nickname: nickname, email: email))
+            handler(userId, houseId)
+        }
+    }
+    
+    func saveToken(_ token: String) {
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_USERS.child(houseId).child(userId).updateChildValues(["fcmToken": token])
+        }
+    }
+    
+    func createChore(with content: String) {
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content])
+        }
+    }
+    
+    func createDebt(from receiverId: String, for payerId: String, with amount: Int, and reason: String) {
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": receiverId, "payerId": payerId, "amount": amount, "reason": reason ])
+        }
+    }
+    
+    func getUserData(handler: @escaping (_ user: User) -> ()) {
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_USERS.child(houseId).child(userId).observeSingleEvent(of: .value) { (snapshot) in
+                guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
+                guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
+                guard let email = snapshot.childSnapshot(forPath: "email").value as? String else { return }
+                
+                handler(User(userId: userId, name: name, nickname: nickname, email: email))
+            }
         }
     }
     
@@ -75,64 +90,73 @@ class DataService {
     func getChores(handler: @escaping (_ chores: [Chore]) -> ()) {
         var chores = [Chore]()
         
-        REF_CHORES.observeSingleEvent(of: .value) { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                for chore in snapshot {
-                    let choreId = chore.key
-                    guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_CHORES.child(houseId).observeSingleEvent(of: .value) { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for chore in snapshot {
+                        let choreId = chore.key
+                        guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
+                        
+                        chores.append(Chore(choreId: choreId, content: content))
+                    }
                     
-                    chores.append(Chore(choreId: choreId, content: content))
+                    handler(chores)
+                } else {
+                    // TODO: Comprehensive error handler
                 }
-                
-                handler(chores)
-            } else {
-                // TODO: Comprehensive error handler
             }
         }
+        
     }
     
     func deleteChore(with choreId: String) {
-        REF_CHORES.child(choreId).removeValue()
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_CHORES.child(houseId).child(choreId).removeValue()
+        }
     }
     
     func getDebts(handler: @escaping (_ debts: [Debt]) -> ()) {
         var debts = [Debt]()
         
-        REF_DEBTS.observeSingleEvent(of: .value) { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                for debt in snapshot {
-                    let userId = Auth.auth().currentUser?.uid
-                    
-                    guard let receiverId = debt.childSnapshot(forPath: "receiverId").value as? String else { return }
-                    guard let payerId = debt.childSnapshot(forPath: "payerId").value as? String else { return }
-                    
-                    if receiverId == userId || payerId == userId {
-                        let debtId = debt.key
-                        guard let reason = debt.childSnapshot(forPath: "reason").value as? String else { return }
-                        guard let amount = debt.childSnapshot(forPath: "amount").value as? Int else { return }
-                        let isPaying = (payerId == userId)
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_DEBTS.child(houseId).observeSingleEvent(of: .value) { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for debt in snapshot {
+                        let userId = Auth.auth().currentUser?.uid
                         
-                        debts.append(Debt(debtId: debtId, isPaying: isPaying, receiverId: receiverId, payerId: payerId, reason: reason, amount: amount))
+                        guard let receiverId = debt.childSnapshot(forPath: "receiverId").value as? String else { return }
+                        guard let payerId = debt.childSnapshot(forPath: "payerId").value as? String else { return }
+                        
+                        if receiverId == userId || payerId == userId {
+                            let debtId = debt.key
+                            guard let reason = debt.childSnapshot(forPath: "reason").value as? String else { return }
+                            guard let amount = debt.childSnapshot(forPath: "amount").value as? Int else { return }
+                            let isPaying = (payerId == userId)
+                            
+                            debts.append(Debt(debtId: debtId, isPaying: isPaying, receiverId: receiverId, payerId: payerId, reason: reason, amount: amount))
+                        }
                     }
+                    
+                    handler(debts)
+                } else {
+                    // TODO: Comprehensive error handler
                 }
-                
-                handler(debts)
-            } else {
-                // TODO: Comprehensive error handler
             }
         }
     }
     
     func changeDebtAmount(for debtId: String, with newAmount: Int) {
-        REF_DEBTS.child(debtId).setValue(["amount", newAmount])
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_DEBTS.child(debtId).setValue(["amount", newAmount])
+        }
     }
     
     func deleteDebt(with debtId: String) {
-        REF_DEBTS.child(debtId).removeValue()
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_DEBTS.child(debtId).child(debtId).removeValue()
+        }
     }
 }
-
-
 
 
 
