@@ -17,19 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
-        Database.database().isPersistenceEnabled = true
-        
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
-        UIApplication.shared.registerForRemoteNotifications()
-        
-        if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let authVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
-            window?.makeKeyAndVisible()
-            window?.rootViewController?.present(authVC, animated: true, completion: nil)
-        }
+        firebaseSetup()
+        notificationsSetup()
+        clearIconBadge()
+        authenticate()
         
         return true
     }
@@ -59,7 +50,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         if let token = Messaging.messaging().fcmToken {
             DataService.instance.saveToken(token)
+            Messaging.messaging().subscribe(toTopic: "funhouse")
         }
+    }
+    
+    private func firebaseSetup() {
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        Database.database().isPersistenceEnabled = true
+    }
+    
+    private func notificationsSetup() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    private func authenticate() {
+        if Auth.auth().currentUser == nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let authVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            window?.makeKeyAndVisible()
+            window?.rootViewController?.present(authVC, animated: true, completion: nil)
+        }
+    }
+    
+    private func clearIconBadge() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 }
 
