@@ -111,7 +111,7 @@ extension ChoresViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             if let choreName = alert.textFields?.first?.text {
                 DataService.instance.createChore(with: choreName)
-                self.tableView.reloadData()
+                self.loadChores()
             }
         }))
         

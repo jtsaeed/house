@@ -12,13 +12,17 @@ import FirebaseAuth
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         Database.database().isPersistenceEnabled = true
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
+        UIApplication.shared.registerForRemoteNotifications()
         
         if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -52,6 +56,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        if let token = Messaging.messaging().fcmToken {
+            DataService.instance.saveToken(token)
+        }
+    }
 }
 

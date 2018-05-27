@@ -19,6 +19,12 @@ class DataService {
     var REF_CHORES = DB_BASE.child("chores")
     var REF_DEBTS = DB_BASE.child("debts")
     
+    func saveToken(_ token: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        REF_USERS.child(userId).updateChildValues(["fcmToken": token])
+    }
+    
     func createChore(with content: String) {
         REF_CHORES.childByAutoId().updateChildValues(["content": content])
     }
@@ -31,9 +37,9 @@ class DataService {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
-            let name = snapshot.childSnapshot(forPath: "name").value as! String
-            let nickname = snapshot.childSnapshot(forPath: "nickname").value as! String
-            let email = snapshot.childSnapshot(forPath: "email").value as! String
+            guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
+            guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
+            guard let email = snapshot.childSnapshot(forPath: "email").value as? String else { return }
             
             handler(User(userId: userId, name: name, nickname: nickname, email: email))
         }
