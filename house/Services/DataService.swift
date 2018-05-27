@@ -52,7 +52,7 @@ class DataService {
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for user in snapshot {
                     let id = user.key
-                    let nickname = user.childSnapshot(forPath: "nickname").value as! String
+                    guard let nickname = user.childSnapshot(forPath: "nickname").value as? String else { return }
                     
                     pairs[nickname] = id
                 }
@@ -66,7 +66,7 @@ class DataService {
     
     func getUserNickname(for Id: String, handler: @escaping (_ name: String) -> ()) {
         REF_USERS.child(Id).observeSingleEvent(of: .value) { (snapshot) in
-            let nickname = snapshot.childSnapshot(forPath: "nickname").value as! String
+            guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
             
             handler(nickname)
         }
@@ -79,7 +79,7 @@ class DataService {
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for chore in snapshot {
                     let choreId = chore.key
-                    let content = chore.childSnapshot(forPath: "content").value as! String
+                    guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
                     
                     chores.append(Chore(choreId: choreId, content: content))
                 }
@@ -103,13 +103,13 @@ class DataService {
                 for debt in snapshot {
                     let userId = Auth.auth().currentUser?.uid
                     
-                    let receiverId = debt.childSnapshot(forPath: "receiverId").value as! String
-                    let payerId = debt.childSnapshot(forPath: "payerId").value as! String
+                    guard let receiverId = debt.childSnapshot(forPath: "receiverId").value as? String else { return }
+                    guard let payerId = debt.childSnapshot(forPath: "payerId").value as? String else { return }
                     
                     if receiverId == userId || payerId == userId {
                         let debtId = debt.key
-                        let reason = debt.childSnapshot(forPath: "reason").value as! String
-                        let amount = debt.childSnapshot(forPath: "amount").value as! Int
+                        guard let reason = debt.childSnapshot(forPath: "reason").value as? String else { return }
+                        guard let amount = debt.childSnapshot(forPath: "amount").value as? Int else { return }
                         let isPaying = (payerId == userId)
                         
                         debts.append(Debt(debtId: debtId, isPaying: isPaying, receiverId: receiverId, payerId: payerId, reason: reason, amount: amount))
