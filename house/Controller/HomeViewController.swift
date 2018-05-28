@@ -10,21 +10,57 @@ import UIKit
 import Firebase
 
 class HomeViewController: UIViewController {
+    
+    var choresAmount = 0
+    var debtsAmount = 0
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setNavigationTitle()
+        
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
     }
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        DataService.instance.getAmountOfChores { (pulledAmount) in
+            self.choresAmount = pulledAmount
+            self.tableView.reloadData()
+        }
+        
+        DataService.instance.getAmountOfOutstandingDebts { (pulledAmount) in
+            self.debtsAmount = pulledAmount
+            self.tableView.reloadData()
+        }
+    }
 }
 
 /*
  TABLE VIEW
  */
-extension HomeViewController {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "homeCell") as? HomeCell else {
+            return UITableViewCell()
+        }
+        
+        if indexPath.row == 0 {
+            cell.configure(mainText: "There are", secondaryText: "chores remaining", amount: choresAmount)
+        } else if indexPath.row == 1 {
+            cell.configure(mainText: "You have", secondaryText: "outstanding debts", amount: debtsAmount)
+        }
+        
+        
+        return cell
+    }
 }
 
 /*

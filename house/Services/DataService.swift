@@ -12,6 +12,7 @@ import Firebase
 let DB_BASE = Database.database().reference()
 
 class DataService {
+    
     static let instance = DataService()
     
     var REF_BASE = DB_BASE
@@ -29,22 +30,18 @@ class DataService {
             handler(userId, houseId)
         }
     }
+}
+
+/*
+ USER RELATED
+ OPERATIONS
+ */
+extension DataService {
     
     func saveToken(_ token: String) {
         attemptDatabaseAccess { (userId, houseId) in
             self.REF_USERS.child(houseId).child(userId).updateChildValues(["fcmToken": token])
-        }
-    }
-    
-    func createChore(with content: String) {
-        attemptDatabaseAccess { (_, houseId) in
-            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content])
-        }
-    }
-    
-    func createDebt(from receiverId: String, for payerId: String, with amount: Int, and reason: String) {
-        attemptDatabaseAccess { (userId, houseId) in
-            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": receiverId, "payerId": payerId, "amount": amount, "reason": reason ])
+            Messaging.messaging().subscribe(toTopic: houseId)
         }
     }
     
@@ -86,6 +83,19 @@ class DataService {
             handler(nickname)
         }
     }
+}
+
+/*
+ CHORE RELATED
+ OPERATIONS
+ */
+extension DataService {
+    
+    func createChore(with content: String) {
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content])
+        }
+    }
     
     func getChores(handler: @escaping (_ chores: [Chore]) -> ()) {
         var chores = [Chore]()
@@ -106,12 +116,42 @@ class DataService {
                 }
             }
         }
+    }
+    
+    func getAmountOfChores(handler: @escaping (_ amount: Int) -> ()) {
+        var amount = 0
         
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_CHORES.child(houseId).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for _ in snapshot {
+                        amount += 1
+                    }
+                    
+                    handler(amount)
+                } else {
+                    // TODO: Comprehensive error handler
+                }
+            })
+        }
     }
     
     func deleteChore(with choreId: String) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).child(choreId).removeValue()
+        }
+    }
+}
+
+/*
+ DEBT RELATED
+ OPERATIONS
+ */
+extension DataService {
+    
+    func createDebt(from receiverId: String, for payerId: String, with amount: Int, and reason: String) {
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": receiverId, "payerId": payerId, "amount": amount, "reason": reason ])
         }
     }
     
@@ -145,6 +185,28 @@ class DataService {
         }
     }
     
+    func getAmountOfOutstandingDebts(handler: @escaping (_ amount: Int) -> ()) {
+        var amount = 0
+        
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_DEBTS.child(houseId).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for debt in snapshot {
+                        guard let payerId = debt.childSnapshot(forPath: "payerId").value as? String else { return }
+                        
+                        if payerId == userId {
+                            amount += 1
+                        }
+                    }
+                    
+                    handler(amount)
+                } else {
+                    // TODO: Comprehensive error handler
+                }
+            })
+        }
+    }
+    
     func changeDebtAmount(for debtId: String, with newAmount: Int) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_DEBTS.child(debtId).setValue(["amount", newAmount])
@@ -157,12 +219,5 @@ class DataService {
         }
     }
 }
-
-
-
-
-
-
-
 
 
