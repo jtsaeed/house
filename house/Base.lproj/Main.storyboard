@@ -472,44 +472,34 @@
             </objects>
             <point key="canvasLocation" x="1740" y="188.45577211394306"/>
         </scene>
-        <!--Login View Controller-->
+        <!--Initial View Controller-->
         <scene sceneID="Kuj-O8-UxA">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="pDb-RN-i5P" customClass="LoginViewController" customModule="house" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InitialViewController" id="pDb-RN-i5P" customClass="InitialViewController" customModule="house" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hIP-av-iSC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZZK-Oa-hPw">
-                                <rect key="frame" x="82" y="76" width="211" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="House" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmO-3M-YZx">
+                                <rect key="frame" x="101" y="172" width="173" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="64"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pqj-9J-fwM">
-                                <rect key="frame" x="82" y="114" width="211" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hk-g5-ZYL">
-                                <rect key="frame" x="166" y="152" width="42" height="30"/>
+                                <rect key="frame" x="150" y="274" width="84" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="Log In"/>
                                 <connections>
-                                    <action selector="logInButtonPressed:" destination="pDb-RN-i5P" eventType="touchUpInside" id="Wad-Oe-f4k"/>
+                                    <action selector="logInButtonPressed:" destination="pDb-RN-i5P" eventType="touchUpInside" id="Yg5-hO-6ZC"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="rW3-mS-cp0"/>
                     </view>
-                    <connections>
-                        <outlet property="emailField" destination="ZZK-Oa-hPw" id="7oP-ZE-hfi"/>
-                        <outlet property="passwordField" destination="pqj-9J-fwM" id="lAQ-sp-D6u"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GJ7-qd-fyf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

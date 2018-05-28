@@ -19,13 +19,15 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationTitle()
-        
         tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+        
+        setNavigationTitle()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        setNavigationTitle()
         
         DataService.instance.getAmountOfChores { (pulledAmount) in
             self.choresAmount = pulledAmount

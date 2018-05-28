@@ -9,6 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseUI
+import TwitterKit
+import TwitterCore
 import UserNotifications
 
 @UIApplicationMain
@@ -20,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         firebaseSetup()
         notificationsSetup()
         clearIconBadge()
+        
+        TWTRTwitter.sharedInstance().start(withConsumerKey: "Q4CMl6PFvDgftelNDo9FQfonT", consumerSecret: "1M9dVB93VGUwpAWYNOGfutmwqdB0Buy6zAXJUQCamd8WE1h2Y7")
+        
+        
         displayLogin()
         
         return true
@@ -46,6 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
+            return true
+        }
+        // other URL handling goes here.
+        return false
+    }
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         if let token = Messaging.messaging().fcmToken {
@@ -71,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     private func displayLogin() {
         if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let authVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            let authVC = storyboard.instantiateViewController(withIdentifier: "InitialViewController")
             window?.makeKeyAndVisible()
             window?.rootViewController?.present(authVC, animated: true, completion: nil)
         }

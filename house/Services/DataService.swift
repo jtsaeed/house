@@ -40,7 +40,7 @@ extension DataService {
     
     func saveToken(_ token: String) {
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_USERS.child(houseId).child(userId).updateChildValues(["fcmToken": token])
+            self.REF_USERS.child(userId).updateChildValues(["fcmToken": token])
             Messaging.messaging().subscribe(toTopic: houseId)
         }
     }

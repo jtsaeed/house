@@ -1,0 +1,35 @@
+//
+//  InitialViewController.swift
+//  house
+//
+//  Created by James Saeed on 28/05/2018.
+//  Copyright © 2018 James Saeed. All rights reserved.
+//
+
+import UIKit
+import FirebaseUI
+
+class InitialViewController: UIViewController, FUIAuthDelegate {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    @IBAction func logInButtonPressed(_ sender: Any) {
+        let authUI = FUIAuth.defaultAuthUI()
+        authUI?.delegate = self
+        
+        let providers: [FUIAuthProvider] = [FUIGoogleAuth(), FUIFacebookAuth(), FUITwitterAuth(), FUIPhoneAuth(authUI: FUIAuth.defaultAuthUI()!)]
+        authUI?.providers = providers
+        
+        let authViewController = authUI?.authViewController()
+        present(authViewController!, animated: true, completion: nil)
+    }
+    
+    func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
+        
+        if authDataResult != nil {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+}

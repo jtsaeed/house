@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441920BCA43B008F80FC /* HomeCell.swift */; };
+		2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441B20BCB88D008F80FC /* InitialViewController.swift */; };
 		235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF43F20B441CF00770EBB /* NewDebtViewController.swift */; };
 		235FF44220B4448E00770EBB /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF44120B4448E00770EBB /* DebtCell.swift */; };
 		2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6420B0F59A000682EB /* ChoreCell.swift */; };
@@ -26,13 +27,13 @@
 		23E82E0C20A348660073981E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0A20A348660073981E /* Main.storyboard */; };
 		23E82E0E20A348670073981E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0D20A348670073981E /* Assets.xcassets */; };
 		23E82E1120A348670073981E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0F20A348670073981E /* LaunchScreen.storyboard */; };
-		23F4D47D20B04A2F00446A5B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F4D47C20B04A2F00446A5B /* LoginViewController.swift */; };
 		C4966389EDDFAE86F7343C3B /* Pods_house.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434973F18E889D11359FC786 /* Pods_house.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
 		2322441920BCA43B008F80FC /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		2322441B20BCB88D008F80FC /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2358D55120B59E4500DC29A6 /* house.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = house.entitlements; sourceTree = "<group>"; };
 		235FF43F20B441CF00770EBB /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
 		235FF44120B4448E00770EBB /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
@@ -54,7 +55,6 @@
 		23E82E0D20A348670073981E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23E82E1020A348670073981E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23E82E1220A348670073981E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		23F4D47C20B04A2F00446A5B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		434973F18E889D11359FC786 /* Pods_house.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_house.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.debug.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,10 +122,10 @@
 			children = (
 				23E82E0620A348650073981E /* HomeViewController.swift */,
 				23E82E0820A348650073981E /* ChoresViewController.swift */,
-				23F4D47C20B04A2F00446A5B /* LoginViewController.swift */,
 				2381BD6820B1914B000682EB /* MoneyViewController.swift */,
 				235FF43F20B441CF00770EBB /* NewDebtViewController.swift */,
 				23CAE2B620BB73CB00DCAFBD /* MeViewController.swift */,
+				2322441B20BCB88D008F80FC /* InitialViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,7 +371,6 @@
 				23CAE2B720BB73CB00DCAFBD /* MeViewController.swift in Sources */,
 				235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */,
 				2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */,
-				23F4D47D20B04A2F00446A5B /* LoginViewController.swift in Sources */,
 				2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */,
 				23E82E0920A348650073981E /* ChoresViewController.swift in Sources */,
 				2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */,
@@ -384,6 +383,7 @@
 				23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */,
 				235FF44220B4448E00770EBB /* DebtCell.swift in Sources */,
 				23DC45A920B0437B009E9C3D /* DataService.swift in Sources */,
+				2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
