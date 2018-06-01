@@ -13,6 +13,7 @@ import FirebaseUI
 import TwitterKit
 import TwitterCore
 import UserNotifications
+import Intents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -22,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         firebaseSetup()
         notificationsSetup()
+        siriSetup()
         clearIconBadge()
         
         TWTRTwitter.sharedInstance().start(withConsumerKey: "Q4CMl6PFvDgftelNDo9FQfonT", consumerSecret: "1M9dVB93VGUwpAWYNOGfutmwqdB0Buy6zAXJUQCamd8WE1h2Y7")
@@ -78,6 +80,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     private func notificationsSetup() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
         UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    private func siriSetup() {
+        INPreferences.requestSiriAuthorization { status in
+            if status == .authorized {
+                print("Hey, Siri!")
+            } else {
+                print("Nay, Siri!")
+            }
+        }
     }
     
     private func clearIconBadge() {

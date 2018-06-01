@@ -27,8 +27,47 @@
 		23E82E0C20A348660073981E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0A20A348660073981E /* Main.storyboard */; };
 		23E82E0E20A348670073981E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0D20A348670073981E /* Assets.xcassets */; };
 		23E82E1120A348670073981E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0F20A348670073981E /* LaunchScreen.storyboard */; };
+		23F883DB20C1839700970225 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F883DA20C1839700970225 /* IntentHandler.swift */; };
+		23F883E320C1839700970225 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F883E220C1839700970225 /* IntentsUI.framework */; };
+		23F883E620C1839700970225 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F883E520C1839700970225 /* IntentViewController.swift */; };
+		23F883E920C1839700970225 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23F883E720C1839700970225 /* MainInterface.storyboard */; };
+		23F883ED20C1839800970225 /* housesiriUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23F883E120C1839700970225 /* housesiriUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		23F883F020C1839800970225 /* housesiri.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 23F883D820C1839700970225 /* housesiri.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		23F883F920C1851500970225 /* ChoreRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F883F820C1851500970225 /* ChoreRequestHandler.swift */; };
 		C4966389EDDFAE86F7343C3B /* Pods_house.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434973F18E889D11359FC786 /* Pods_house.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		23F883EB20C1839800970225 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23E82DF920A348650073981E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23F883E020C1839700970225;
+			remoteInfo = housesiriUI;
+		};
+		23F883EE20C1839800970225 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 23E82DF920A348650073981E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 23F883D720C1839700970225;
+			remoteInfo = housesiri;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		23F883F720C1839800970225 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				23F883F020C1839800970225 /* housesiri.appex in Embed App Extensions */,
+				23F883ED20C1839800970225 /* housesiriUI.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +94,15 @@
 		23E82E0D20A348670073981E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23E82E1020A348670073981E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23E82E1220A348670073981E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F883D820C1839700970225 /* housesiri.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = housesiri.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F883DA20C1839700970225 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		23F883DC20C1839700970225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F883E120C1839700970225 /* housesiriUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = housesiriUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		23F883E220C1839700970225 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		23F883E520C1839700970225 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		23F883E820C1839700970225 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		23F883EA20C1839700970225 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F883F820C1851500970225 /* ChoreRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreRequestHandler.swift; sourceTree = "<group>"; };
 		434973F18E889D11359FC786 /* Pods_house.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_house.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.debug.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +113,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4966389EDDFAE86F7343C3B /* Pods_house.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F883D520C1839700970225 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F883DE20C1839700970225 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F883E320C1839700970225 /* IntentsUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +197,8 @@
 			isa = PBXGroup;
 			children = (
 				23E82E0320A348650073981E /* house */,
+				23F883D920C1839700970225 /* housesiri */,
+				23F883E420C1839700970225 /* housesiriUI */,
 				23E82E0220A348650073981E /* Products */,
 				0360DD9E96B9A6D9850083FC /* Pods */,
 				3418C86140477F536B0A22ED /* Frameworks */,
@@ -144,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				23E82E0120A348650073981E /* house.app */,
+				23F883D820C1839700970225 /* housesiri.appex */,
+				23F883E120C1839700970225 /* housesiriUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,10 +234,31 @@
 			path = house;
 			sourceTree = "<group>";
 		};
+		23F883D920C1839700970225 /* housesiri */ = {
+			isa = PBXGroup;
+			children = (
+				23F883DA20C1839700970225 /* IntentHandler.swift */,
+				23F883DC20C1839700970225 /* Info.plist */,
+				23F883F820C1851500970225 /* ChoreRequestHandler.swift */,
+			);
+			path = housesiri;
+			sourceTree = "<group>";
+		};
+		23F883E420C1839700970225 /* housesiriUI */ = {
+			isa = PBXGroup;
+			children = (
+				23F883E520C1839700970225 /* IntentViewController.swift */,
+				23F883E720C1839700970225 /* MainInterface.storyboard */,
+				23F883EA20C1839700970225 /* Info.plist */,
+			);
+			path = housesiriUI;
+			sourceTree = "<group>";
+		};
 		3418C86140477F536B0A22ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				434973F18E889D11359FC786 /* Pods_house.framework */,
+				23F883E220C1839700970225 /* IntentsUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -188,15 +276,52 @@
 				23E82DFF20A348650073981E /* Resources */,
 				04EE714AB696EE3F67F1D2E1 /* [CP] Embed Pods Frameworks */,
 				2D85326D35BFA19E8B243140 /* [CP] Copy Pods Resources */,
+				23F883F720C1839800970225 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				23F883EC20C1839800970225 /* PBXTargetDependency */,
+				23F883EF20C1839800970225 /* PBXTargetDependency */,
 			);
 			name = house;
 			productName = house;
 			productReference = 23E82E0120A348650073981E /* house.app */;
 			productType = "com.apple.product-type.application";
+		};
+		23F883D720C1839700970225 /* housesiri */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23F883F620C1839800970225 /* Build configuration list for PBXNativeTarget "housesiri" */;
+			buildPhases = (
+				23F883D420C1839700970225 /* Sources */,
+				23F883D520C1839700970225 /* Frameworks */,
+				23F883D620C1839700970225 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = housesiri;
+			productName = housesiri;
+			productReference = 23F883D820C1839700970225 /* housesiri.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		23F883E020C1839700970225 /* housesiriUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23F883F520C1839800970225 /* Build configuration list for PBXNativeTarget "housesiriUI" */;
+			buildPhases = (
+				23F883DD20C1839700970225 /* Sources */,
+				23F883DE20C1839700970225 /* Frameworks */,
+				23F883DF20C1839700970225 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = housesiriUI;
+			productName = housesiriUI;
+			productReference = 23F883E120C1839700970225 /* housesiriUI.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -204,7 +329,7 @@
 		23E82DF920A348650073981E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "James Saeed";
 				TargetAttributes = {
@@ -220,7 +345,16 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
 						};
+					};
+					23F883D720C1839700970225 = {
+						CreatedOnToolsVersion = 9.4;
+					};
+					23F883E020C1839700970225 = {
+						CreatedOnToolsVersion = 9.4;
 					};
 				};
 			};
@@ -238,6 +372,8 @@
 			projectRoot = "";
 			targets = (
 				23E82E0020A348650073981E /* house */,
+				23F883D720C1839700970225 /* housesiri */,
+				23F883E020C1839700970225 /* housesiriUI */,
 			);
 		};
 /* End PBXProject section */
@@ -251,6 +387,21 @@
 				23DC45A020B041FF009E9C3D /* GoogleService-Info.plist in Resources */,
 				23E82E0E20A348670073981E /* Assets.xcassets in Resources */,
 				23E82E0C20A348660073981E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F883D620C1839700970225 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F883DF20C1839700970225 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F883E920C1839700970225 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +538,37 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		23F883D420C1839700970225 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F883F920C1851500970225 /* ChoreRequestHandler.swift in Sources */,
+				23F883DB20C1839700970225 /* IntentHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		23F883DD20C1839700970225 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				23F883E620C1839700970225 /* IntentViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		23F883EC20C1839800970225 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23F883E020C1839700970225 /* housesiriUI */;
+			targetProxy = 23F883EB20C1839800970225 /* PBXContainerItemProxy */;
+		};
+		23F883EF20C1839800970225 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 23F883D720C1839700970225 /* housesiri */;
+			targetProxy = 23F883EE20C1839800970225 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		23E82E0A20A348660073981E /* Main.storyboard */ = {
@@ -404,6 +585,14 @@
 				23E82E1020A348670073981E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		23F883E720C1839700970225 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23F883E820C1839700970225 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -527,6 +716,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = house/house.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -547,6 +737,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = house/house.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -558,6 +749,86 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		23F883F120C1839800970225 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577WSH643L;
+				INFOPLIST_FILE = housesiri/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		23F883F220C1839800970225 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577WSH643L;
+				INFOPLIST_FILE = housesiri/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiri;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		23F883F320C1839800970225 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577WSH643L;
+				INFOPLIST_FILE = housesiriUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiriUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		23F883F420C1839800970225 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 577WSH643L;
+				INFOPLIST_FILE = housesiriUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiriUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -580,6 +851,24 @@
 			buildConfigurations = (
 				23E82E1620A348670073981E /* Debug */,
 				23E82E1720A348670073981E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23F883F520C1839800970225 /* Build configuration list for PBXNativeTarget "housesiriUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23F883F320C1839800970225 /* Debug */,
+				23F883F420C1839800970225 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23F883F620C1839800970225 /* Build configuration list for PBXNativeTarget "housesiri" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23F883F120C1839800970225 /* Debug */,
+				23F883F220C1839800970225 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -7,7 +7,17 @@
 		<key>house.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+			<integer>32</integer>
+		</dict>
+		<key>housesiri.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
 			<integer>31</integer>
+		</dict>
+		<key>housesiriUI.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>33</integer>
 		</dict>
 	</dict>
 </dict>
