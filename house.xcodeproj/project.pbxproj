@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441920BCA43B008F80FC /* HomeCell.swift */; };
 		2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441B20BCB88D008F80FC /* InitialViewController.swift */; };
+		235A4E9520C5F09B001BC1FB /* UIBigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A4E9420C5F09B001BC1FB /* UIBigButton.swift */; };
 		235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF43F20B441CF00770EBB /* NewDebtViewController.swift */; };
 		235FF44220B4448E00770EBB /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF44120B4448E00770EBB /* DebtCell.swift */; };
 		2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6420B0F59A000682EB /* ChoreCell.swift */; };
@@ -74,6 +75,7 @@
 		2322441920BCA43B008F80FC /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		2322441B20BCB88D008F80FC /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2358D55120B59E4500DC29A6 /* house.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = house.entitlements; sourceTree = "<group>"; };
+		235A4E9420C5F09B001BC1FB /* UIBigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBigButton.swift; sourceTree = "<group>"; };
 		235FF43F20B441CF00770EBB /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
 		235FF44120B4448E00770EBB /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
 		2381BD6420B0F59A000682EB /* ChoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCell.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				2381BD6620B0F67A000682EB /* UIViewX.swift */,
 				235FF44120B4448E00770EBB /* DebtCell.swift */,
 				2322441920BCA43B008F80FC /* HomeCell.swift */,
+				235A4E9420C5F09B001BC1FB /* UIBigButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				TargetAttributes = {
 					23E82E0020A348650073981E = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 1000;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -352,9 +356,11 @@
 					};
 					23F883D720C1839700970225 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 					};
 					23F883E020C1839700970225 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -417,7 +423,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-house/Pods-house-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
-				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
@@ -425,7 +430,6 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC/GRPCClient.framework",
@@ -439,7 +443,6 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
@@ -447,7 +450,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GRPCClient.framework",
@@ -519,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				235A4E9520C5F09B001BC1FB /* UIBigButton.swift in Sources */,
 				23CAE2B720BB73CB00DCAFBD /* MeViewController.swift in Sources */,
 				235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */,
 				2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */,
@@ -722,13 +725,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -743,13 +743,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -761,15 +758,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -781,15 +774,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -801,15 +790,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiriUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiriUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -821,15 +806,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiriUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiriUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

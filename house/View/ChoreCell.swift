@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class ChoreCell: SwipeTableViewCell {
+class ChoreCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!

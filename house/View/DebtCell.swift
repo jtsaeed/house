@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class DebtCell: SwipeTableViewCell {
+class DebtCell: UITableViewCell {
     
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var detailLabel: UILabel!

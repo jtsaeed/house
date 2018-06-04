@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         firebaseSetup()
         notificationsSetup()
         siriSetup()
@@ -56,8 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let sourceApplication = options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
         }
