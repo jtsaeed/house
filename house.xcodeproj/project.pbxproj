@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441920BCA43B008F80FC /* HomeCell.swift */; };
 		2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441B20BCB88D008F80FC /* InitialViewController.swift */; };
-		235A4E9520C5F09B001BC1FB /* UIBigButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A4E9420C5F09B001BC1FB /* UIBigButton.swift */; };
+		235A4E9520C5F09B001BC1FB /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A4E9420C5F09B001BC1FB /* UIButtonX.swift */; };
+		235BA08E20C71FAC000D2FBB /* JoinHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */; };
 		235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF43F20B441CF00770EBB /* NewDebtViewController.swift */; };
 		235FF44220B4448E00770EBB /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF44120B4448E00770EBB /* DebtCell.swift */; };
 		2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6420B0F59A000682EB /* ChoreCell.swift */; };
@@ -75,7 +76,8 @@
 		2322441920BCA43B008F80FC /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		2322441B20BCB88D008F80FC /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		2358D55120B59E4500DC29A6 /* house.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = house.entitlements; sourceTree = "<group>"; };
-		235A4E9420C5F09B001BC1FB /* UIBigButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBigButton.swift; sourceTree = "<group>"; };
+		235A4E9420C5F09B001BC1FB /* UIButtonX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
+		235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinHouseViewController.swift; sourceTree = "<group>"; };
 		235FF43F20B441CF00770EBB /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
 		235FF44120B4448E00770EBB /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
 		2381BD6420B0F59A000682EB /* ChoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCell.swift; sourceTree = "<group>"; };
@@ -178,7 +180,7 @@
 				2381BD6620B0F67A000682EB /* UIViewX.swift */,
 				235FF44120B4448E00770EBB /* DebtCell.swift */,
 				2322441920BCA43B008F80FC /* HomeCell.swift */,
-				235A4E9420C5F09B001BC1FB /* UIBigButton.swift */,
+				235A4E9420C5F09B001BC1FB /* UIButtonX.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +194,7 @@
 				235FF43F20B441CF00770EBB /* NewDebtViewController.swift */,
 				23CAE2B620BB73CB00DCAFBD /* MeViewController.swift */,
 				2322441B20BCB88D008F80FC /* InitialViewController.swift */,
+				235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -521,11 +524,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				235A4E9520C5F09B001BC1FB /* UIBigButton.swift in Sources */,
+				235A4E9520C5F09B001BC1FB /* UIButtonX.swift in Sources */,
 				23CAE2B720BB73CB00DCAFBD /* MeViewController.swift in Sources */,
 				235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */,
 				2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */,
 				2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */,
+				235BA08E20C71FAC000D2FBB /* JoinHouseViewController.swift in Sources */,
 				23E82E0920A348650073981E /* ChoresViewController.swift in Sources */,
 				2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */,
 				23E82E0520A348650073981E /* AppDelegate.swift in Sources */,
@@ -725,7 +729,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -743,7 +750,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -758,7 +768,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -774,7 +788,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiri/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiri;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -790,7 +808,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiriUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiriUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -806,7 +828,11 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = housesiriUI/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house.housesiriUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         TWTRTwitter.sharedInstance().start(withConsumerKey: "Q4CMl6PFvDgftelNDo9FQfonT", consumerSecret: "1M9dVB93VGUwpAWYNOGfutmwqdB0Buy6zAXJUQCamd8WE1h2Y7")
         
         
-        displayLogin()
+        checkAuthentication()
         
         return true
     }
@@ -96,13 +96,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
-    private func displayLogin() {
+    private func checkAuthentication() {
         if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let authVC = storyboard.instantiateViewController(withIdentifier: "InitialViewController")
-            window?.makeKeyAndVisible()
-            window?.rootViewController?.present(authVC, animated: true, completion: nil)
+            displayLogin()
+        } else {
+            DataService.instance.checkIfUserRegistered { (registered) in
+                if !registered {
+                    do {
+                        try Auth.auth().signOut()
+                        self.displayLogin()
+                    } catch let signOutError as NSError {
+                        // TODO: Comprehensive Error
+                    }
+                }
+            }
         }
+    }
+    
+    private func displayLogin() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let authVC = storyboard.instantiateViewController(withIdentifier: "InitialViewController")
+        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController?.present(authVC, animated: true, completion: nil)
     }
 }
 

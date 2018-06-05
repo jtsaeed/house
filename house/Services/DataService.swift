@@ -30,6 +30,32 @@ class DataService {
             handler(userId, houseId)
         }
     }
+    
+    
+}
+
+/*
+ REGISTRATION RELATED
+ OPERATIONS
+ */
+extension DataService {
+
+    func validateHouseRequest(with name: String, and code: String, handler: @escaping (_ houseId: String?) -> ()) {
+        REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for house in snapshot {
+                    if (name == house.childSnapshot(forPath: "name").value as? String)
+                    && (code == house.childSnapshot(forPath: "code").value as? String) {
+                        let houseId = house.childSnapshot(forPath: "houseId").value as? String
+                        
+                        handler(houseId)
+                    }
+                }
+            }
+            
+            handler(nil)
+        }
+    }
 }
 
 /*
@@ -37,6 +63,34 @@ class DataService {
  OPERATIONS
  */
 extension DataService {
+    
+    func checkIfUserRegistered(handler: @escaping (_ registered: Bool) -> ()) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
+            if let _ = snapshot.childSnapshot(forPath: "houseId").value as? String  {
+                handler(true)
+            } else {
+                handler(false)
+            }
+        }
+    }
+    
+    func registerUser(for houseId: String, with name: String, and nickname: String) {
+        guard let email = Auth.auth().currentUser?.email else { return }
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        self.REF_USERS.child(userId).setValue(["email", email])
+        self.REF_USERS.child(userId).setValue(["houseId", houseId])
+        self.REF_USERS.child(userId).setValue(["name", name])
+        self.REF_USERS.child(userId).setValue(["nickname", nickname])
+    }
+    
+    func saveHouseDetails(with houseId: String, and code: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        self.REF_USERS.child(userId).updateChildValues(["houseId": houseId])
+    }
     
     func saveToken(_ token: String) {
         attemptDatabaseAccess { (userId, houseId) in

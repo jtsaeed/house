@@ -15,7 +15,7 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
         super.viewDidLoad()
     }
     
-    @IBAction func logInButtonPressed(_ sender: Any) {
+    @IBAction func startButtonPressed(_ sender: Any) {
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self
         
@@ -27,9 +27,16 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
     }
     
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
-        
         if authDataResult != nil {
-            dismiss(animated: true, completion: nil)
+            
+            DataService.instance.checkIfUserRegistered { (registered) in
+                if registered {
+                    self.dismiss(animated: true, completion: nil)
+                } else {
+                    let joinHouseVC = self.storyboard?.instantiateViewController(withIdentifier: "JoinHouseViewController")
+                    self.present(joinHouseVC!, animated: true, completion: nil)
+                }
+            }
         }
     }
 }
