@@ -44,11 +44,10 @@ extension DataService {
         REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for house in snapshot {
-                    if (name == house.childSnapshot(forPath: "name").value as? String)
-                    && (code == house.childSnapshot(forPath: "code").value as? String) {
-                        let houseId = house.childSnapshot(forPath: "houseId").value as? String
-                        
-                        handler(houseId)
+                    if (name == house.childSnapshot(forPath: "name").value as? String) {
+                        if (code == house.childSnapshot(forPath: "code").value as? String) {
+                            handler(house.key)
+                        }
                     }
                 }
             }
@@ -76,20 +75,16 @@ extension DataService {
         }
     }
     
-    func registerUser(for houseId: String, with name: String, and nickname: String) {
-        guard let email = Auth.auth().currentUser?.email else { return }
-        guard let userId = Auth.auth().currentUser?.uid else { return }
-        
-        self.REF_USERS.child(userId).setValue(["email", email])
-        self.REF_USERS.child(userId).setValue(["houseId", houseId])
-        self.REF_USERS.child(userId).setValue(["name", name])
-        self.REF_USERS.child(userId).setValue(["nickname", nickname])
-    }
-    
-    func saveHouseDetails(with houseId: String, and code: String) {
-        guard let userId = Auth.auth().currentUser?.uid else { return }
+    func joinHouse(with houseId: String, and nickname: String, handler: @escaping () -> ()) {
+        guard let user = Auth.auth().currentUser else { return }
+        let userId = user.uid
         
         self.REF_USERS.child(userId).updateChildValues(["houseId": houseId])
+        self.REF_USERS.child(userId).updateChildValues(["email": user.email!])
+        self.REF_USERS.child(userId).updateChildValues(["name": user.displayName!])
+        self.REF_USERS.child(userId).updateChildValues(["nickname": nickname])
+        
+        handler()
     }
     
     func saveToken(_ token: String) {
