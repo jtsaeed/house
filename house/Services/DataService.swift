@@ -40,7 +40,7 @@ class DataService {
  */
 extension DataService {
 
-    func validateHouseRequest(with name: String, and code: String, handler: @escaping (_ houseId: String?) -> ()) {
+    private func validateHouseRequest(withName name: String, andCode code: String, handler: @escaping (_ houseId: String?) -> ()) {
         REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 for house in snapshot {
@@ -54,6 +54,12 @@ extension DataService {
             
             handler(nil)
         }
+    }
+    
+    func createHouse(withName name: String, code: String, andNickname nickname: String, handler: @escaping () -> ()) {
+        self.REF_HOUSES.childByAutoId().updateChildValues(["name": name, "code": code])
+        
+        handler()
     }
 }
 
@@ -75,16 +81,17 @@ extension DataService {
         }
     }
     
-    func joinHouse(with houseId: String, and nickname: String, handler: @escaping () -> ()) {
-        guard let user = Auth.auth().currentUser else { return }
-        let userId = user.uid
-        
-        self.REF_USERS.child(userId).updateChildValues(["houseId": houseId])
-        self.REF_USERS.child(userId).updateChildValues(["email": user.email!])
-        self.REF_USERS.child(userId).updateChildValues(["name": user.displayName!])
-        self.REF_USERS.child(userId).updateChildValues(["nickname": nickname])
-        
-        handler()
+    func joinHouse(withName name: String, code: String, andNickname nickname: String, handler: @escaping () -> ()) {
+        validateHouseRequest(withName: name, andCode: code) { (houseId) in
+            if let houseId = houseId {
+                guard let user = Auth.auth().currentUser else { return }
+                let userId = user.uid
+                
+                self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!, "nickname": nickname])
+                
+                handler()
+            }
+        }
     }
     
     func saveToken(_ token: String) {
