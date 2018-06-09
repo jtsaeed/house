@@ -7,11 +7,13 @@
 //
 
 import Foundation
+import Timepiece
 
 struct Chore {
     let choreId: String
     
     let content: String
+    let author: String
     
     func clearChore() {
         DataService.instance.deleteChore(with: choreId)

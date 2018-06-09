@@ -15,5 +15,9 @@ class ChoreCell: UITableViewCell {
     
     func configure(with chore: Chore) {
         titleLabel.text = chore.content
+        
+        DataService.instance.getUserNickname(for: chore.author) { (nickname) in
+            self.subtitleLabel.text = "added by \(nickname)"
+        }
     }
 }

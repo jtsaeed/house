@@ -148,8 +148,8 @@ extension DataService {
 extension DataService {
     
     func createChore(with content: String) {
-        attemptDatabaseAccess { (_, houseId) in
-            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content])
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content, "author": userId])
         }
     }
     
@@ -162,8 +162,9 @@ extension DataService {
                     for chore in snapshot {
                         let choreId = chore.key
                         guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
+                        guard let author = chore.childSnapshot(forPath: "author").value as? String else { return }
                         
-                        chores.append(Chore(choreId: choreId, content: content))
+                        chores.append(Chore(choreId: choreId, content: content, author: author))
                     }
                     
                     handler(chores)

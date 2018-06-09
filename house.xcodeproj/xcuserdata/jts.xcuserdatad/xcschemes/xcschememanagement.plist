@@ -7,17 +7,17 @@
 		<key>house.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>29</integer>
+			<integer>30</integer>
 		</dict>
 		<key>housesiri.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>30</integer>
+			<integer>29</integer>
 		</dict>
 		<key>housesiriUI.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>31</integer>
+			<integer>30</integer>
 		</dict>
 	</dict>
 </dict>
