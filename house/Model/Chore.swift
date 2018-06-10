@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Timepiece
 
 struct Chore {
     let choreId: String

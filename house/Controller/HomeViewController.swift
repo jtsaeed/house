@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     
     var choresAmount = 0
     var debtsAmount = 0
+    var shoppingItemsAmount = 0
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -38,6 +39,11 @@ class HomeViewController: UIViewController {
             self.debtsAmount = pulledAmount
             self.tableView.reloadData()
         }
+        
+        DataService.instance.getAmountOfShoppingItems { (pulledAmount) in
+            self.shoppingItemsAmount = pulledAmount
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -46,7 +52,7 @@ class HomeViewController: UIViewController {
  */
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -58,6 +64,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(mainText: "There are", secondaryText: "chores remaining", amount: choresAmount)
         } else if indexPath.row == 1 {
             cell.configure(mainText: "You have", secondaryText: "outstanding debts", amount: debtsAmount)
+        } else if indexPath.row == 2 {
+            cell.configure(mainText: "There are", secondaryText: "items on the shoppping list", amount: shoppingItemsAmount)
         }
         
         
@@ -70,8 +78,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
  */
 extension HomeViewController {
     private func setNavigationTitle() {
-        DataService.instance.getUserData { (user) in
-            self.navigationItem.title = "Hello \(user.nickname)!"
+        DataService.instance.getUserNickname(for: (Auth.auth().currentUser?.uid)!) { (nickname) in
+            self.navigationItem.title = "Hello \(nickname)!"
         }
     }
 }

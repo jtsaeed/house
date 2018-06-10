@@ -19,6 +19,7 @@ class DataService {
     var REF_HOUSES = DB_BASE.child("houses")
     var REF_USERS = DB_BASE.child("users")
     var REF_CHORES = DB_BASE.child("chores")
+    var REF_SHOPPING = DB_BASE.child("shopping")
     var REF_DEBTS = DB_BASE.child("debts")
     
     private func attemptDatabaseAccess(handler: @escaping (_ userId: String, _ houseId: String) -> ()) {
@@ -196,6 +197,65 @@ extension DataService {
     func deleteChore(with choreId: String) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).child(choreId).removeValue()
+        }
+    }
+}
+
+/*
+ SHOPPING RELATED
+ OPERATIONS
+ */
+extension DataService {
+    
+    func createShoppingItem(with content: String) {
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_SHOPPING.child(houseId).childByAutoId().updateChildValues(["content": content, "author": userId])
+        }
+    }
+    
+    func getShoppingItems(handler: @escaping (_ shoppingItems: [Shopping]) -> ()) {
+        var shoppingItems = [Shopping]()
+        
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_SHOPPING.child(houseId).observeSingleEvent(of: .value) { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for shopping in snapshot {
+                        let shoppingId = shopping.key
+                        guard let content = shopping.childSnapshot(forPath: "content").value as? String else { return }
+                        guard let author = shopping.childSnapshot(forPath: "author").value as? String else { return }
+                        
+                        shoppingItems.append(Shopping(shoppingId: shoppingId, content: content, author: author))
+                    }
+                    
+                    handler(shoppingItems)
+                } else {
+                    // TODO: Comprehensive error handler
+                }
+            }
+        }
+    }
+    
+    func getAmountOfShoppingItems(handler: @escaping (_ amount: Int) -> ()) {
+        var amount = 0
+        
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_SHOPPING.child(houseId).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for _ in snapshot {
+                        amount += 1
+                    }
+                    
+                    handler(amount)
+                } else {
+                    // TODO: Comprehensive error handler
+                }
+            })
+        }
+    }
+    
+    func deleteShoppingItem(with choreId: String) {
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_SHOPPING.child(houseId).child(choreId).removeValue()
         }
     }
 }
