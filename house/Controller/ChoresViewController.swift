@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwipeCellKit
 
 class ChoresViewController: UIViewController {
     
@@ -44,7 +45,7 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "choreCell") as? ChoreCell else {
             return UITableViewCell()
         }
-//        cell.delegate = self
+        cell.delegate = self
         
         let chore = chores[indexPath.row]
         cell.configure(with: chore)
@@ -53,9 +54,6 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-/*
- TABLEVIEW SWIPES
- 
 extension ChoresViewController: SwipeTableViewCellDelegate {
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
@@ -75,7 +73,7 @@ extension ChoresViewController: SwipeTableViewCellDelegate {
         options.transitionStyle = .drag
         return options
     }
-}*/
+}
 
 /*
  UTIL
