@@ -610,8 +610,8 @@
                     <connections>
                         <segue destination="i25-9P-Zoh" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
                         <segue destination="oHe-WR-WtL" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
-                        <segue destination="0YT-51-8tH" kind="relationship" relationship="viewControllers" id="ALK-Ne-hKO"/>
                         <segue destination="sVc-11-Dqf" kind="relationship" relationship="viewControllers" id="0qv-VV-nQs"/>
+                        <segue destination="0YT-51-8tH" kind="relationship" relationship="viewControllers" id="ALK-Ne-hKO"/>
                         <segue destination="IcT-eL-2Cr" kind="relationship" relationship="viewControllers" id="AFX-lX-qoi"/>
                     </connections>
                 </tabBarController>
