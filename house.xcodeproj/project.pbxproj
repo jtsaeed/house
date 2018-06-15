@@ -113,13 +113,6 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		23DC45A220B04251009E9C3D /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
 		23DC45A320B04256009E9C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +173,6 @@
 		23E82E0320A348650073981E /* house */ = {
 			isa = PBXGroup;
 			children = (
-				23DC45A220B04251009E9C3D /* Extensions */,
 				23DC45A120B0424B009E9C3D /* Services */,
 				23DC45A320B04256009E9C3D /* Model */,
 				23DC45A420B04260009E9C3D /* View */,
