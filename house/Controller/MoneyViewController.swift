@@ -116,7 +116,8 @@ extension MoneyViewController {
                 self.debts[index].changeAmount(with: newAmount)
                 self.tableView.reloadData()
             } else {
-                // TODO: Comprehensive error
+                alert.dismiss(animated: true, completion: nil)
+                Util.instance.presentErrorDialog(withMessage: "Failed to edit debt due to invalid debt amount, please enter a whole number", context: self)
             }
         }))
         

@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 
 class AuthService {
+    
     static let instance = AuthService()
     
     func loginUser(with email: String, and password: String, loginComplete: @escaping (_ success: Bool, _ error: Error?) -> ()) {

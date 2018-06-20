@@ -55,8 +55,6 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSSiriUsageDescription</key>
-	<string>Chores and debt information will be sent to Siri</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

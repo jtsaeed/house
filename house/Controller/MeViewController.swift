@@ -28,9 +28,8 @@ class MeViewController: UIViewController {
             try Auth.auth().signOut()
             performSegue(withIdentifier: "signOut", sender: nil)
         } catch let signOutError as NSError {
-            // TODO: Comprehensive Error
+            Util.instance.presentErrorDialog(withMessage: signOutError.localizedDescription, context: self)
         }
-        
     }
 }
 

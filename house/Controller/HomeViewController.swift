@@ -23,6 +23,10 @@ class HomeViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
         
         setNavigationTitle()
+        
+        clearIconBadge()
+        
+        getData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,20 +34,9 @@ class HomeViewController: UIViewController {
         
         setNavigationTitle()
         
-        DataService.instance.getAmountOfChores { (pulledAmount) in
-            self.choresAmount = pulledAmount
-            self.tableView.reloadData()
-        }
+        clearIconBadge()
         
-        DataService.instance.getAmountOfOutstandingDebts { (pulledAmount) in
-            self.debtsAmount = pulledAmount
-            self.tableView.reloadData()
-        }
-        
-        DataService.instance.getAmountOfShoppingItems { (pulledAmount) in
-            self.shoppingItemsAmount = pulledAmount
-            self.tableView.reloadData()
-        }
+        getData()
     }
 }
 
@@ -81,9 +74,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
  UTIL
  */
 extension HomeViewController {
+    
     private func setNavigationTitle() {
         DataService.instance.getUserNickname(for: (Auth.auth().currentUser?.uid)!) { (nickname) in
             self.navigationItem.title = "Hello \(nickname)!"
         }
+    }
+    
+    private func getData() {
+        DataService.instance.getAmountOfChores { (pulledAmount) in
+            self.choresAmount = pulledAmount
+            self.tableView.reloadData()
+        }
+        
+        DataService.instance.getAmountOfOutstandingDebts { (pulledAmount) in
+            self.debtsAmount = pulledAmount
+            self.tableView.reloadData()
+        }
+        
+        DataService.instance.getAmountOfShoppingItems { (pulledAmount) in
+            self.shoppingItemsAmount = pulledAmount
+            self.tableView.reloadData()
+        }
+    }
+    
+    private func clearIconBadge() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 }

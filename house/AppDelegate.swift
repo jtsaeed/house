@@ -19,15 +19,13 @@ import Intents
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     var window: UIWindow?
+    var tab: Int?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         firebaseSetup()
         notificationsSetup()
-        siriSetup()
-        clearIconBadge()
         
         TWTRTwitter.sharedInstance().start(withConsumerKey: "Q4CMl6PFvDgftelNDo9FQfonT", consumerSecret: "1M9dVB93VGUwpAWYNOGfutmwqdB0Buy6zAXJUQCamd8WE1h2Y7")
-        
         
         checkAuthentication()
         
@@ -80,20 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     private func notificationsSetup() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
         UIApplication.shared.registerForRemoteNotifications()
-    }
-    
-    private func siriSetup() {
-        INPreferences.requestSiriAuthorization { status in
-            if status == .authorized {
-                print("Hey, Siri!")
-            } else {
-                print("Nay, Siri!")
-            }
-        }
-    }
-    
-    private func clearIconBadge() {
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     private func checkAuthentication() {

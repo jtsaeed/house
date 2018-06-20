@@ -178,7 +178,9 @@
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="nlU-pe-dj4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Me" id="8p3-mx-mde"/>
+                    <navigationItem key="navigationItem" title="Me" id="8p3-mx-mde">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="h3C-qR-f0n"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="pDb-RN-i5P" kind="presentation" identifier="signOut" id="XpJ-uI-f9h"/>
                     </connections>
