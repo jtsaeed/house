@@ -37,9 +37,10 @@ class MeViewController: UIViewController {
  UTIL
  */
 extension MeViewController {
+    
     private func setNavigationTitle() {
-        DataService.instance.getUserData { (user) in
-            self.navigationItem.title = user.name
+        DataService.instance.getCurrentUserName { (name) in
+            self.navigationItem.title = name
         }
     }
 }

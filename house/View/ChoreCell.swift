@@ -18,7 +18,7 @@ class ChoreCell: SwipeTableViewCell {
         titleLabel.text = chore.content
         
         DataService.instance.getUserNickname(for: chore.author) { (nickname) in
-            self.subtitleLabel.text = "added by \(nickname)"
+            self.subtitleLabel.text = "added by \(nickname) \(chore.getDateText())"
         }
     }
 }

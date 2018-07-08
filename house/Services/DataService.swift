@@ -148,6 +148,16 @@ extension DataService {
             })
         }
     }
+    
+    func getCurrentUserName(handler: @escaping (_ name: String) -> ()) {
+        attemptDatabaseAccess { (userId, _) in
+            self.REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
+                guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
+                
+                handler(name)
+            }
+        }
+    }
 }
 
 /*
@@ -158,7 +168,7 @@ extension DataService {
     
     func createChore(with content: String) {
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content, "author": userId])
+            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content, "author": userId, "date": Date().description])
         }
     }
     
@@ -172,8 +182,9 @@ extension DataService {
                         let choreId = chore.key
                         guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
                         guard let author = chore.childSnapshot(forPath: "author").value as? String else { return }
+                        guard let date = chore.childSnapshot(forPath: "date").value as? String else { return }
                         
-                        chores.append(Chore(choreId: choreId, content: content, author: author))
+                        chores.append(Chore(choreId: choreId, content: content, author: author, date: date))
                     }
                     
                     handler(chores)

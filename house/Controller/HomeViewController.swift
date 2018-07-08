@@ -21,22 +21,18 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
-        
-        setNavigationTitle()
-        
-        clearIconBadge()
-        
-        getData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setNavigationTitle()
-        
         clearIconBadge()
-        
         getData()
+    }
+    
+    @IBAction func signOutButtonPressed(_ sender: Any) {
+        signOut()
     }
 }
 
@@ -100,5 +96,14 @@ extension HomeViewController {
     
     private func clearIconBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "signOutNew", sender: nil)
+        } catch let signOutError as NSError {
+            Util.instance.presentErrorDialog(withMessage: signOutError.localizedDescription, context: self)
+        }
     }
 }
