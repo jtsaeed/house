@@ -76,7 +76,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController {
     
     private func setNavigationTitle() {
-        DataService.instance.getUserNickname(for: (Auth.auth().currentUser?.uid)!) { (nickname) in
+        DataService.instance.getCurrentUserNickname { (nickname) in
             self.navigationItem.title = "Hello \(nickname)!"
         }
     }

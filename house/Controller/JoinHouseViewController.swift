@@ -12,7 +12,6 @@ class JoinHouseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     @IBAction func createHousePressed(_ sender: Any) {
@@ -91,5 +90,9 @@ class JoinHouseViewController: UIViewController {
         }))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

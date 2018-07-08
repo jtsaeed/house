@@ -140,6 +140,14 @@ extension DataService {
             handler(nickname)
         }
     }
+    
+    func getCurrentUserNickname(handler: @escaping (_ nickname: String) -> ()) {
+        attemptDatabaseAccess { (userId, _) in
+            self.getUserNickname(for: userId, handler: { (nickname) in
+                handler(nickname)
+            })
+        }
+    }
 }
 
 /*
