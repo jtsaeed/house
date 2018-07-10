@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import Eureka
 
-class NewDebtViewController: UIViewController {
+class NewDebtViewController: FormViewController {
 
     var people = [String : String]()
     
@@ -18,11 +19,10 @@ class NewDebtViewController: UIViewController {
         
         DataService.instance.getUsersNicknameIdPair { (pulledPairs) in
             self.people = pulledPairs
-//            self.createForm()
+            self.createForm()
         }
     }
 
-    /*
     private func createForm() {
         form +++ Section("Create a debt for...")
             <<< PickerRow<String>() { row in
@@ -71,6 +71,4 @@ extension NewDebtViewController {
         
         navigationController?.popViewController(animated: true)
     }
-}
-*/
 }

@@ -117,18 +117,23 @@ extension DataService {
     func getUsersNicknameIdPair(handler: @escaping (_ pairs: [String: String]) -> ()) {
         var pairs = [String: String]()
         
-        REF_USERS.observeSingleEvent(of: .value) { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                for user in snapshot {
-                    let id = user.key
-                    guard let nickname = user.childSnapshot(forPath: "nickname").value as? String else { return }
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_USERS.observeSingleEvent(of: .value) { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                    for user in snapshot {
+                        let id = user.key
+                        guard let nickname = user.childSnapshot(forPath: "nickname").value as? String else { return }
+                        guard let pulledHouseId = user.childSnapshot(forPath: "houseId").value as? String else { return }
+                        
+                        if pulledHouseId == houseId {
+                            pairs[nickname] = id
+                        }
+                    }
                     
-                    pairs[nickname] = id
+                    handler(pairs)
+                } else {
+                    // TODO: Comprehensive error handler
                 }
-                
-                handler(pairs)
-            } else {
-                // TODO: Comprehensive error handler
             }
         }
     }

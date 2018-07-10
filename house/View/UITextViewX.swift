@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class UIButtonX: UIButton {
+class UITextViewX: UITextView {
     
     // MARK: - Borders
     

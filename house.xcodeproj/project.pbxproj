@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2315805620F4A7D0009ABD48 /* UITextViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2315805520F4A7D0009ABD48 /* UITextViewX.swift */; };
+		2315805820F4A8B0009ABD48 /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2315805720F4A8B0009ABD48 /* UITextFieldX.swift */; };
 		2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441920BCA43B008F80FC /* HomeCell.swift */; };
 		2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441B20BCB88D008F80FC /* InitialViewController.swift */; };
 		23313C4320CD3E0800429687 /* Shopping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23313C4220CD3E0800429687 /* Shopping.swift */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
+		2315805520F4A7D0009ABD48 /* UITextViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewX.swift; sourceTree = "<group>"; };
+		2315805720F4A8B0009ABD48 /* UITextFieldX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
 		2322441920BCA43B008F80FC /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		2322441B20BCB88D008F80FC /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		23313C4220CD3E0800429687 /* Shopping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shopping.swift; sourceTree = "<group>"; };
@@ -136,6 +140,8 @@
 				2322441920BCA43B008F80FC /* HomeCell.swift */,
 				235A4E9420C5F09B001BC1FB /* UIButtonX.swift */,
 				23313C4420CD3FF000429687 /* ShoppingCell.swift */,
+				2315805520F4A7D0009ABD48 /* UITextViewX.swift */,
+				2315805720F4A8B0009ABD48 /* UITextFieldX.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-house/Pods-house-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL/openssl.framework",
+				"${BUILT_PRODUCTS_DIR}/Eureka/Eureka.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
@@ -318,6 +325,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Eureka.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
@@ -409,6 +417,7 @@
 				2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */,
 				23313C4520CD3FF000429687 /* ShoppingCell.swift in Sources */,
 				23E82E0520A348650073981E /* AppDelegate.swift in Sources */,
+				2315805820F4A8B0009ABD48 /* UITextFieldX.swift in Sources */,
 				23B2E5B520DAC9470066A797 /* Util.swift in Sources */,
 				2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */,
 				23E82E0720A348650073981E /* HomeViewController.swift in Sources */,
@@ -420,6 +429,7 @@
 				235FF44220B4448E00770EBB /* DebtCell.swift in Sources */,
 				23DC45A920B0437B009E9C3D /* DataService.swift in Sources */,
 				2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */,
+				2315805620F4A7D0009ABD48 /* UITextViewX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,10 +580,7 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -592,10 +599,7 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
