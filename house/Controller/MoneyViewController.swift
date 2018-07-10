@@ -97,6 +97,7 @@ extension MoneyViewController {
         debts.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.reloadData()
+        Util.instance.generateClearFeedback()
     }
     
     private func presentEditDebtDialog(for index: Int) {
