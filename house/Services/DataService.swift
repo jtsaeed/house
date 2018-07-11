@@ -57,6 +57,20 @@ extension DataService {
         }
     }
     
+    func checkIfHouseExists(forName name: String, handler: @escaping (_ exists: Bool) -> ()) {
+        self.REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for house in snapshot {
+                    if (name == house.childSnapshot(forPath: "name").value as? String) {
+                        handler(true)
+                    } else {
+                        handler(false)
+                    }
+                }
+            }
+        }
+    }
+    
     func createHouse(withName name: String, code: String, andNickname nickname: String, handler: @escaping () -> ()) {
         self.REF_HOUSES.childByAutoId().updateChildValues(["name": name, "code": code])
         
@@ -117,7 +131,7 @@ extension DataService {
     func getUsersNicknameIdPair(handler: @escaping (_ pairs: [String: String]) -> ()) {
         var pairs = [String: String]()
         
-        attemptDatabaseAccess { (_, houseId) in
+        attemptDatabaseAccess { (userId, houseId) in
             self.REF_USERS.observeSingleEvent(of: .value) { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                     for user in snapshot {
@@ -125,7 +139,7 @@ extension DataService {
                         guard let nickname = user.childSnapshot(forPath: "nickname").value as? String else { return }
                         guard let pulledHouseId = user.childSnapshot(forPath: "houseId").value as? String else { return }
                         
-                        if pulledHouseId == houseId {
+                        if pulledHouseId == houseId && id != userId {
                             pairs[nickname] = id
                         }
                     }

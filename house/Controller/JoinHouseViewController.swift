@@ -43,15 +43,23 @@ class JoinHouseViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             if let houseName = alert.textFields?[0].text {
-                if let houseCode = alert.textFields?[1].text {
-                    if let nickname = alert.textFields?[2].text {
-                        DataService.instance.createHouse(withName: houseName, code: houseCode, andNickname: nickname, handler: {
-                            DataService.instance.joinHouse(withName: houseName, code: houseCode, andNickname: nickname, handler: {
-                                self.dismiss(animated: true, completion: nil)
-                            })
-                        })
+                DataService.instance.checkIfHouseExists(forName: houseName, handler: { (exists) in
+                    if exists {
+                        Util.instance.presentErrorDialog(withMessage: "House name already exists, please choose a different house name", context: self)
+                        return
+                    } else {
+                        if let houseCode = alert.textFields?[1].text {
+                            if let nickname = alert.textFields?[2].text {
+                                DataService.instance.createHouse(withName: houseName, code: houseCode, andNickname: nickname, handler: {
+                                    DataService.instance.joinHouse(withName: houseName, code: houseCode, andNickname: nickname, handler: {
+                                        self.dismiss(animated: true, completion: nil)
+                                    })
+                                })
+                            }
+                        }
                     }
-                }
+                })
+                
             }
         }))
         

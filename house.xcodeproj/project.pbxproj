@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2315805620F4A7D0009ABD48 /* UITextViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2315805520F4A7D0009ABD48 /* UITextViewX.swift */; };
 		2315805820F4A8B0009ABD48 /* UITextFieldX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2315805720F4A8B0009ABD48 /* UITextFieldX.swift */; };
 		2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441920BCA43B008F80FC /* HomeCell.swift */; };
 		2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2322441B20BCB88D008F80FC /* InitialViewController.swift */; };
@@ -53,7 +52,6 @@
 
 /* Begin PBXFileReference section */
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
-		2315805520F4A7D0009ABD48 /* UITextViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewX.swift; sourceTree = "<group>"; };
 		2315805720F4A8B0009ABD48 /* UITextFieldX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
 		2322441920BCA43B008F80FC /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		2322441B20BCB88D008F80FC /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -140,7 +138,6 @@
 				2322441920BCA43B008F80FC /* HomeCell.swift */,
 				235A4E9420C5F09B001BC1FB /* UIButtonX.swift */,
 				23313C4420CD3FF000429687 /* ShoppingCell.swift */,
-				2315805520F4A7D0009ABD48 /* UITextViewX.swift */,
 				2315805720F4A8B0009ABD48 /* UITextFieldX.swift */,
 			);
 			path = View;
@@ -429,7 +426,6 @@
 				235FF44220B4448E00770EBB /* DebtCell.swift in Sources */,
 				23DC45A920B0437B009E9C3D /* DataService.swift in Sources */,
 				2322441C20BCB88D008F80FC /* InitialViewController.swift in Sources */,
-				2315805620F4A7D0009ABD48 /* UITextViewX.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +576,10 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -599,7 +598,10 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

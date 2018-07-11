@@ -29,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         checkAuthentication()
         
+        /*
+        let myTabBar = self.window?.rootViewController as! UITabBarController // Getting Tab Bar
+        myTabBar.selectedIndex = 2
+ */
+        
         return true
     }
 
@@ -52,6 +57,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        if let aps = userInfo["aps"] as? NSDictionary {
+            if let alert = aps["alert"] as? NSDictionary {
+                print(alert["title"])
+            }
+        }
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {

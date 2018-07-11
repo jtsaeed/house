@@ -30,7 +30,7 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self
         
-        let providers: [FUIAuthProvider] = [FUIGoogleAuth(), FUIFacebookAuth(), FUITwitterAuth(), FUIPhoneAuth(authUI: FUIAuth.defaultAuthUI()!)]
+        let providers: [FUIAuthProvider] = [FUIFacebookAuth(), FUIPhoneAuth(authUI: FUIAuth.defaultAuthUI()!)]
         authUI?.providers = providers
         
         let authViewController = authUI?.authViewController()
