@@ -24,7 +24,6 @@
 		23AA095E20B083300020FEC9 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095D20B083300020FEC9 /* Debt.swift */; };
 		23AA096020B085600020FEC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095F20B085600020FEC9 /* User.swift */; };
 		23B2E5B520DAC9470066A797 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B2E5B420DAC9470066A797 /* Util.swift */; };
-		23CAE2B720BB73CB00DCAFBD /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CAE2B620BB73CB00DCAFBD /* MeViewController.swift */; };
 		23DC45A020B041FF009E9C3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */; };
 		23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A620B0436F009E9C3D /* AuthService.swift */; };
 		23DC45A920B0437B009E9C3D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A820B0437B009E9C3D /* DataService.swift */; };
@@ -70,7 +69,6 @@
 		23AA095D20B083300020FEC9 /* Debt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
 		23AA095F20B085600020FEC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		23B2E5B420DAC9470066A797 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
-		23CAE2B620BB73CB00DCAFBD /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23DC45A620B0436F009E9C3D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		23DC45A820B0437B009E9C3D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 				23E82E0820A348650073981E /* ChoresViewController.swift */,
 				2381BD6820B1914B000682EB /* MoneyViewController.swift */,
 				235FF43F20B441CF00770EBB /* NewDebtViewController.swift */,
-				23CAE2B620BB73CB00DCAFBD /* MeViewController.swift */,
 				2322441B20BCB88D008F80FC /* InitialViewController.swift */,
 				235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */,
 				23313C4620CD407500429687 /* ShoppingViewController.swift */,
@@ -405,7 +402,6 @@
 			files = (
 				235A4E9520C5F09B001BC1FB /* UIButtonX.swift in Sources */,
 				23313C4320CD3E0800429687 /* Shopping.swift in Sources */,
-				23CAE2B720BB73CB00DCAFBD /* MeViewController.swift in Sources */,
 				235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */,
 				2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */,
 				2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */,

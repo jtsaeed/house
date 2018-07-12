@@ -24,10 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         firebaseSetup()
         notificationsSetup()
-        
-        TWTRTwitter.sharedInstance().start(withConsumerKey: "Q4CMl6PFvDgftelNDo9FQfonT", consumerSecret: "1M9dVB93VGUwpAWYNOGfutmwqdB0Buy6zAXJUQCamd8WE1h2Y7")
-        
         checkAuthentication()
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         /*
         let myTabBar = self.window?.rootViewController as! UITabBarController // Getting Tab Bar
@@ -52,7 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -62,8 +60,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let aps = userInfo["aps"] as? NSDictionary {
             if let alert = aps["alert"] as? NSDictionary {
-                print(alert["title"])
+                if let title = alert["title"] as? String {
+                    handleNotification(for: title)
+                }
             }
+        }
+    }
+
+    private func handleNotification(for title: String) {
+        let tabBar = self.window?.rootViewController as! UITabBarController
+        
+        if title == "New Chore" {
+            tabBar.selectedIndex = 1
+        }
+        if title == "New Debt" {
+            tabBar.selectedIndex = 2
         }
     }
     

@@ -54,6 +54,7 @@ class NewDebtViewController: FormViewController {
  UTIL
  */
 extension NewDebtViewController {
+    
     private func doneButtonPressed() {
         guard let receiverId = Auth.auth().currentUser?.uid else { return }
         

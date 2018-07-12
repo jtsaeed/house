@@ -28,7 +28,6 @@ class HomeViewController: UIViewController {
         super.viewDidAppear(animated)
         
         setNavigationTitle()
-        clearIconBadge()
     }
     
     @IBAction func signOutButtonPressed(_ sender: Any) {
@@ -91,10 +90,6 @@ extension HomeViewController {
             self.shoppingItemsAmount = pulledAmount
             self.tableView.reloadData()
         }
-    }
-    
-    private func clearIconBadge() {
-        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     private func setNavigationTitle() {

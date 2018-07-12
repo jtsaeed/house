@@ -9,6 +9,7 @@
 import UIKit
 
 class Util {
+    
     static let instance = Util()
     
     let notificationFeedbackGenerator = UINotificationFeedbackGenerator()
