@@ -92,8 +92,7 @@ extension MoneyViewController {
     }
     
     private func clearDebt(at indexPath: IndexPath) {
-        let debtId = debts[indexPath.row].debtId
-        DataService.instance.deleteDebt(with: debtId)
+        let debtId = debts[indexPath.row].clearDebt()
         debts.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.reloadData()

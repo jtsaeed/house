@@ -31,8 +31,6 @@ class DataService {
             handler(userId, houseId)
         }
     }
-    
-    
 }
 
 /*
@@ -370,7 +368,7 @@ extension DataService {
     
     func deleteDebt(with debtId: String) {
         attemptDatabaseAccess { (_, houseId) in
-            self.REF_DEBTS.child(debtId).child(debtId).removeValue()
+            self.REF_DEBTS.child(houseId).child(debtId).removeValue()
         }
     }
 }

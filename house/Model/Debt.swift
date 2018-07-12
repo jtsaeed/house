@@ -17,6 +17,10 @@ struct Debt {
     let reason: String
     var amount: Int
     
+    func clearDebt() {
+        DataService.instance.deleteDebt(with: debtId)
+    }
+    
     mutating func changeAmount(with newAmount: Int) {
         self.amount = newAmount
         
