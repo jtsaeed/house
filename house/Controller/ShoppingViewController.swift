@@ -18,12 +18,7 @@ class ShoppingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+        addTableViewPadding()
         loadShoppingItems()
     }
     
@@ -55,6 +50,7 @@ extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension ShoppingViewController: SwipeTableViewCellDelegate {
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
@@ -79,6 +75,10 @@ extension ShoppingViewController: SwipeTableViewCellDelegate {
  UTIL
  */
 extension ShoppingViewController {
+    
+    private func addTableViewPadding() {
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+    }
     
     private func loadShoppingItems() {
         DataService.instance.getShoppingItems { (pulledShoppingItems) in

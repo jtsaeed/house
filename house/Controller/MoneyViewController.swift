@@ -19,12 +19,7 @@ class MoneyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
+        addTableViewPadding()
         loadDebts()
     }
 }
@@ -51,7 +46,12 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+/*
+ TABLEVIEW
+ SWIPES
+ */
 extension MoneyViewController: SwipeTableViewCellDelegate {
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
@@ -84,6 +84,10 @@ extension MoneyViewController: SwipeTableViewCellDelegate {
  */
 extension MoneyViewController {
     
+    private func addTableViewPadding() {
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+    }
+    
     private func loadDebts() {
         DataService.instance.getDebts { (pulledDebts) in
             self.debts = pulledDebts
@@ -92,7 +96,7 @@ extension MoneyViewController {
     }
     
     private func clearDebt(at indexPath: IndexPath) {
-        let debtId = debts[indexPath.row].clearDebt()
+        debts[indexPath.row].clearDebt()
         debts.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.reloadData()

@@ -20,7 +20,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+        addTableViewPadding()
+        getData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,7 +29,6 @@ class HomeViewController: UIViewController {
         
         setNavigationTitle()
         clearIconBadge()
-        getData()
     }
     
     @IBAction func signOutButtonPressed(_ sender: Any) {
@@ -40,6 +40,7 @@ class HomeViewController: UIViewController {
  TABLE VIEW
  */
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -71,10 +72,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
  */
 extension HomeViewController {
     
-    private func setNavigationTitle() {
-        DataService.instance.getCurrentUserNickname { (nickname) in
-            self.navigationItem.title = "Hello \(nickname)!"
-        }
+    private func addTableViewPadding() {
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
     }
     
     private func getData() {
@@ -96,6 +95,12 @@ extension HomeViewController {
     
     private func clearIconBadge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
+    }
+    
+    private func setNavigationTitle() {
+        DataService.instance.getCurrentUserNickname { (nickname) in
+            self.navigationItem.title = "Hello \(nickname)!"
+        }
     }
     
     private func signOut() {

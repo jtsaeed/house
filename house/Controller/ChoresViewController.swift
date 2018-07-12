@@ -18,12 +18,7 @@ class ChoresViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
+        addTableViewPadding()
         loadChores()
     }
 
@@ -54,7 +49,12 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+/*
+ TABLEVIEW
+ SWIPES
+ */
 extension ChoresViewController: SwipeTableViewCellDelegate {
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
         
@@ -79,6 +79,10 @@ extension ChoresViewController: SwipeTableViewCellDelegate {
  UTIL
  */
 extension ChoresViewController {
+    
+    private func addTableViewPadding() {
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+    }
     
     private func loadChores() {
         DataService.instance.getChores { (pulledChores) in
