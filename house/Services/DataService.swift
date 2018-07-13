@@ -70,7 +70,7 @@ extension DataService {
         }
     }
     
-    func createHouse(withName name: String, code: String, andNickname nickname: String, handler: @escaping () -> ()) {
+    func createHouse(_ name: String, _ code: String, _ nickname: String, handler: @escaping () -> ()) {
         self.REF_HOUSES.childByAutoId().updateChildValues(["name": name, "code": code])
         
         handler()
@@ -95,7 +95,7 @@ extension DataService {
         }
     }
     
-    func joinHouse(withName name: String, code: String, andNickname nickname: String, handler: @escaping () -> ()) {
+    func joinHouse(_ name: String, _ code: String, _ nickname: String, handler: @escaping () -> ()) {
         validateHouseRequest(withName: name, andCode: code) { (houseId) in
             if let houseId = houseId {
                 guard let user = Auth.auth().currentUser else { return }

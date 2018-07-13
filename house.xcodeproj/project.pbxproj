@@ -14,7 +14,7 @@
 		23313C4520CD3FF000429687 /* ShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23313C4420CD3FF000429687 /* ShoppingCell.swift */; };
 		23313C4720CD407500429687 /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23313C4620CD407500429687 /* ShoppingViewController.swift */; };
 		235A4E9520C5F09B001BC1FB /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235A4E9420C5F09B001BC1FB /* UIButtonX.swift */; };
-		235BA08E20C71FAC000D2FBB /* JoinHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */; };
+		235BA08E20C71FAC000D2FBB /* PrepareHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235BA08D20C71FAC000D2FBB /* PrepareHouseViewController.swift */; };
 		235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF43F20B441CF00770EBB /* NewDebtViewController.swift */; };
 		235FF44220B4448E00770EBB /* DebtCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235FF44120B4448E00770EBB /* DebtCell.swift */; };
 		2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6420B0F59A000682EB /* ChoreCell.swift */; };
@@ -33,6 +33,7 @@
 		23E82E0C20A348660073981E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0A20A348660073981E /* Main.storyboard */; };
 		23E82E0E20A348670073981E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0D20A348670073981E /* Assets.xcassets */; };
 		23E82E1120A348670073981E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23E82E0F20A348670073981E /* LaunchScreen.storyboard */; };
+		23F3638120F7A59700DAF4BB /* CreateJoinHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23F3638020F7A59700DAF4BB /* CreateJoinHouseViewController.swift */; };
 		C4966389EDDFAE86F7343C3B /* Pods_house.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 434973F18E889D11359FC786 /* Pods_house.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +60,7 @@
 		23313C4620CD407500429687 /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		2358D55120B59E4500DC29A6 /* house.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = house.entitlements; sourceTree = "<group>"; };
 		235A4E9420C5F09B001BC1FB /* UIButtonX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
-		235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinHouseViewController.swift; sourceTree = "<group>"; };
+		235BA08D20C71FAC000D2FBB /* PrepareHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareHouseViewController.swift; sourceTree = "<group>"; };
 		235FF43F20B441CF00770EBB /* NewDebtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDebtViewController.swift; sourceTree = "<group>"; };
 		235FF44120B4448E00770EBB /* DebtCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebtCell.swift; sourceTree = "<group>"; };
 		2381BD6420B0F59A000682EB /* ChoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCell.swift; sourceTree = "<group>"; };
@@ -80,6 +81,7 @@
 		23E82E0D20A348670073981E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23E82E1020A348670073981E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23E82E1220A348670073981E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23F3638020F7A59700DAF4BB /* CreateJoinHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJoinHouseViewController.swift; sourceTree = "<group>"; };
 		23F883E220C1839700970225 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		434973F18E889D11359FC786 /* Pods_house.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_house.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.debug.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,8 +151,9 @@
 				2381BD6820B1914B000682EB /* MoneyViewController.swift */,
 				235FF43F20B441CF00770EBB /* NewDebtViewController.swift */,
 				2322441B20BCB88D008F80FC /* InitialViewController.swift */,
-				235BA08D20C71FAC000D2FBB /* JoinHouseViewController.swift */,
+				235BA08D20C71FAC000D2FBB /* PrepareHouseViewController.swift */,
 				23313C4620CD407500429687 /* ShoppingViewController.swift */,
+				23F3638020F7A59700DAF4BB /* CreateJoinHouseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				04EE714AB696EE3F67F1D2E1 /* [CP] Embed Pods Frameworks */,
 				2D85326D35BFA19E8B243140 /* [CP] Copy Pods Resources */,
 				23F883F720C1839800970225 /* Embed App Extensions */,
+				23B7D16420F8B6BD009CEAF7 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -343,6 +347,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-house/Pods-house-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		23B7D16420F8B6BD009CEAF7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 		2D85326D35BFA19E8B243140 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -405,7 +427,7 @@
 				235FF44020B441CF00770EBB /* NewDebtViewController.swift in Sources */,
 				2322441A20BCA43B008F80FC /* HomeCell.swift in Sources */,
 				2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */,
-				235BA08E20C71FAC000D2FBB /* JoinHouseViewController.swift in Sources */,
+				235BA08E20C71FAC000D2FBB /* PrepareHouseViewController.swift in Sources */,
 				23E82E0920A348650073981E /* ChoresViewController.swift in Sources */,
 				2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */,
 				23313C4520CD3FF000429687 /* ShoppingCell.swift in Sources */,
@@ -415,6 +437,7 @@
 				2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */,
 				23E82E0720A348650073981E /* HomeViewController.swift in Sources */,
 				23AA095E20B083300020FEC9 /* Debt.swift in Sources */,
+				23F3638120F7A59700DAF4BB /* CreateJoinHouseViewController.swift in Sources */,
 				23AA096020B085600020FEC9 /* User.swift in Sources */,
 				23AA095C20B082A10020FEC9 /* Chore.swift in Sources */,
 				23313C4720CD407500429687 /* ShoppingViewController.swift in Sources */,
