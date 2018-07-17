@@ -16,12 +16,27 @@ class CreateJoinHouseViewController: UIViewController {
     @IBOutlet weak var codeField: UITextFieldX!
     @IBOutlet weak var nicknameField: UITextFieldX!
     
+    var isJoining: Bool?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setDelegates()
+    
+        guard let isJoining = isJoining else { return }
+        
+        if isJoining {
+            setJoiningFieldNames()
+        }
     }
     
     @IBAction func finishButtonPressed(_ sender: Any) {
-        createHouse()
+        guard let isJoining = isJoining else { return }
+        
+        if isJoining {
+            joinHouse()
+        } else {
+            createHouse()
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -29,31 +44,75 @@ class CreateJoinHouseViewController: UIViewController {
     }
 }
 
+/*
+ TEXTFIELDS
+ */
+extension CreateJoinHouseViewController: UITextFieldDelegate {
+    
+    private func setDelegates() {
+        nameField.delegate = self
+        codeField.delegate = self
+        nicknameField.delegate = self
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
+    private func validateFields(createHouse: @escaping (_ houseName: String, _ houseCode: String, _ nickname: String) -> ()) {
+        if let houseName = nameField.text, !houseName.isEmpty {
+            if let houseCode = codeField.text, houseCode.count >= 4 && houseCode.count <= 12 {
+                if let nickname = nicknameField.text, !nickname.isEmpty {
+                    createHouse(houseName, houseCode, nickname)
+                } else {
+                    Util.instance.presentErrorDialog(withMessage: .houseNicknameInvalid, context: self)
+                }
+            } else {
+                Util.instance.presentErrorDialog(withMessage: .houseCodeInvalid, context: self)
+            }
+        } else {
+            Util.instance.presentErrorDialog(withMessage: .houseNameInvalid, context: self)
+        }
+    }
+}
+
+/*
+ UTIL
+ */
 extension CreateJoinHouseViewController {
     
-    private func createHouse() {
+    private func setJoiningFieldNames() {
+        titleLabel.text = "Join an existing house"
+        nameField.placeholder = "Enter the name of the house"
+        codeField.placeholder = "Enter the code for the house"
+    }
+    
+    private func joinHouse() {
         validateFields { (houseName, houseCode, nickname) in
-            DataService.instance.createHouse(houseName, houseCode, nickname, handler: {
-                DataService.instance.joinHouse(houseName, houseCode, nickname, handler: {
-                    self.dismiss(animated: true, completion: nil)
-                })
+            DataService.instance.joinHouse(houseName, houseCode, nickname, handler: {
+                self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
         }
     }
     
-    private func validateFields(createHouse: @escaping (_ houseName: String, _ houseCode: String, _ nickname: String) -> ()) {
-        guard let houseName = nameField.text else {
-            Util.instance.presentErrorDialog(withMessage: "house name", context: self)
-            return
+    private func createHouse() {
+        validateFields { (houseName, houseCode, nickname) in
+            DataService.instance.checkIfHouseExists(houseName, handler: { (exists) in
+                if !exists {
+                    DataService.instance.createHouse(houseName, houseCode, nickname, handler: {
+                        DataService.instance.joinHouse(houseName, houseCode, nickname, handler: {
+                            self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                        })
+                    })
+                } else {
+                    Util.instance.presentErrorDialog(withMessage: .houseNameTaken, context: self)
+                }
+            })
         }
-        
-        guard let houseCode = codeField.text else {
-            Util.instance.presentErrorDialog(withMessage: "house code", context: self)
-            return
-        }
-        
-        let nickname = nicknameField.text ?? ""
-        
-        createHouse(houseName, houseCode, nickname)
     }
 }

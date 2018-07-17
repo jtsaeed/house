@@ -102,8 +102,8 @@ extension HomeViewController {
         do {
             try Auth.auth().signOut()
             performSegue(withIdentifier: "signOut", sender: nil)
-        } catch let signOutError as NSError {
-            Util.instance.presentErrorDialog(withMessage: signOutError.localizedDescription, context: self)
+        } catch {
+            Util.instance.presentErrorDialog(withMessage: .signOut, context: self)
         }
     }
 }

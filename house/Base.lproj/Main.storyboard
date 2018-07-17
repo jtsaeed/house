@@ -30,10 +30,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kvv-Zh-hFG" userLabel="Backing" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="12" width="345" height="80"/>
+                                                    <rect key="frame" x="15" y="12" width="290" height="80"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xts-HB-QrM" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                            <rect key="frame" x="225" y="0.0" width="120" height="80"/>
+                                                            <rect key="frame" x="170" y="0.0" width="120" height="80"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fpX-2z-E1K" customClass="UIViewX" customModule="house" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
@@ -74,7 +74,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="RPM-tC-9tk">
-                                                            <rect key="frame" x="16" y="8" width="241" height="64"/>
+                                                            <rect key="frame" x="16" y="8" width="186" height="64"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7S-GN-rdy">
                                                                     <rect key="frame" x="0.0" y="0.0" width="106.5" height="36"/>
@@ -186,10 +186,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-fk-DIl" userLabel="Backing" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="12" width="345" height="80"/>
+                                                    <rect key="frame" x="15" y="12" width="290" height="80"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfL-81-XCI" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                            <rect key="frame" x="225" y="0.0" width="120" height="80"/>
+                                                            <rect key="frame" x="170" y="0.0" width="120" height="80"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZNe-dh-iyy" customClass="UIViewX" customModule="house" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="80"/>
@@ -230,7 +230,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="aLy-cB-4OY">
-                                                            <rect key="frame" x="16" y="8" width="241" height="64"/>
+                                                            <rect key="frame" x="16" y="8" width="186" height="64"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You owe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRl-zp-Vpm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="94" height="36"/>
@@ -359,19 +359,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDX-AP-h0u" userLabel="Backing" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="12" width="345" height="80"/>
+                                                    <rect key="frame" x="15" y="12" width="290" height="80"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-kT-Smc">
-                                                            <rect key="frame" x="16" y="8" width="313" height="64"/>
+                                                            <rect key="frame" x="16" y="8" width="258" height="64"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Chore Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exD-14-213">
-                                                                    <rect key="frame" x="95.5" y="0.0" width="122.5" height="36"/>
+                                                                    <rect key="frame" x="68" y="0.0" width="122.5" height="36"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="posted by user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQl-gU-Idd">
-                                                                    <rect key="frame" x="108.5" y="28" width="96.5" height="36"/>
+                                                                    <rect key="frame" x="81" y="28" width="96.5" height="36"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
@@ -507,7 +507,7 @@
         <!--Prepare House View Controller-->
         <scene sceneID="sJr-cc-U3n">
             <objects>
-                <viewController storyboardIdentifier="JoinHouseViewController" id="rzw-i5-j26" customClass="PrepareHouseViewController" customModule="house" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrepareHouseViewController" id="rzw-i5-j26" customClass="PrepareHouseViewController" customModule="house" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eDm-V3-gzw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -540,7 +540,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="zf3-KG-3hb" kind="show" id="ABW-DI-Pz7"/>
+                                            <segue destination="zf3-KG-3hb" kind="show" identifier="createHouse" id="ABW-DI-Pz7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VR5-jE-kBR" customClass="UIButtonX" customModule="house" customModuleProvider="target">
@@ -558,7 +558,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="zf3-KG-3hb" kind="show" id="Ywt-xz-9rs"/>
+                                            <segue destination="zf3-KG-3hb" kind="show" identifier="joinHouse" id="Ywt-xz-9rs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -584,17 +584,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create a new house" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zs6-xJ-5bQ">
-                                <rect key="frame" x="35" y="48" width="304" height="84"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new house" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zs6-xJ-5bQ">
+                                <rect key="frame" x="35.5" y="84" width="304" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="304" id="BG9-99-7v1"/>
+                                    <constraint firstAttribute="height" constant="84" id="Isn-D5-by6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-2r-xZP" customClass="UIButtonX" customModule="house" customModuleProvider="target">
-                                <rect key="frame" x="40" y="493" width="295" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-2r-xZP" customClass="UIButtonX" customModule="house" customModuleProvider="target">
+                                <rect key="frame" x="40" y="491.5" width="295" height="50"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="295" id="ReL-ki-ee3"/>
+                                    <constraint firstAttribute="height" constant="50" id="UME-ZS-yt5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <state key="normal" title="Finish"/>
                                 <userDefinedRuntimeAttributes>
@@ -606,9 +612,8 @@
                                     <action selector="finishButtonPressed:" destination="zf3-KG-3hb" eventType="touchUpInside" id="oy1-yV-VOB"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYq-yk-skT">
-                                <rect key="frame" x="40" y="189" width="295" height="251.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYq-yk-skT">
+                                <rect key="frame" x="40" y="208" width="295" height="251.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZkP-EM-met">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="78.5"/>
@@ -644,6 +649,9 @@
                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zf3-KG-3hb" id="Dkl-gO-eKH"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -656,7 +664,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a unique 4-12 digit code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJd-dX-BN6" customClass="UITextFieldX" customModule="house" customModuleProvider="target">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a unique 4-12 digit code" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CJd-dX-BN6" customClass="UITextFieldX" customModule="house" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28.5" width="295" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -681,6 +689,9 @@
                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zf3-KG-3hb" id="GDc-fR-hSC"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -693,7 +704,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Optionally, enter a nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apa-7D-jv2" customClass="UITextFieldX" customModule="house" customModuleProvider="target">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter a nickname or first name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="apa-7D-jv2" customClass="UITextFieldX" customModule="house" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28.5" width="295" height="50"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -718,6 +729,9 @@
                                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="zf3-KG-3hb" id="VC8-0d-YU3"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -725,6 +739,14 @@
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Co0-2r-xZP" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="Fw2-fT-aCk"/>
+                            <constraint firstItem="IYq-yk-skT" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="H52-Hc-x8H"/>
+                            <constraint firstItem="zs6-xJ-5bQ" firstAttribute="top" secondItem="oH8-Bg-Har" secondAttribute="top" constant="64" id="Zs5-ru-Q7T"/>
+                            <constraint firstItem="Co0-2r-xZP" firstAttribute="top" secondItem="IYq-yk-skT" secondAttribute="bottom" constant="32" id="axL-QA-65T"/>
+                            <constraint firstItem="IYq-yk-skT" firstAttribute="centerY" secondItem="zcP-FJ-Mnt" secondAttribute="centerY" id="azd-pV-Rgg"/>
+                            <constraint firstItem="zs6-xJ-5bQ" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="fdZ-QG-las"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="oH8-Bg-Har"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="rPx-0J-Tsu"/>
@@ -887,19 +909,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfp-PM-4Dc" userLabel="Backing" customClass="UIViewX" customModule="house" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="12" width="345" height="80"/>
+                                                    <rect key="frame" x="15" y="12" width="290" height="80"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="szV-be-Mf6">
-                                                            <rect key="frame" x="16" y="8" width="313" height="64"/>
+                                                            <rect key="frame" x="16" y="8" width="258" height="64"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shopping Item Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGO-NZ-3Ru">
-                                                                    <rect key="frame" x="48" y="0.0" width="217.5" height="36"/>
+                                                                    <rect key="frame" x="20.5" y="0.0" width="217.5" height="36"/>
                                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="posted by user" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofR-DA-MFR">
-                                                                    <rect key="frame" x="108.5" y="28" width="96.5" height="36"/>
+                                                                    <rect key="frame" x="81" y="28" width="96.5" height="36"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>

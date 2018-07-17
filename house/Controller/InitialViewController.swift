@@ -39,8 +39,8 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
             
             DataService.instance.checkIfUserRegistered { (registered) in
                 if !registered {
-                    let joinHouseVC = self.storyboard?.instantiateViewController(withIdentifier: "JoinHouseViewController")
-                    self.present(joinHouseVC!, animated: true, completion: nil)
+                    let prepareHouseVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareHouseViewController")
+                    self.present(prepareHouseVC!, animated: true, completion: nil)
                 }
             }
         }

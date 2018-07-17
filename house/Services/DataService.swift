@@ -56,12 +56,13 @@ extension DataService {
         }
     }
     
-    func checkIfHouseExists(forName name: String, handler: @escaping (_ exists: Bool) -> ()) {
+    func checkIfHouseExists(_ name: String, handler: @escaping (_ exists: Bool) -> ()) {
         self.REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for house in snapshot {
-                if (name == house.childSnapshot(forPath: "name").value as? String) {
+                guard let pulledName = house.childSnapshot(forPath: "name").value as? String else { return }
+                if name == pulledName {
                     handler(true)
                 } else {
                     handler(false)
@@ -87,7 +88,7 @@ extension DataService {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
-            if let _ = snapshot.childSnapshot(forPath: "houseId").value as? String  {
+            if let _ = snapshot.childSnapshot(forPath: "houseId").value as? String {
                 handler(true)
             } else {
                 handler(false)

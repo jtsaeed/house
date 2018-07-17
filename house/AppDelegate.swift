@@ -109,12 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         } else {
             DataService.instance.checkIfUserRegistered { (registered) in
                 if !registered {
-                    do {
-                        try Auth.auth().signOut()
-                        self.displayLogin()
-                    } catch _ {
-                        // TODO: Comprehensive Error
-                    }
+                    self.displayPrepareHouse()
                 }
             }
         }
@@ -125,6 +120,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let authVC = storyboard.instantiateViewController(withIdentifier: "InitialViewController")
         self.window?.makeKeyAndVisible()
         self.window?.rootViewController?.present(authVC, animated: true, completion: nil)
+    }
+    
+    private func displayPrepareHouse() {
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let prepareHouseVC = storyboard.instantiateViewController(withIdentifier: "PrepareHouseViewController")
+        self.window?.makeKeyAndVisible()
+        self.window?.rootViewController?.present(prepareHouseVC, animated: true, completion: nil)
     }
 }
 
