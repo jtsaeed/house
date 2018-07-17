@@ -18,9 +18,6 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
     override func viewDidAppear(_ animated: Bool) {
         DataService.instance.checkIfUserRegistered { (registered) in
             if registered {
-                
-                print("Hello I opened and registered!!!!!!!!")
-                
                 self.dismiss(animated: true, completion: nil)
             }
         }

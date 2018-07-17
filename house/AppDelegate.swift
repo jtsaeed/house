@@ -10,10 +10,8 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseUI
-import TwitterKit
-import TwitterCore
+import IQKeyboardManagerSwift
 import UserNotifications
-import Intents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -22,15 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     var tab: Int?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         firebaseSetup()
         notificationsSetup()
         checkAuthentication()
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        clearBadge()
         
-        /*
-        let myTabBar = self.window?.rootViewController as! UITabBarController // Getting Tab Bar
-        myTabBar.selectedIndex = 2
- */
+        IQKeyboardManager.shared.enable = true
         
         return true
     }
@@ -83,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
             return true
         }
-        // other URL handling goes here.
         return false
     }
 
@@ -91,6 +86,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         if let token = Messaging.messaging().fcmToken {
             DataService.instance.saveToken(token)
         }
+    }
+    
+    private func clearBadge() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
     private func firebaseSetup() {
@@ -113,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
                     do {
                         try Auth.auth().signOut()
                         self.displayLogin()
-                    } catch let signOutError as NSError {
+                    } catch _ {
                         // TODO: Comprehensive Error
                     }
                 }

@@ -23,6 +23,10 @@ class CreateJoinHouseViewController: UIViewController {
     @IBAction func finishButtonPressed(_ sender: Any) {
         createHouse()
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 extension CreateJoinHouseViewController {
