@@ -43,7 +43,10 @@ class NewDebtViewController: FormViewController {
             +++ Section("")
             <<< ButtonRow() { row in
                 row.title = "Done"
-                row.onCellSelection({ (cell, button) in
+                row.cellUpdate({ (cell, row) in
+                    cell.textLabel?.textColor = .black
+                })
+                row.onCellSelection({ (cell, row) in
                     self.doneButtonPressed()
                 })
         }

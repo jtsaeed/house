@@ -132,7 +132,7 @@ extension DataService {
         var pairs = [String: String]()
         
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_USERS.observeSingleEvent(of: .value) { (snapshot) in
+            self.REF_USERS.observe(.value) { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
                 
                 for user in snapshot {
