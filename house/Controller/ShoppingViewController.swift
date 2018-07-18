@@ -19,11 +19,16 @@ class ShoppingViewController: UIViewController {
         super.viewDidLoad()
         
         addTableViewPadding()
-        loadShoppingItems()
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
         presentAddNewShoppingItemDialog()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadShoppingItems()
     }
 }
 

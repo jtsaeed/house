@@ -21,13 +21,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         addTableViewPadding()
-        getData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         setNavigationTitle()
+        getData()
     }
     
     @IBAction func signOutButtonPressed(_ sender: Any) {
