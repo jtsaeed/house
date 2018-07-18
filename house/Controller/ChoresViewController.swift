@@ -19,6 +19,7 @@ class ChoresViewController: UIViewController {
         super.viewDidLoad()
         
         addTableViewPadding()
+        loadChores()
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -20,11 +20,10 @@ class MoneyViewController: UIViewController {
         super.viewDidLoad()
         
         addTableViewPadding()
+        loadDebts()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
         loadDebts()
     }
 }
