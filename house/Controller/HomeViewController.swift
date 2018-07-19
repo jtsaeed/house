@@ -52,11 +52,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         if indexPath.row == 0 {
-            cell.configure(mainText: "There are", secondaryText: "chores remaining", amount: choresAmount)
+            cell.configure(mainText: "There \(choresAmount == 1 ? "is" : "are")", secondaryText: "\(choresAmount == 1 ? "chore" : "chores") remaining", amount: choresAmount)
         } else if indexPath.row == 1 {
-            cell.configure(mainText: "You have", secondaryText: "outstanding debts", amount: debtsAmount)
+            cell.configure(mainText: "You have", secondaryText: "outstanding \(debtsAmount == 1 ? "debt" : "debts")", amount: debtsAmount)
         } else if indexPath.row == 2 {
-            cell.configure(mainText: "There are", secondaryText: "items on the shoppping list", amount: shoppingItemsAmount)
+            cell.configure(mainText: "There \(shoppingItemsAmount == 1 ? "is" : "are")", secondaryText: "\(shoppingItemsAmount == 1 ? "item" : "items") on the shoppping list", amount: shoppingItemsAmount)
         }
         
         
