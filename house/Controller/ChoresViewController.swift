@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import SwipeCellKit
+//import SwipeCellKit
 
 class ChoresViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noChoresIndicator: UILabel!
     
     var chores = [Chore]()
     
@@ -46,7 +47,7 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "choreCell") as? ChoreCell else {
             return UITableViewCell()
         }
-        cell.delegate = self
+//        cell.delegate = self
         
         let chore = chores[indexPath.row]
         cell.configure(with: chore)
@@ -58,7 +59,6 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
 /*
  TABLEVIEW
  SWIPES
- */
 extension ChoresViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -80,6 +80,7 @@ extension ChoresViewController: SwipeTableViewCellDelegate {
         return options
     }
 }
+ */
 
 /*
  UTIL
@@ -92,8 +93,13 @@ extension ChoresViewController {
     
     private func loadChores() {
         DataService.instance.getChores { (pulledChores) in
-            self.chores = pulledChores
-            self.tableView.reloadData()
+            if pulledChores.isEmpty {
+                self.noChoresIndicator.isHidden = false
+            } else {
+                self.noChoresIndicator.isHidden = true
+                self.chores = pulledChores
+                self.tableView.reloadData()
+            }
         }
     }
     

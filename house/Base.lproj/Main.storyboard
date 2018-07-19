@@ -297,10 +297,22 @@
                                     <outlet property="delegate" destination="RfX-Sy-hMk" id="co3-jy-AFP"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="you have no tracked debts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bMQ-bx-1zn">
+                                <rect key="frame" x="97.5" y="219" width="180" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="Coq-Lf-98M"/>
+                                    <constraint firstAttribute="height" constant="64" id="wc7-xS-39o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.24855522259999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="bMQ-bx-1zn" firstAttribute="centerX" secondItem="0Hf-bn-n6d" secondAttribute="centerX" id="Cfj-Lz-alM"/>
                             <constraint firstItem="1oW-kV-8B7" firstAttribute="bottom" secondItem="cde-bf-Jcd" secondAttribute="bottom" id="R3R-th-wMa"/>
+                            <constraint firstItem="bMQ-bx-1zn" firstAttribute="centerY" secondItem="0Hf-bn-n6d" secondAttribute="centerY" id="kLE-s8-2JK"/>
                             <constraint firstItem="1oW-kV-8B7" firstAttribute="top" secondItem="cde-bf-Jcd" secondAttribute="top" id="kgk-GB-MPl"/>
                             <constraint firstItem="1oW-kV-8B7" firstAttribute="leading" secondItem="cde-bf-Jcd" secondAttribute="leading" id="riY-LI-pE7"/>
                             <constraint firstItem="1oW-kV-8B7" firstAttribute="trailing" secondItem="cde-bf-Jcd" secondAttribute="trailing" id="ygf-Gc-Hp1"/>
@@ -316,6 +328,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noDebtsIndicator" destination="bMQ-bx-1zn" id="TJO-A3-b1Y"/>
                         <outlet property="tableView" destination="1oW-kV-8B7" id="yGg-lu-AeT"/>
                     </connections>
                 </viewController>
@@ -424,10 +437,22 @@
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="IMK-6t-onc"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the household has no chores" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGh-f3-h82">
+                                <rect key="frame" x="97.5" y="219" width="180" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="UlV-eX-ShB"/>
+                                    <constraint firstAttribute="height" constant="64" id="bAB-gl-OLF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.24855522260273974" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="tGh-f3-h82" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="2zo-Qe-bdb"/>
                             <constraint firstItem="am0-59-5PT" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="Dfd-LT-Fya"/>
+                            <constraint firstItem="tGh-f3-h82" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="Emz-i9-P5v"/>
                             <constraint firstItem="am0-59-5PT" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="fFp-Iz-yUc"/>
                             <constraint firstItem="am0-59-5PT" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="uJF-Wn-Adr"/>
                             <constraint firstItem="am0-59-5PT" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="xBt-Tm-NKb"/>
@@ -443,12 +468,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noChoresIndicator" destination="tGh-f3-h82" id="KvS-oL-a85"/>
                         <outlet property="tableView" destination="am0-59-5PT" id="55Y-rq-gbe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1654" y="-179"/>
+            <point key="canvasLocation" x="1653.5999999999999" y="-179.46026986506749"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="Kuj-O8-UxA">
@@ -974,11 +1000,23 @@
                                     <outlet property="delegate" destination="hmR-U2-zPD" id="vQ4-3b-pE6"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="the shopping list is currently empty" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8O-l4-u4O">
+                                <rect key="frame" x="97.5" y="219" width="180" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="G5Q-Qk-Qt7"/>
+                                    <constraint firstAttribute="width" constant="180" id="tAb-Mb-t4z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.24855522259999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="O8O-l4-u4O" firstAttribute="centerY" secondItem="Yka-C9-Cyq" secondAttribute="centerY" id="3kI-uf-dp5"/>
                             <constraint firstItem="Z2B-83-Hic" firstAttribute="leading" secondItem="uOy-DE-5oN" secondAttribute="leading" id="4YR-P8-GzD"/>
                             <constraint firstItem="Z2B-83-Hic" firstAttribute="top" secondItem="uOy-DE-5oN" secondAttribute="top" id="4pu-CC-3Jx"/>
+                            <constraint firstItem="O8O-l4-u4O" firstAttribute="centerX" secondItem="Yka-C9-Cyq" secondAttribute="centerX" id="7Ke-MF-jEf"/>
                             <constraint firstItem="Z2B-83-Hic" firstAttribute="bottom" secondItem="uOy-DE-5oN" secondAttribute="bottom" id="LOp-hP-uyB"/>
                             <constraint firstItem="Z2B-83-Hic" firstAttribute="trailing" secondItem="uOy-DE-5oN" secondAttribute="trailing" id="vEc-86-2uG"/>
                         </constraints>
@@ -993,6 +1031,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noShoppingItemsIndicator" destination="O8O-l4-u4O" id="vdw-5W-btN"/>
                         <outlet property="tableView" destination="Z2B-83-Hic" id="IeM-ha-ZAG"/>
                     </connections>
                 </viewController>

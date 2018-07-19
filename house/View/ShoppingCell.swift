@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import SwipeCellKit
+//import SwipeCellKit
 
-class ShoppingCell: SwipeTableViewCell {
+class ShoppingCell: UITableViewCell {
     
     private var isPressed: Bool = false
     private var longPressGestureRecognizer: UILongPressGestureRecognizer? = nil

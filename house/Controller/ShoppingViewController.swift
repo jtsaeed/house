@@ -7,11 +7,12 @@
 //
 
 import UIKit
-import SwipeCellKit
+//import SwipeCellKit
 
 class ShoppingViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noShoppingItemsIndicator: UILabel!
     
     var shoppingItems = [Shopping]()
     
@@ -46,7 +47,7 @@ extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell") as? ShoppingCell else {
             return UITableViewCell()
         }
-        cell.delegate = self
+//        cell.delegate = self
         
         let shoppingItem = shoppingItems[indexPath.row]
         cell.configure(with: shoppingItem)
@@ -55,6 +56,9 @@ extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+/*
+ TABLEVIEW
+ SWIPES
 extension ShoppingViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -76,6 +80,7 @@ extension ShoppingViewController: SwipeTableViewCellDelegate {
         return options
     }
 }
+ */
 
 /*
  UTIL
@@ -88,8 +93,13 @@ extension ShoppingViewController {
     
     private func loadShoppingItems() {
         DataService.instance.getShoppingItems { (pulledShoppingItems) in
-            self.shoppingItems = pulledShoppingItems
-            self.tableView.reloadData()
+            if pulledShoppingItems.isEmpty {
+                self.noShoppingItemsIndicator.isHidden = false
+            } else {
+                self.noShoppingItemsIndicator.isHidden = true
+                self.shoppingItems = pulledShoppingItems
+                self.tableView.reloadData()
+            }
         }
     }
     
