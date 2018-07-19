@@ -18,7 +18,7 @@ class ShoppingCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     
     func configure(with shoppingItem: Shopping) {
-        titleLabel.text = shoppingItem.content
+        titleLabel.text = shoppingItem.content.lowercased()
         
         DataService.instance.getUserNickname(for: shoppingItem.author) { (nickname) in
             self.subtitleLabel.text = "added by \(nickname)"

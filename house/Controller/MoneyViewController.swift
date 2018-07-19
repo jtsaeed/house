@@ -96,9 +96,9 @@ extension MoneyViewController {
     private func loadDebts() {
         DataService.instance.getDebts { (pulledDebts) in
             if pulledDebts.isEmpty {
-                self.noDebtsIndicator.isHidden = true
-            } else {
                 self.noDebtsIndicator.isHidden = false
+            } else {
+                self.noDebtsIndicator.isHidden = true
                 self.debts = pulledDebts
                 self.tableView.reloadData()
             }

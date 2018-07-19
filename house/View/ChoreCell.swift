@@ -18,7 +18,7 @@ class ChoreCell: UITableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     
     func configure(with chore: Chore) {
-        titleLabel.text = chore.content
+        titleLabel.text = chore.content.lowercased()
         
         DataService.instance.getUserNickname(for: chore.author) { (nickname) in
             self.subtitleLabel.text = "added by \(nickname) \(chore.getDateText())"

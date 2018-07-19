@@ -11,7 +11,6 @@ import SwiftDate
 
 struct Chore {
     let choreId: String
-    
     let content: String
     let author: String
     let date: String
