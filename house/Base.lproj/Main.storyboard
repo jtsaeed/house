@@ -159,7 +159,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="U28-cc-UY1" id="I1V-CM-vLk"/>
-                        <segue destination="pDb-RN-i5P" kind="presentation" identifier="signOut" id="DYh-l6-41M"/>
+                        <segue destination="pDb-RN-i5P" kind="presentation" identifier="signOut" animates="NO" id="DYh-l6-41M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

@@ -119,14 +119,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let authVC = storyboard.instantiateViewController(withIdentifier: "InitialViewController")
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController?.present(authVC, animated: true, completion: nil)
+        self.window?.rootViewController?.present(authVC, animated: false, completion: nil)
     }
     
     private func displayPrepareHouse() {
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let prepareHouseVC = storyboard.instantiateViewController(withIdentifier: "PrepareHouseViewController")
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController?.present(prepareHouseVC, animated: true, completion: nil)
+        self.window?.rootViewController?.present(prepareHouseVC, animated: false, completion: nil)
     }
 }
 
