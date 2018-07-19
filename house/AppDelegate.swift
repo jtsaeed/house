@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         firebaseSetup()
-        notificationsSetup()
         checkAuthentication()
         clearBadge()
         
@@ -96,11 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
         Database.database().isPersistenceEnabled = true
-    }
-    
-    private func notificationsSetup() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
-        UIApplication.shared.registerForRemoteNotifications()
     }
     
     private func checkAuthentication() {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 class HomeViewController: UIViewController {
     
@@ -21,6 +22,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         addTableViewPadding()
+        notificationsSetup()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +75,11 @@ extension HomeViewController {
     
     private func addTableViewPadding() {
         tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+    }
+    
+    private func notificationsSetup() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
+        UIApplication.shared.registerForRemoteNotifications()
     }
     
     private func getData() {
