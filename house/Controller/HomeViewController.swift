@@ -99,7 +99,15 @@ extension HomeViewController {
     }
     
     private func showHouseInfo() {
-        
+        DataService.instance.getHouseInfo { (name, code) in
+            let alert = UIAlertController(title: "House Info", message: "Name: \(name)\nCode: \(code)", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 

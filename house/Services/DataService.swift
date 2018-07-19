@@ -34,7 +34,7 @@ class DataService {
 }
 
 /*
- REGISTRATION RELATED
+ HOUSE RELATED
  OPERATIONS
  */
 extension DataService {
@@ -75,6 +75,17 @@ extension DataService {
         self.REF_HOUSES.childByAutoId().updateChildValues(["name": name, "code": code])
         
         handler()
+    }
+    
+    func getHouseInfo(handler: @escaping (_ name: String, _ code: String) -> ()) {
+        attemptDatabaseAccess { (_, houseId) in
+            self.REF_HOUSES.child(houseId).observeSingleEvent(of: .value, with: { (snapshot) in
+                guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
+                guard let code = snapshot.childSnapshot(forPath: "code").value as? String else { return }
+                
+                handler(name, code)
+            })
+        }
     }
 }
 
