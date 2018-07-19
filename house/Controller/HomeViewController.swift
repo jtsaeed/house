@@ -32,8 +32,8 @@ class HomeViewController: UIViewController {
         getData()
     }
     
-    @IBAction func signOutButtonPressed(_ sender: Any) {
-        signOut()
+    @IBAction func moreButtonPressed(_ sender: Any) {
+        presentMoreActionSheet()
     }
 }
 
@@ -65,6 +65,41 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.tabBarController?.selectedIndex = (indexPath.row + 1)
+    }
+}
+
+/*
+ ACTIONSHEET
+ */
+extension HomeViewController {
+    
+    private func presentMoreActionSheet() {
+        let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        sheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
+            self.signOut()
+        })
+        sheet.addAction(UIAlertAction(title: "Show House Info", style: .default) { (action) in
+            self.showHouseInfo()
+        })
+        sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            sheet.dismiss(animated: true, completion: nil)
+        })
+        
+        present(sheet, animated: true, completion: nil)
+    }
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "signOut", sender: nil)
+        } catch {
+            Util.instance.presentErrorDialog(withMessage: .signOut, context: self)
+        }
+    }
+    
+    private func showHouseInfo() {
+        
     }
 }
 
@@ -102,15 +137,6 @@ extension HomeViewController {
     private func setNavigationTitle() {
         DataService.instance.getCurrentUserNickname { (nickname) in
             self.navigationItem.title = "Hello \(nickname)!"
-        }
-    }
-    
-    private func signOut() {
-        do {
-            try Auth.auth().signOut()
-            performSegue(withIdentifier: "signOut", sender: nil)
-        } catch {
-            Util.instance.presentErrorDialog(withMessage: .signOut, context: self)
         }
     }
 }

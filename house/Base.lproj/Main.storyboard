@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -150,10 +151,10 @@
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="GiP-ml-LpZ">
-                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="ZMy-sp-NPQ">
+                        <barButtonItem key="rightBarButtonItem" title="More" image="more" id="ZMy-sp-NPQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="signOutButtonPressed:" destination="9pv-A4-QxB" id="i2l-Au-6jo"/>
+                                <action selector="moreButtonPressed:" destination="9pv-A4-QxB" id="8kx-AU-tqJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1044,6 +1045,7 @@
         <image name="home" width="36" height="36"/>
         <image name="list" width="36" height="36"/>
         <image name="money" width="36" height="36"/>
+        <image name="more" width="36" height="36"/>
         <image name="store" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
