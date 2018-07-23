@@ -29,9 +29,28 @@ class Util {
     func generateClearFeedback() {
         notificationFeedbackGenerator.notificationOccurred(.success)
     }
+    
+    func saveUserInfo(for user: User) {
+        let userDefaults = UserDefaults.standard
+        
+        userDefaults.set(user.name, forKey: "name")
+        userDefaults.set(user.nickname, forKey: "nickname")
+        userDefaults.set(user.email, forKey: "email")
+        userDefaults.set(user.userId, forKey: "userId")
+        userDefaults.set(user.houseId, forKey: "houseId")
+    }
+    
+    func clearUserInfo() {
+        if let bundleID = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+        }
+    }
 }
 
 enum ErrorMessage: String {
+    
+    case currentUserFailed = "Unable to retrieve the currently signed in user for unknown reasons"
+    case signOutFailed = "Sign out failed for unknown reasons"
     
     case houseNameInvalid = "Please enter a valid house name"
     case houseCodeInvalid = "Please enter a valid house code within 4 to 12 digits"
@@ -41,5 +60,4 @@ enum ErrorMessage: String {
     
     case debtAmountInvalid = "Failed to edit debt due to an invalid debt amount, please enter a whole number"
     
-    case signOut = "Sign out failed due to unknown reasons"
 }

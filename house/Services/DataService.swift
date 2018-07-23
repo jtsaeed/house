@@ -134,7 +134,7 @@ extension DataService {
                 guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
                 guard let email = snapshot.childSnapshot(forPath: "email").value as? String else { return }
                 
-                handler(User(userId: userId, name: name, nickname: nickname, email: email))
+                handler(User(userId: userId, houseId: houseId, name: name, nickname: nickname, email: email))
             }
         }
     }
@@ -210,9 +210,8 @@ extension DataService {
                     let choreId = chore.key
                     guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
                     guard let author = chore.childSnapshot(forPath: "author").value as? String else { return }
-                    guard let date = chore.childSnapshot(forPath: "date").value as? String else { return }
                         
-                    chores.append(Chore(choreId: choreId, content: content, author: author, date: date))
+                    chores.append(Chore(choreId: choreId, content: content, author: author, date: Date()))
                 }
                     
                 handler(chores)
@@ -265,7 +264,7 @@ extension DataService {
                     guard let content = shopping.childSnapshot(forPath: "content").value as? String else { return }
                     guard let author = shopping.childSnapshot(forPath: "author").value as? String else { return }
                         
-                    shoppingItems.append(Shopping(shoppingId: shoppingId, content: content, author: author))
+                    shoppingItems.append(Shopping(shoppingId: shoppingId, content: content, author: author, date: Date()))
                 }
                     
                 handler(shoppingItems)

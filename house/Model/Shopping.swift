@@ -13,6 +13,7 @@ struct Shopping {
     
     let content: String
     let author: String
+    let date: Date
     
     func clearItem() {
         DataService.instance.deleteShoppingItem(with: shoppingId)

@@ -10,6 +10,7 @@ import Foundation
 
 struct User {
     let userId: String
+    let houseId: String
     
     let name: String
     let nickname: String

@@ -88,7 +88,7 @@ extension ChoresViewController: SwipeTableViewCellDelegate {
 extension ChoresViewController {
     
     private func addTableViewPadding() {
-        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 16, right: 0)
     }
     
     private func loadChores() {
@@ -123,8 +123,8 @@ extension ChoresViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            if let choreName = alert.textFields?.first?.text {
-                DataService.instance.createChore(with: choreName)
+            if let choreContent = alert.textFields?.first?.text {
+                DataService.instance.createChore(with: choreContent)
                 self.loadChores()
             }
         }))

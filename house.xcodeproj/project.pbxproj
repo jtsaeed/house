@@ -24,6 +24,7 @@
 		23AA095E20B083300020FEC9 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095D20B083300020FEC9 /* Debt.swift */; };
 		23AA096020B085600020FEC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095F20B085600020FEC9 /* User.swift */; };
 		23B2E5B520DAC9470066A797 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B2E5B420DAC9470066A797 /* Util.swift */; };
+		23BDC2482105E095009FC9FE /* NewDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23BDC2472105E095009FC9FE /* NewDataService.swift */; };
 		23DC45A020B041FF009E9C3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */; };
 		23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A620B0436F009E9C3D /* AuthService.swift */; };
 		23DC45A920B0437B009E9C3D /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A820B0437B009E9C3D /* DataService.swift */; };
@@ -70,6 +71,7 @@
 		23AA095D20B083300020FEC9 /* Debt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
 		23AA095F20B085600020FEC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		23B2E5B420DAC9470066A797 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		23BDC2472105E095009FC9FE /* NewDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDataService.swift; sourceTree = "<group>"; };
 		23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23DC45A620B0436F009E9C3D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		23DC45A820B0437B009E9C3D /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				23DC45A620B0436F009E9C3D /* AuthService.swift */,
 				23DC45A820B0437B009E9C3D /* DataService.swift */,
 				23B2E5B420DAC9470066A797 /* Util.swift */,
+				23BDC2472105E095009FC9FE /* NewDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -306,7 +309,6 @@
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
@@ -330,7 +332,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
@@ -415,6 +416,7 @@
 				23E82E0520A348650073981E /* AppDelegate.swift in Sources */,
 				2315805820F4A8B0009ABD48 /* UITextFieldX.swift in Sources */,
 				23B2E5B520DAC9470066A797 /* Util.swift in Sources */,
+				23BDC2482105E095009FC9FE /* NewDataService.swift in Sources */,
 				2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */,
 				23E82E0720A348650073981E /* HomeViewController.swift in Sources */,
 				23AA095E20B083300020FEC9 /* Debt.swift in Sources */,

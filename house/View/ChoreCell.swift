@@ -21,7 +21,7 @@ class ChoreCell: UITableViewCell {
         titleLabel.text = chore.content.lowercased()
         
         DataService.instance.getUserNickname(for: chore.author) { (nickname) in
-            self.subtitleLabel.text = "added by \(nickname) \(chore.getDateText())"
+            self.subtitleLabel.text = "added by \(nickname)"
         }
     }
     

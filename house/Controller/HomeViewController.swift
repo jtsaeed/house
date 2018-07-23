@@ -92,9 +92,10 @@ extension HomeViewController {
     private func signOut() {
         do {
             try Auth.auth().signOut()
+            Util.instance.clearUserInfo()
             performSegue(withIdentifier: "signOut", sender: nil)
         } catch {
-            Util.instance.presentErrorDialog(withMessage: .signOut, context: self)
+            Util.instance.presentErrorDialog(withMessage: .signOutFailed, context: self)
         }
     }
     
