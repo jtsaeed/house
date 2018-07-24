@@ -22,92 +22,87 @@ class DataService {
     var REF_SHOPPING = DB_BASE.child("shopping")
     var REF_DEBTS = DB_BASE.child("debts")
     
-    private func attemptDatabaseAccess(handler: @escaping (_ userId: String, _ houseId: String) -> ()) {
+    private func attemptDatabaseAccess(completion: @escaping (_ userId: String, _ houseId: String) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
             guard let houseId = snapshot.childSnapshot(forPath: "houseId").value as? String else { return }
             
-            handler(userId, houseId)
+            completion(userId, houseId)
         }
     }
 }
 
-/*
- HOUSE RELATED
- OPERATIONS
- */
+// MARK: - House
+
 extension DataService {
 
-    private func validateHouseRequest(withName name: String, andCode code: String, handler: @escaping (_ houseId: String?) -> ()) {
+    private func validateHouseRequest(withName name: String, andCode code: String, completion: @escaping (_ houseId: String?) -> ()) {
         REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for house in snapshot {
                 if (name == house.childSnapshot(forPath: "name").value as? String) {
                     if (code == house.childSnapshot(forPath: "code").value as? String) {
-                        handler(house.key)
+                        completion(house.key)
                         return
                     }
                 }
             }
             
-            handler(nil)
+            completion(nil)
         }
     }
     
-    func checkIfHouseExists(_ name: String, handler: @escaping (_ exists: Bool) -> ()) {
+    func checkIfHouseExists(_ name: String, completion: @escaping (_ exists: Bool) -> ()) {
         self.REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for house in snapshot {
                 guard let pulledName = house.childSnapshot(forPath: "name").value as? String else { return }
                 if name == pulledName {
-                    handler(true)
+                    completion(true)
                 } else {
-                    handler(false)
+                    completion(false)
                 }
             }
         }
     }
     
-    func createHouse(_ name: String, _ code: String, _ nickname: String, handler: @escaping () -> ()) {
+    func createHouse(_ name: String, _ code: String, _ nickname: String, completion: @escaping () -> ()) {
         self.REF_HOUSES.childByAutoId().updateChildValues(["name": name, "code": code])
         
-        handler()
+        completion()
     }
     
-    func getHouseInfo(handler: @escaping (_ name: String, _ code: String) -> ()) {
+    func getHouseInfo(completion: @escaping (_ name: String, _ code: String) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_HOUSES.child(houseId).observeSingleEvent(of: .value, with: { (snapshot) in
                 guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
                 guard let code = snapshot.childSnapshot(forPath: "code").value as? String else { return }
                 
-                handler(name, code)
+                completion(name, code)
             })
         }
     }
 }
 
-/*
- USER RELATED
- OPERATIONS
- */
+// MARK: - Users
 extension DataService {
     
-    func checkIfUserRegistered(handler: @escaping (_ registered: Bool) -> ()) {
+    func checkIfUserRegistered(completion: @escaping (_ registered: Bool) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
         REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
             if let _ = snapshot.childSnapshot(forPath: "houseId").value as? String {
-                handler(true)
+                completion(true)
             } else {
-                handler(false)
+                completion(false)
             }
         }
     }
     
-    func joinHouse(_ name: String, _ code: String, _ nickname: String, handler: @escaping () -> ()) {
+    func joinHouse(_ name: String, _ code: String, _ nickname: String, completion: @escaping () -> ()) {
         validateHouseRequest(withName: name, andCode: code) { (houseId) in
             if let houseId = houseId {
                 guard let user = Auth.auth().currentUser else { return }
@@ -115,7 +110,7 @@ extension DataService {
                 
                 self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!, "nickname": nickname])
                 
-                handler()
+                completion()
             }
         }
     }
@@ -127,20 +122,20 @@ extension DataService {
         }
     }
     
-    func getUserData(handler: @escaping (_ user: User) -> ()) {
+    func getUserData(completion: @escaping (_ user: User) -> ()) {
         attemptDatabaseAccess { (userId, houseId) in
             self.REF_USERS.child(houseId).child(userId).observeSingleEvent(of: .value) { (snapshot) in
                 guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
                 guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
                 guard let email = snapshot.childSnapshot(forPath: "email").value as? String else { return }
                 
-                handler(User(userId: userId, houseId: houseId, name: name, nickname: nickname, email: email))
+                completion(User(userId: userId, houseId: houseId, name: name, nickname: nickname, email: email))
             }
         }
     }
     
-    func getUsersNicknameIdPair(handler: @escaping (_ pairs: [String: String]) -> ()) {
-        var pairs = [String: String]()
+    func getUsersNameIdPair(completion: @escaping (_ pairs: [String : String]) -> ()) {
+        var pairs = [String : String]()
         
         attemptDatabaseAccess { (userId, houseId) in
             self.REF_USERS.observe(.value) { (snapshot) in
@@ -148,50 +143,48 @@ extension DataService {
                 
                 for user in snapshot {
                     let id = user.key
-                    guard let nickname = user.childSnapshot(forPath: "nickname").value as? String else { return }
+                    guard let name = user.childSnapshot(forPath: "name").value as? String else { return }
                     guard let pulledHouseId = user.childSnapshot(forPath: "houseId").value as? String else { return }
                         
                     if pulledHouseId == houseId && id != userId {
-                        pairs[nickname] = id
+                        pairs[name] = id
                     }
                 }
                     
-                handler(pairs)
+                completion(pairs)
             }
         }
     }
     
-    func getUserNickname(for Id: String, handler: @escaping (_ name: String) -> ()) {
+    func getUserNickname(for Id: String, completion: @escaping (_ name: String) -> ()) {
         REF_USERS.child(Id).observeSingleEvent(of: .value) { (snapshot) in
             guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
             
-            handler(nickname)
+            completion(nickname)
         }
     }
     
-    func getCurrentUserNickname(handler: @escaping (_ nickname: String) -> ()) {
+    func getCurrentUserNickname(completion: @escaping (_ nickname: String) -> ()) {
         attemptDatabaseAccess { (userId, _) in
-            self.getUserNickname(for: userId, handler: { (nickname) in
-                handler(nickname)
+            self.getUserNickname(for: userId, completion: { (nickname) in
+                completion(nickname)
             })
         }
     }
     
-    func getCurrentUserName(handler: @escaping (_ name: String) -> ()) {
+    func getCurrentUserName(completion: @escaping (_ name: String) -> ()) {
         attemptDatabaseAccess { (userId, _) in
             self.REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
                 guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
                 
-                handler(name)
+                completion(name)
             }
         }
     }
 }
 
-/*
- CHORE RELATED
- OPERATIONS
- */
+// MARK: - Chores
+
 extension DataService {
     
     func createChore(with content: String) {
@@ -200,7 +193,7 @@ extension DataService {
         }
     }
     
-    func getChores(handler: @escaping (_ chores: [Chore]) -> ()) {
+    func getChores(completion: @escaping (_ chores: [Chore]) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).observe(.value) { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -214,12 +207,12 @@ extension DataService {
                     chores.append(Chore(choreId: choreId, content: content, author: author, date: Date()))
                 }
                     
-                handler(chores)
+                completion(chores)
             }
         }
     }
     
-    func getAmountOfChores(handler: @escaping (_ amount: Int) -> ()) {
+    func getAmountOfChores(completion: @escaping (_ amount: Int) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).observe(.value, with: { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -229,7 +222,7 @@ extension DataService {
                     amount += 1
                 }
                     
-                handler(amount)
+                completion(amount)
             })
         }
     }
@@ -241,10 +234,8 @@ extension DataService {
     }
 }
 
-/*
- SHOPPING RELATED
- OPERATIONS
- */
+// MARK: - Shopping
+
 extension DataService {
     
     func createShoppingItem(with content: String) {
@@ -253,7 +244,7 @@ extension DataService {
         }
     }
     
-    func getShoppingItems(handler: @escaping (_ shoppingItems: [Shopping]) -> ()) {
+    func getShoppingItems(completion: @escaping (_ shoppingItems: [Shopping]) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_SHOPPING.child(houseId).observe(.value) { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -267,12 +258,12 @@ extension DataService {
                     shoppingItems.append(Shopping(shoppingId: shoppingId, content: content, author: author, date: Date()))
                 }
                     
-                handler(shoppingItems)
+                completion(shoppingItems)
             }
         }
     }
     
-    func getAmountOfShoppingItems(handler: @escaping (_ amount: Int) -> ()) {
+    func getAmountOfShoppingItems(completion: @escaping (_ amount: Int) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_SHOPPING.child(houseId).observe(.value, with: { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -282,7 +273,7 @@ extension DataService {
                     amount += 1
                 }
                     
-                handler(amount)
+                completion(amount)
             })
         }
     }
@@ -294,19 +285,17 @@ extension DataService {
     }
 }
 
-/*
- DEBT RELATED
- OPERATIONS
- */
+// MARK: - Debts
+
 extension DataService {
     
-    func createDebt(from receiverId: String, for payerId: String, with amount: Int, and reason: String) {
+    func createDebt(for payerId: String, with amount: Int, and reason: String) {
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": receiverId, "payerId": payerId, "amount": amount, "reason": reason ])
+            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": userId, "payerId": payerId, "amount": amount, "reason": reason ])
         }
     }
     
-    func getDebts(handler: @escaping (_ debts: [Debt]) -> ()) {
+    func getDebts(completion: @escaping (_ debts: [Debt]) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_DEBTS.child(houseId).observe(.value) { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -328,12 +317,12 @@ extension DataService {
                     }
                 }
                     
-                handler(debts)
+                completion(debts)
             }
         }
     }
     
-    func getAmountOfOutstandingDebts(handler: @escaping (_ amount: Int) -> ()) {
+    func getAmountOfOutstandingDebts(completion: @escaping (_ amount: Int) -> ()) {
         attemptDatabaseAccess { (userId, houseId) in
             self.REF_DEBTS.child(houseId).observe(.value, with: { (snapshot) in
                 guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -347,7 +336,7 @@ extension DataService {
                     }
                 }
                     
-                handler(amount)
+                completion(amount)
             })
         }
     }

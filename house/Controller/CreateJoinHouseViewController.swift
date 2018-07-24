@@ -94,7 +94,7 @@ extension CreateJoinHouseViewController {
     
     private func joinHouse() {
         validateFields { (houseName, houseCode, nickname) in
-            DataService.instance.joinHouse(houseName, houseCode, nickname, handler: {
+            DataService.instance.joinHouse(houseName, houseCode, nickname, completion: {
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
             })
         }
@@ -102,10 +102,10 @@ extension CreateJoinHouseViewController {
     
     private func createHouse() {
         validateFields { (houseName, houseCode, nickname) in
-            DataService.instance.checkIfHouseExists(houseName, handler: { (exists) in
+            DataService.instance.checkIfHouseExists(houseName, completion: { (exists) in
                 if !exists {
-                    DataService.instance.createHouse(houseName, houseCode, nickname, handler: {
-                        DataService.instance.joinHouse(houseName, houseCode, nickname, handler: {
+                    DataService.instance.createHouse(houseName, houseCode, nickname, completion: {
+                        DataService.instance.joinHouse(houseName, houseCode, nickname, completion: {
                             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                         })
                     })

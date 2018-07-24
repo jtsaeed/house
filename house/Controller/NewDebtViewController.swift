@@ -17,7 +17,7 @@ class NewDebtViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataService.instance.getUsersNicknameIdPair { (pulledPairs) in
+        DataService.instance.getUsersNameIdPair { (pulledPairs) in
             self.people = pulledPairs
             self.createForm()
         }
@@ -59,11 +59,9 @@ class NewDebtViewController: FormViewController {
 extension NewDebtViewController {
     
     private func doneButtonPressed() {
-        guard let receiverId = Auth.auth().currentUser?.uid else { return }
-        
         guard let payerNameRow: PickerRow<String> = form.rowBy(tag: "payerName") else { return }
         guard let payerName = payerNameRow.value else { return }
-        guard let payerId = self.people[payerName] else { return }
+        guard let payer = self.people[payerName] else { return }
         
         guard let reasonRow: TextRow = form.rowBy(tag: "reason") else { return }
         guard let reason = reasonRow.value?.lowercased() else { return }
@@ -71,7 +69,7 @@ extension NewDebtViewController {
         guard let amountRow: IntRow = form.rowBy(tag: "amount") else { return }
         guard let amount = amountRow.value else { return }
         
-        DataService.instance.createDebt(from: receiverId, for: payerId, with: amount, and: reason)
+        DataService.instance.createDebt(for: payer, with: amount, and: reason)
         
         navigationController?.popViewController(animated: true)
     }
