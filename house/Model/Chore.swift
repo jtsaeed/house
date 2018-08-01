@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftDate
 
 struct Chore {
     let choreId: String

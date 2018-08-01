@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import SwipeCellKit
+import SwipeCellKit
 
 class ShoppingViewController: UIViewController {
     
@@ -47,7 +47,7 @@ extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell") as? ShoppingCell else {
             return UITableViewCell()
         }
-//        cell.delegate = self
+        cell.delegate = self
         
         let shoppingItem = shoppingItems[indexPath.row]
         cell.configure(with: shoppingItem)
@@ -59,6 +59,7 @@ extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
 /*
  TABLEVIEW
  SWIPES
+ */
 extension ShoppingViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -80,7 +81,6 @@ extension ShoppingViewController: SwipeTableViewCellDelegate {
         return options
     }
 }
- */
 
 /*
  UTIL

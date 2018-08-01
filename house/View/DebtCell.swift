@@ -7,9 +7,9 @@
 //
 
 import UIKit
-//import SwipeCellKit
+import SwipeCellKit
 
-class DebtCell: UITableViewCell {
+class DebtCell: SwipeTableViewCell {
     
     private var isPressed: Bool = false
     private var longPressGestureRecognizer: UILongPressGestureRecognizer? = nil

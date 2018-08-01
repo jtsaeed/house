@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import Firebase
-//import SwipeCellKit
+import SwipeCellKit
 
 class MoneyViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var noDebtsIndicator: UILabel!
+    
     var debts = [Debt]()
     
     override func viewDidLoad() {
@@ -42,7 +41,7 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "debtCell") as? DebtCell else {
             return UITableViewCell()
         }
-//        cell.delegate = self
+        cell.delegate = self
         
         let debt = debts[indexPath.row]
         cell.configure(with: debt)
@@ -54,6 +53,7 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
 /*
  TABLEVIEW
  SWIPES
+ */
 extension MoneyViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -82,7 +82,6 @@ extension MoneyViewController: SwipeTableViewCellDelegate {
         return options
     }
 }
- */
 
 /*
  UTIL

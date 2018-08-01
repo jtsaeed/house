@@ -62,10 +62,11 @@ extension DataService {
                 guard let pulledName = house.childSnapshot(forPath: "name").value as? String else { return }
                 if name == pulledName {
                     completion(true)
-                } else {
-                    completion(false)
+                    return
                 }
             }
+            
+            completion(false)
         }
     }
     
