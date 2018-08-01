@@ -23,9 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         firebaseSetup()
         checkAuthentication()
-        clearBadge()
-        
-        IQKeyboardManager.shared.enable = true
+        misc()
         
         return true
     }
@@ -87,8 +85,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         }
     }
     
-    private func clearBadge() {
+    private func misc() {
         UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        IQKeyboardManager.shared.enable = true
     }
     
     private func firebaseSetup() {

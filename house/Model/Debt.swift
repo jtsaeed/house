@@ -9,6 +9,7 @@
 import Foundation
 
 struct Debt {
+    
     let debtId: String
     
     let isPaying: Bool

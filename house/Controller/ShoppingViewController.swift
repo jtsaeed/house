@@ -34,9 +34,8 @@ class ShoppingViewController: UIViewController {
     }
 }
 
-/*
- TABLEVIEW
- */
+// MARK: - Table View
+
 extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,10 +55,8 @@ extension ShoppingViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-/*
- TABLEVIEW
- SWIPES
- */
+// MARK: - Table View Swipes
+
 extension ShoppingViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -82,9 +79,8 @@ extension ShoppingViewController: SwipeTableViewCellDelegate {
     }
 }
 
-/*
- UTIL
- */
+// MARK: - Util
+
 extension ShoppingViewController {
     
     private func addTableViewPadding() {

@@ -9,11 +9,11 @@
 import Foundation
 
 struct Chore {
+    
     let choreId: String
     
     let content: String
     let author: String
-    let date: Date
     
     func clearChore() {
         DataService.instance.deleteChore(with: choreId)

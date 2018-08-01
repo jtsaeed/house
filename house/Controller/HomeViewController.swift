@@ -37,9 +37,8 @@ class HomeViewController: UIViewController {
     }
 }
 
-/*
- TABLE VIEW
- */
+// MARK: - Table View
+
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,9 +67,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-/*
- ACTIONSHEET
- */
+// MARK: - Action Sheet
+
 extension HomeViewController {
     
     private func presentMoreActionSheet() {
@@ -92,7 +90,6 @@ extension HomeViewController {
     private func signOut() {
         do {
             try Auth.auth().signOut()
-            Util.instance.clearUserInfo()
             performSegue(withIdentifier: "signOut", sender: nil)
         } catch {
             Util.instance.presentErrorDialog(withMessage: .signOutFailed, context: self)
@@ -112,9 +109,8 @@ extension HomeViewController {
     }
 }
 
-/*
- UTIL
- */
+// MARK: - Util
+
 extension HomeViewController {
     
     private func addTableViewPadding() {

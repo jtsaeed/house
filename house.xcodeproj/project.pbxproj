@@ -20,9 +20,9 @@
 		2381BD6520B0F59A000682EB /* ChoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6420B0F59A000682EB /* ChoreCell.swift */; };
 		2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6620B0F67A000682EB /* UIViewX.swift */; };
 		2381BD6920B1914B000682EB /* MoneyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2381BD6820B1914B000682EB /* MoneyViewController.swift */; };
+		2399CE612111B715003607FD /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2399CE602111B715003607FD /* Extensions.swift */; };
 		23AA095C20B082A10020FEC9 /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095B20B082A10020FEC9 /* Chore.swift */; };
 		23AA095E20B083300020FEC9 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095D20B083300020FEC9 /* Debt.swift */; };
-		23AA096020B085600020FEC9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095F20B085600020FEC9 /* User.swift */; };
 		23B2E5B520DAC9470066A797 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23B2E5B420DAC9470066A797 /* Util.swift */; };
 		23DC45A020B041FF009E9C3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */; };
 		23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A620B0436F009E9C3D /* AuthService.swift */; };
@@ -66,9 +66,9 @@
 		2381BD6420B0F59A000682EB /* ChoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoreCell.swift; sourceTree = "<group>"; };
 		2381BD6620B0F67A000682EB /* UIViewX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewX.swift; sourceTree = "<group>"; };
 		2381BD6820B1914B000682EB /* MoneyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyViewController.swift; sourceTree = "<group>"; };
+		2399CE602111B715003607FD /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		23AA095B20B082A10020FEC9 /* Chore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chore.swift; sourceTree = "<group>"; };
 		23AA095D20B083300020FEC9 /* Debt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debt.swift; sourceTree = "<group>"; };
-		23AA095F20B085600020FEC9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		23B2E5B420DAC9470066A797 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		23DC45A620B0436F009E9C3D /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -108,6 +108,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2399CE5F2111B708003607FD /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2399CE602111B715003607FD /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		23DC45A120B0424B009E9C3D /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +131,6 @@
 			children = (
 				23AA095B20B082A10020FEC9 /* Chore.swift */,
 				23AA095D20B083300020FEC9 /* Debt.swift */,
-				23AA095F20B085600020FEC9 /* User.swift */,
 				23313C4220CD3E0800429687 /* Shopping.swift */,
 			);
 			path = Model;
@@ -179,6 +186,7 @@
 		23E82E0320A348650073981E /* house */ = {
 			isa = PBXGroup;
 			children = (
+				2399CE5F2111B708003607FD /* Extensions */,
 				23DC45A120B0424B009E9C3D /* Services */,
 				23DC45A320B04256009E9C3D /* Model */,
 				23DC45A420B04260009E9C3D /* View */,
@@ -417,9 +425,9 @@
 				23E82E0720A348650073981E /* HomeViewController.swift in Sources */,
 				23AA095E20B083300020FEC9 /* Debt.swift in Sources */,
 				23F3638120F7A59700DAF4BB /* CreateJoinHouseViewController.swift in Sources */,
-				23AA096020B085600020FEC9 /* User.swift in Sources */,
 				23AA095C20B082A10020FEC9 /* Chore.swift in Sources */,
 				23313C4720CD407500429687 /* ShoppingViewController.swift in Sources */,
+				2399CE612111B715003607FD /* Extensions.swift in Sources */,
 				23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */,
 				235FF44220B4448E00770EBB /* DebtCell.swift in Sources */,
 				23DC45A920B0437B009E9C3D /* DataService.swift in Sources */,
@@ -574,7 +582,10 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -593,7 +604,10 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -44,9 +44,8 @@ class CreateJoinHouseViewController: UIViewController {
     }
 }
 
-/*
- TEXTFIELDS
- */
+// MARK: - Text Fields
+
 extension CreateJoinHouseViewController: UITextFieldDelegate {
     
     private func setDelegates() {
@@ -81,9 +80,8 @@ extension CreateJoinHouseViewController: UITextFieldDelegate {
     }
 }
 
-/*
- UTIL
- */
+// MARK: - Util
+
 extension CreateJoinHouseViewController {
     
     private func setJoiningFieldNames() {
@@ -104,7 +102,7 @@ extension CreateJoinHouseViewController {
         validateFields { (houseName, houseCode, nickname) in
             DataService.instance.checkIfHouseExists(houseName, completion: { (exists) in
                 if !exists {
-                    DataService.instance.createHouse(houseName, houseCode, nickname, completion: {
+                    DataService.instance.createHouse(houseName, houseCode, completion: {
                         DataService.instance.joinHouse(houseName, houseCode, nickname, completion: {
                             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                         })

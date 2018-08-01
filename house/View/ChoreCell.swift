@@ -18,7 +18,7 @@ class ChoreCell: SwipeTableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     
     func configure(with chore: Chore) {
-        titleLabel.text = chore.content.lowercased()
+        titleLabel.text = chore.content
         
         DataService.instance.getUserNickname(for: chore.author) { (nickname) in
             self.subtitleLabel.text = "added by \(nickname)"
@@ -32,10 +32,8 @@ class ChoreCell: SwipeTableViewCell {
     }
 }
 
-/*
- GESTURE
- ANIMATIONS
- */
+// MARK: - Gesture Animations
+
 extension ChoreCell {
     
     private func configureGestureRecognizer() {

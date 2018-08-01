@@ -22,6 +22,7 @@ class DataService {
     var REF_SHOPPING = DB_BASE.child("shopping")
     var REF_DEBTS = DB_BASE.child("debts")
     
+    /// Accesses the database and pulls the User ID and their respective house ID
     private func attemptDatabaseAccess(completion: @escaping (_ userId: String, _ houseId: String) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
@@ -37,6 +38,7 @@ class DataService {
 
 extension DataService {
 
+    /// Makes sure that the user is requesting a house that exists with a valid code
     private func validateHouseRequest(withName name: String, andCode code: String, completion: @escaping (_ houseId: String?) -> ()) {
         REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -54,6 +56,7 @@ extension DataService {
         }
     }
     
+    /// Returns whether or not the requested house already exists
     func checkIfHouseExists(_ name: String, completion: @escaping (_ exists: Bool) -> ()) {
         self.REF_HOUSES.observeSingleEvent(of: .value) { (snapshot) in
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
@@ -70,12 +73,14 @@ extension DataService {
         }
     }
     
-    func createHouse(_ name: String, _ code: String, _ nickname: String, completion: @escaping () -> ()) {
+    /// Creates a new house with a specified unique name and code
+    func createHouse(_ name: String, _ code: String, completion: @escaping () -> ()) {
         self.REF_HOUSES.childByAutoId().updateChildValues(["name": name, "code": code])
         
         completion()
     }
     
+    /// Returns the name and code for the user's house
     func getHouseInfo(completion: @escaping (_ name: String, _ code: String) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_HOUSES.child(houseId).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -89,8 +94,10 @@ extension DataService {
 }
 
 // MARK: - Users
+
 extension DataService {
     
+    /// Checks if the user has an associated house
     func checkIfUserRegistered(completion: @escaping (_ registered: Bool) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         
@@ -103,19 +110,21 @@ extension DataService {
         }
     }
     
+    /// If the house request is valid, associates the user with the house
     func joinHouse(_ name: String, _ code: String, _ nickname: String, completion: @escaping () -> ()) {
         validateHouseRequest(withName: name, andCode: code) { (houseId) in
             if let houseId = houseId {
                 guard let user = Auth.auth().currentUser else { return }
                 let userId = user.uid
                 
-                self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!, "nickname": nickname])
+                self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!, "nickname": nickname.capitalizingFirstLetter()])
                 
                 completion()
             }
         }
     }
     
+    /// Saves the user's fcm token
     func saveToken(_ token: String) {
         attemptDatabaseAccess { (userId, houseId) in
             self.REF_USERS.child(userId).updateChildValues(["fcmToken": token])
@@ -123,18 +132,7 @@ extension DataService {
         }
     }
     
-    func getUserData(completion: @escaping (_ user: User) -> ()) {
-        attemptDatabaseAccess { (userId, houseId) in
-            self.REF_USERS.child(houseId).child(userId).observeSingleEvent(of: .value) { (snapshot) in
-                guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
-                guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
-                guard let email = snapshot.childSnapshot(forPath: "email").value as? String else { return }
-                
-                completion(User(userId: userId, houseId: houseId, name: name, nickname: nickname, email: email))
-            }
-        }
-    }
-    
+    /// Pulls the IDs and corresponding names of all the users in the house except the current user
     func getUsersNameIdPair(completion: @escaping (_ pairs: [String : String]) -> ()) {
         var pairs = [String : String]()
         
@@ -157,6 +155,7 @@ extension DataService {
         }
     }
     
+    /// Get a specified user's nickname
     func getUserNickname(for Id: String, completion: @escaping (_ name: String) -> ()) {
         REF_USERS.child(Id).observeSingleEvent(of: .value) { (snapshot) in
             guard let nickname = snapshot.childSnapshot(forPath: "nickname").value as? String else { return }
@@ -165,21 +164,12 @@ extension DataService {
         }
     }
     
+    /// Get the user's nickname
     func getCurrentUserNickname(completion: @escaping (_ nickname: String) -> ()) {
         attemptDatabaseAccess { (userId, _) in
             self.getUserNickname(for: userId, completion: { (nickname) in
                 completion(nickname)
             })
-        }
-    }
-    
-    func getCurrentUserName(completion: @escaping (_ name: String) -> ()) {
-        attemptDatabaseAccess { (userId, _) in
-            self.REF_USERS.child(userId).observeSingleEvent(of: .value) { (snapshot) in
-                guard let name = snapshot.childSnapshot(forPath: "name").value as? String else { return }
-                
-                completion(name)
-            }
         }
     }
 }
@@ -188,12 +178,14 @@ extension DataService {
 
 extension DataService {
     
+    /// Adds a new chore to the user's house
     func createChore(with content: String) {
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content, "author": userId, "date": Date().description])
+            self.REF_CHORES.child(houseId).childByAutoId().updateChildValues(["content": content.lowercased(), "author": userId])
         }
     }
     
+    /// Returns all the chores for the user's house
     func getChores(completion: @escaping (_ chores: [Chore]) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).observe(.value) { (snapshot) in
@@ -205,7 +197,7 @@ extension DataService {
                     guard let content = chore.childSnapshot(forPath: "content").value as? String else { return }
                     guard let author = chore.childSnapshot(forPath: "author").value as? String else { return }
                         
-                    chores.append(Chore(choreId: choreId, content: content, author: author, date: Date()))
+                    chores.append(Chore(choreId: choreId, content: content, author: author))
                 }
                     
                 completion(chores)
@@ -213,6 +205,7 @@ extension DataService {
         }
     }
     
+    /// Returns the amount of chores for the user's house
     func getAmountOfChores(completion: @escaping (_ amount: Int) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).observe(.value, with: { (snapshot) in
@@ -228,6 +221,7 @@ extension DataService {
         }
     }
     
+    /// Deletes a specified chore within the user's house
     func deleteChore(with choreId: String) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_CHORES.child(houseId).child(choreId).removeValue()
@@ -239,12 +233,14 @@ extension DataService {
 
 extension DataService {
     
+    /// Adds a new shopping item to the user's house
     func createShoppingItem(with content: String) {
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_SHOPPING.child(houseId).childByAutoId().updateChildValues(["content": content, "author": userId])
+            self.REF_SHOPPING.child(houseId).childByAutoId().updateChildValues(["content": content.lowercased(), "author": userId])
         }
     }
     
+    /// Returns all the shopping items for the user's house
     func getShoppingItems(completion: @escaping (_ shoppingItems: [Shopping]) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_SHOPPING.child(houseId).observe(.value) { (snapshot) in
@@ -256,7 +252,7 @@ extension DataService {
                     guard let content = shopping.childSnapshot(forPath: "content").value as? String else { return }
                     guard let author = shopping.childSnapshot(forPath: "author").value as? String else { return }
                         
-                    shoppingItems.append(Shopping(shoppingId: shoppingId, content: content, author: author, date: Date()))
+                    shoppingItems.append(Shopping(shoppingId: shoppingId, content: content, author: author))
                 }
                     
                 completion(shoppingItems)
@@ -264,6 +260,7 @@ extension DataService {
         }
     }
     
+    /// Returns the amount of shopping items for the user's house
     func getAmountOfShoppingItems(completion: @escaping (_ amount: Int) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_SHOPPING.child(houseId).observe(.value, with: { (snapshot) in
@@ -279,6 +276,7 @@ extension DataService {
         }
     }
     
+    /// Deletes a specified shopping item within the user's house
     func deleteShoppingItem(with choreId: String) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_SHOPPING.child(houseId).child(choreId).removeValue()
@@ -290,12 +288,14 @@ extension DataService {
 
 extension DataService {
     
+    /// Adds a new debt from the user for a specified user in the house
     func createDebt(for payerId: String, with amount: Int, and reason: String) {
         attemptDatabaseAccess { (userId, houseId) in
-            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": userId, "payerId": payerId, "amount": amount, "reason": reason ])
+            self.REF_DEBTS.child(houseId).childByAutoId().updateChildValues([ "receiverId": userId, "payerId": payerId, "amount": amount, "reason": reason.lowercased()])
         }
     }
     
+    /// Returns all the debts involving the user within the house
     func getDebts(completion: @escaping (_ debts: [Debt]) -> ()) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_DEBTS.child(houseId).observe(.value) { (snapshot) in
@@ -323,6 +323,7 @@ extension DataService {
         }
     }
     
+    /// Returns the amount of outstanding debts that the user has within the house
     func getAmountOfOutstandingDebts(completion: @escaping (_ amount: Int) -> ()) {
         attemptDatabaseAccess { (userId, houseId) in
             self.REF_DEBTS.child(houseId).observe(.value, with: { (snapshot) in
@@ -342,12 +343,14 @@ extension DataService {
         }
     }
     
+    /// Changes the amount for a specific debt within the user's house
     func changeDebtAmount(for debtId: String, with newAmount: Int) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_DEBTS.child(debtId).setValue(["amount", newAmount])
         }
     }
     
+    /// Deletes a specified debt within the user's house
     func deleteDebt(with debtId: String) {
         attemptDatabaseAccess { (_, houseId) in
             self.REF_DEBTS.child(houseId).child(debtId).removeValue()

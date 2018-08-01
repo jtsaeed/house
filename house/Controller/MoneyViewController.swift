@@ -28,9 +28,8 @@ class MoneyViewController: UIViewController {
     }
 }
 
-/*
- TABLEVIEW
- */
+// MARK: - Table View
+
 extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,10 +49,8 @@ extension MoneyViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-/*
- TABLEVIEW
- SWIPES
- */
+// MARK: - Table View Swipes
+
 extension MoneyViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -83,9 +80,8 @@ extension MoneyViewController: SwipeTableViewCellDelegate {
     }
 }
 
-/*
- UTIL
- */
+// MARK: - Util
+
 extension MoneyViewController {
     
     private func addTableViewPadding() {

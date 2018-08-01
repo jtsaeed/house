@@ -18,7 +18,7 @@ class ShoppingCell: SwipeTableViewCell {
     @IBOutlet weak var subtitleLabel: UILabel!
     
     func configure(with shoppingItem: Shopping) {
-        titleLabel.text = shoppingItem.content.lowercased()
+        titleLabel.text = shoppingItem.content
         
         DataService.instance.getUserNickname(for: shoppingItem.author) { (nickname) in
             self.subtitleLabel.text = "added by \(nickname)"
@@ -32,10 +32,8 @@ class ShoppingCell: SwipeTableViewCell {
     }
 }
 
-/*
- GESTURE
- ANIMATIONS
- */
+// MARK: - Gesture Animations
+
 extension ShoppingCell {
     
     private func configureGestureRecognizer() {

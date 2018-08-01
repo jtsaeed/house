@@ -29,22 +29,6 @@ class Util {
     func generateClearFeedback() {
         notificationFeedbackGenerator.notificationOccurred(.success)
     }
-    
-    func saveUserInfo(for user: User) {
-        let userDefaults = UserDefaults.standard
-        
-        userDefaults.set(user.name, forKey: "name")
-        userDefaults.set(user.nickname, forKey: "nickname")
-        userDefaults.set(user.email, forKey: "email")
-        userDefaults.set(user.userId, forKey: "userId")
-        userDefaults.set(user.houseId, forKey: "houseId")
-    }
-    
-    func clearUserInfo() {
-        if let bundleID = Bundle.main.bundleIdentifier {
-            UserDefaults.standard.removePersistentDomain(forName: bundleID)
-        }
-    }
 }
 
 enum ErrorMessage: String {

@@ -53,11 +53,8 @@ class DebtCell: SwipeTableViewCell {
     }
 }
 
+// MARK: - Gesture Animations
 
-/*
- GESTURE
- ANIMATIONS
- */
 extension DebtCell {
     
     private func configureGestureRecognizer() {

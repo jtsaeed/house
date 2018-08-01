@@ -34,9 +34,8 @@ class ChoresViewController: UIViewController {
     }
 }
 
-/*
- TABLEVIEW
- */
+// MARK: - Table View
+
 extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,10 +55,8 @@ extension ChoresViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-/*
- TABLEVIEW
- SWIPES
- */
+// MARK: - Table View Swipes
+
 extension ChoresViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -82,9 +79,8 @@ extension ChoresViewController: SwipeTableViewCellDelegate {
     }
 }
 
-/*
- UTIL
- */
+// MARK: - Util
+
 extension ChoresViewController {
     
     private func addTableViewPadding() {

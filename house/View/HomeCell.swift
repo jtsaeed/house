@@ -30,10 +30,8 @@ class HomeCell: UITableViewCell {
     }
 }
 
-/*
- GESTURE
- ANIMATIONS
- */
+// MARK: - Gesture Animations
+
 extension HomeCell {
     
     private func configureGestureRecognizer() {

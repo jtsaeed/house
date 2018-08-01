@@ -64,7 +64,7 @@ extension NewDebtViewController {
         guard let payer = self.people[payerName] else { return }
         
         guard let reasonRow: TextRow = form.rowBy(tag: "reason") else { return }
-        guard let reason = reasonRow.value?.lowercased() else { return }
+        guard let reason = reasonRow.value else { return }
         
         guard let amountRow: IntRow = form.rowBy(tag: "amount") else { return }
         guard let amount = amountRow.value else { return }
