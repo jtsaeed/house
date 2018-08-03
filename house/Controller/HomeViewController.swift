@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import UserNotifications
 
 class HomeViewController: UIViewController {
     
@@ -21,8 +20,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getData()
         addTableViewPadding()
-        notificationsSetup()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -78,10 +77,10 @@ extension HomeViewController {
             self.signOut()
         })
         sheet.addAction(UIAlertAction(title: "Leave House", style: .destructive) { (action) in
-            self.leaveHouse()
+            self.presentLeaveHouseAlert()
         })
         sheet.addAction(UIAlertAction(title: "Show House Info", style: .default) { (action) in
-            self.showHouseInfo()
+            self.presentHouseInfoAlert()
         })
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             sheet.dismiss(animated: true, completion: nil)
@@ -90,16 +89,7 @@ extension HomeViewController {
         present(sheet, animated: true, completion: nil)
     }
     
-    private func signOut() {
-        do {
-            try Auth.auth().signOut()
-            performSegue(withIdentifier: "signOut", sender: nil)
-        } catch {
-            Util.instance.presentErrorDialog(withMessage: .signOutFailed, context: self)
-        }
-    }
-    
-    private func leaveHouse() {
+    private func presentLeaveHouseAlert() {
         let alert = UIAlertController(title: "Leave house", message: "Are you sure you would like to leave this house?", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
@@ -113,7 +103,7 @@ extension HomeViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func showHouseInfo() {
+    private func presentHouseInfoAlert() {
         DataService.instance.getHouseInfo { (name, code) in
             let alert = UIAlertController(title: "House Info", message: "Name: \(name)\nCode: \(code)", preferredStyle: .alert)
             
@@ -132,11 +122,6 @@ extension HomeViewController {
     
     private func addTableViewPadding() {
         tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
-    }
-    
-    private func notificationsSetup() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
-        UIApplication.shared.registerForRemoteNotifications()
     }
     
     private func getData() {
@@ -159,6 +144,15 @@ extension HomeViewController {
     private func setNavigationTitle() {
         DataService.instance.getCurrentUserNickname { (nickname) in
             self.navigationItem.title = "Hello \(nickname)!"
+        }
+    }
+    
+    private func signOut() {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "signOut", sender: nil)
+        } catch {
+            Util.instance.presentErrorDialog(withMessage: .signOutFailed, context: self)
         }
     }
 }

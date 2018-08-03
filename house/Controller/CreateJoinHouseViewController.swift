@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import UserNotifications
 
 class CreateJoinHouseViewController: UIViewController {
     
@@ -94,6 +95,7 @@ extension CreateJoinHouseViewController {
         validateFields { (houseName, houseCode, nickname) in
             DataService.instance.joinHouse(houseName, houseCode, nickname, completion: {
                 self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                self.notificationsSetup()
             })
         }
     }
@@ -105,6 +107,7 @@ extension CreateJoinHouseViewController {
                     DataService.instance.createHouse(houseName, houseCode, completion: {
                         DataService.instance.joinHouse(houseName, houseCode, nickname, completion: {
                             self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+                            self.notificationsSetup()
                         })
                     })
                 } else {
@@ -112,5 +115,10 @@ extension CreateJoinHouseViewController {
                 }
             })
         }
+    }
+
+    private func notificationsSetup() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (_, _) in }
+        UIApplication.shared.registerForRemoteNotifications()
     }
 }
