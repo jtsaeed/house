@@ -124,6 +124,13 @@ extension DataService {
         }
     }
     
+    /// Removes the user's association with the house they are currently in
+    func leaveHouse() {
+        attemptDatabaseAccess { (userId, houseId) in
+            self.REF_USERS.child(userId).child("houseId").removeValue()
+        }
+    }
+    
     /// Saves the user's fcm token
     func saveToken(_ token: String) {
         attemptDatabaseAccess { (userId, houseId) in

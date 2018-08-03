@@ -77,6 +77,9 @@ extension HomeViewController {
         sheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
             self.signOut()
         })
+        sheet.addAction(UIAlertAction(title: "Leave House", style: .destructive) { (action) in
+            self.leaveHouse()
+        })
         sheet.addAction(UIAlertAction(title: "Show House Info", style: .default) { (action) in
             self.showHouseInfo()
         })
@@ -94,6 +97,20 @@ extension HomeViewController {
         } catch {
             Util.instance.presentErrorDialog(withMessage: .signOutFailed, context: self)
         }
+    }
+    
+    private func leaveHouse() {
+        let alert = UIAlertController(title: "Leave house", message: "Are you sure you would like to leave this house?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
+            DataService.instance.leaveHouse()
+            self.signOut()
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     private func showHouseInfo() {
