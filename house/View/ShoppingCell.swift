@@ -12,6 +12,7 @@ import SwipeCellKit
 class ShoppingCell: SwipeTableViewCell {
     
     private var isPressed: Bool = false
+    private var tapGestureRecognizer: UITapGestureRecognizer? = nil
     private var longPressGestureRecognizer: UILongPressGestureRecognizer? = nil
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -37,9 +38,32 @@ class ShoppingCell: SwipeTableViewCell {
 extension ShoppingCell {
     
     private func configureGestureRecognizer() {
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
+        addGestureRecognizer(tapGestureRecognizer!)
+        
         longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture(gestureRecognizer:)))
         longPressGestureRecognizer?.minimumPressDuration = 0.1
         addGestureRecognizer(longPressGestureRecognizer!)
+    }
+    
+    @objc internal func handleTapGesture() {
+        UIImpactFeedbackGenerator().impactOccurred()
+        UIView.animate(withDuration: 0.75,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.8,
+                       initialSpringVelocity: 0.2,
+                       options: .beginFromCurrentState,
+                       animations: {
+                        self.transform = CGAffineTransform(translationX: 40, y: 0)
+        })
+        UIView.animate(withDuration: 0.75,
+                       delay: 0.0,
+                       usingSpringWithDamping: 0.4,
+                       initialSpringVelocity: 0.2,
+                       options: .beginFromCurrentState,
+                       animations: {
+                        self.transform = CGAffineTransform.identity
+        })
     }
     
     @objc internal func handleLongPressGesture(gestureRecognizer: UILongPressGestureRecognizer) {

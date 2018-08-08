@@ -150,7 +150,7 @@ extension DataService {
                 for user in snapshot {
                     let id = user.key
                     guard let name = user.childSnapshot(forPath: "name").value as? String else { return }
-                    guard let pulledHouseId = user.childSnapshot(forPath: "houseId").value as? String else { return }
+                    guard let pulledHouseId = user.childSnapshot(forPath: "houseId").value as? String else { continue }
                         
                     if pulledHouseId == houseId && id != userId {
                         pairs[name] = id
