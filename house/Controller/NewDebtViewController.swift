@@ -29,6 +29,7 @@ class NewDebtViewController: FormViewController {
                 row.title = "Who?"
                 row.options = Array(self.people.keys)
                 row.tag = "payerName"
+                row.value = Array(self.people.keys)[0]
             }
             <<< TextRow() { row in
                 row.title = "What for?"
