@@ -117,7 +117,7 @@ extension DataService {
                 guard let user = Auth.auth().currentUser else { return }
                 let userId = user.uid
                 
-                self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!, "nickname": nickname.capitalizingFirstLetter()])
+                self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!.capitalized, "nickname": nickname.capitalized])
                 
                 completion()
             }

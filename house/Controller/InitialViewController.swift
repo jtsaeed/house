@@ -27,7 +27,7 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self
         
-        let providers: [FUIAuthProvider] = [FUIFacebookAuth(), FUIPhoneAuth(authUI: FUIAuth.defaultAuthUI()!)]
+        let providers: [FUIAuthProvider] = [FUIFacebookAuth()]
         authUI?.providers = providers
         
         let authViewController = authUI?.authViewController()
@@ -36,7 +36,6 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
     
     func authUI(_ authUI: FUIAuth, didSignInWith authDataResult: AuthDataResult?, error: Error?) {
         if authDataResult != nil {
-            
             DataService.instance.checkIfUserRegistered { (registered) in
                 if !registered {
                     let prepareHouseVC = self.storyboard?.instantiateViewController(withIdentifier: "PrepareHouseViewController")

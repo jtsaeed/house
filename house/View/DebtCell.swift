@@ -32,7 +32,7 @@ class DebtCell: SwipeTableViewCell {
             setAccent(with: UIColor(red:0.30, green:0.85, blue:0.39, alpha:1.0))
         }
         
-        amountLabel.text = "£\(debt.amount)"
+        amountLabel.text = "\(Locale.current.currencySymbol ?? "£")\(debt.amount)"
     }
     
     override func awakeFromNib() {

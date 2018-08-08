@@ -10,7 +10,6 @@
 #endif
 #endif
 
-#import "FirebaseUI.h"
 #import "FirebaseAuthUI.h"
 #import "FUIAuth.h"
 #import "FUIAuthBaseViewController.h"
@@ -23,31 +22,8 @@
 #import "FUIPasswordSignInViewController.h"
 #import "FUIPasswordSignUpViewController.h"
 #import "FUIPasswordVerificationViewController.h"
-#import "FirebaseDatabaseUI.h"
-#import "FUIArray.h"
-#import "FUICollection.h"
-#import "FUICollectionViewDataSource.h"
-#import "FUIIndexArray.h"
-#import "FUIIndexCollectionViewDataSource.h"
-#import "FUIIndexTableViewDataSource.h"
-#import "FUIQueryObserver.h"
-#import "FUISortedArray.h"
-#import "FUITableViewDataSource.h"
 #import "FirebaseFacebookAuthUI.h"
 #import "FUIFacebookAuth.h"
-#import "FirebaseFirestoreUI.h"
-#import "FUIBatchedArray.h"
-#import "FUIFirestoreCollectionViewDataSource.h"
-#import "FUIFirestoreTableViewDataSource.h"
-#import "FUISnapshotArrayDiff.h"
-#import "FirebaseGoogleAuthUI.h"
-#import "FUIGoogleAuth.h"
-#import "FirebasePhoneAuthUI.h"
-#import "FUIPhoneAuth.h"
-#import "FirebaseStorageUI.h"
-#import "UIImageView+FirebaseStorage.h"
-#import "FirebaseTwitterAuthUI.h"
-#import "FUITwitterAuth.h"
 
 FOUNDATION_EXPORT double FirebaseUIVersionNumber;
 FOUNDATION_EXPORT const unsigned char FirebaseUIVersionString[];
