@@ -41,6 +41,7 @@ enum ErrorMessage: String {
     case houseNicknameInvalid = "Please enter a valid nickname or first name"
     
     case houseNameTaken = "That house name is unfortunately already taken, please enter a unique house name"
+    case houseFailedValidation = "The house name and code combination does not match, please make sure you have entered the correct details"
     
     case debtAmountInvalid = "Failed to edit debt due to an invalid debt amount, please enter a whole number"
     

@@ -111,7 +111,7 @@ extension DataService {
     }
     
     /// If the house request is valid, associates the user with the house
-    func joinHouse(_ name: String, _ code: String, _ nickname: String, completion: @escaping () -> ()) {
+    func joinHouse(_ name: String, _ code: String, _ nickname: String, completion: @escaping (_ success: Bool) -> ()) {
         validateHouseRequest(withName: name, andCode: code) { (houseId) in
             if let houseId = houseId {
                 guard let user = Auth.auth().currentUser else { return }
@@ -119,7 +119,9 @@ extension DataService {
                 
                 self.REF_USERS.child(userId).updateChildValues(["houseId": houseId, "email": user.email!, "name": user.displayName!.capitalized, "nickname": nickname.capitalized])
                 
-                completion()
+                completion(true)
+            } else {
+                completion(false)
             }
         }
     }
