@@ -112,6 +112,7 @@ extension ChoresViewController {
         
         alert.addTextField { (textfield) in
             textfield.placeholder = "Type here..."
+            textfield.autocorrectionType = .yes
         }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
