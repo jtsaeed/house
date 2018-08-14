@@ -56,10 +56,14 @@ extension CreateJoinHouseViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
-            nextField.becomeFirstResponder()
+        if textField == nameField {
+            nameField.resignFirstResponder()
+            codeField.becomeFirstResponder()
+        } else if textField == codeField {
+            codeField.resignFirstResponder()
+            nicknameField.becomeFirstResponder()
         } else {
-            textField.resignFirstResponder()
+            nicknameField.resignFirstResponder()
         }
         return false
     }

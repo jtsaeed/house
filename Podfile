@@ -16,5 +16,6 @@ target 'house' do
   pod 'SwipeCellKit'
   pod 'Eureka'
   pod 'IQKeyboardManagerSwift'
+  pod 'SwiftLint'
 
 end

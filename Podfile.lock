@@ -63,6 +63,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.0)
+  - SwiftLint (0.26.0)
   - SwipeCellKit (2.4.3)
 
 DEPENDENCIES:
@@ -74,6 +75,7 @@ DEPENDENCIES:
   - FirebaseUI/Auth
   - FirebaseUI/Facebook
   - IQKeyboardManagerSwift
+  - SwiftLint
   - SwipeCellKit
 
 SPEC REPOS:
@@ -96,6 +98,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - SwiftLint
     - SwipeCellKit
 
 SPEC CHECKSUMS:
@@ -117,8 +120,9 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
+  SwiftLint: f6b83e8d95ee1e91e11932d843af4fdcbf3fc764
   SwipeCellKit: cee9906e6d3a36e22ad1a852fba7f8fa0839d113
 
-PODFILE CHECKSUM: 813a0640400e26370d80a0b1c1a84416c025e0d2
+PODFILE CHECKSUM: b3a4fc45c99f3b0e480faa9ca3af64fb8dcb0b15
 
 COCOAPODS: 1.5.3
