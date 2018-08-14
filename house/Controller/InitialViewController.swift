@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseUI
+import HousePalsCore
 
 class InitialViewController: UIViewController, FUIAuthDelegate {
 

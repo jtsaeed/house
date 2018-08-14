@@ -22,6 +22,7 @@
 #import "FUIAuthTableViewCell.h"
 #import "FUIAuthUtils.h"
 #import "FUIAuth_Internal.h"
+#import "FUIPrivacyAndTermsOfServiceView.h"
 
 /** @var kCellReuseIdentifier
     @brief The reuse identifier for table view cell.
@@ -52,11 +53,6 @@ static NSString *const kSaveButtonAccessibilityID = @"SaveButtonAccessibilityID"
     @brief The height and width of the @c rightView of the password text field.
  */
 static const CGFloat kTextFieldRightViewSize = 36.0f;
-
-/** @var kFooterTextViewHorizontalInset
-    @brief The horizontal inset for @c footerTextView, which should match the iOS standard margin.
- */
-static const CGFloat kFooterTextViewHorizontalInset = 8.0f;
 
 @interface FUIPasswordSignUpViewController () <UITableViewDataSource, UITextFieldDelegate>
 @end
@@ -127,35 +123,8 @@ static const CGFloat kFooterTextViewHorizontalInset = 8.0f;
 - (void)viewDidLayoutSubviews {
   [super viewDidLayoutSubviews];
 
-  NSURL *termsOfServiceURL = self.authUI.TOSURL;
-  if (!termsOfServiceURL) {
-    self.footerTextView.text = nil;
-    return;
-  }
-
-  NSAttributedString *currentAttributedString = self.footerTextView.attributedText;
-  NSDictionary *currentAttributes =
-      [currentAttributedString attributesAtIndex:0
-                           longestEffectiveRange:nil
-                                         inRange:NSMakeRange(0, currentAttributedString.length)];
-  NSString *termsOfService = FUILocalizedString(kStr_TermsOfService);
-  NSString *termsOfServiceNotice =
-      [NSString stringWithFormat:FUILocalizedString(kStr_TermsOfServiceNotice),
-          FUILocalizedString(kStr_Save), termsOfService];
-  NSMutableAttributedString *attributedString =
-      [[NSMutableAttributedString alloc] initWithString:termsOfServiceNotice
-                                             attributes:currentAttributes];
-  NSRange termsOfServiceRange = [termsOfServiceNotice rangeOfString:termsOfService];
-  [attributedString addAttribute:NSLinkAttributeName
-                           value:self.authUI.TOSURL.absoluteString
-                           range:termsOfServiceRange];
-  self.footerTextView.attributedText = attributedString;
-
-  // Adjust the footerTextView to have standard margins.
-  self.footerTextView.textContainer.lineFragmentPadding = 0;
-  _footerTextView.textContainerInset =
-      UIEdgeInsetsMake(0, kFooterTextViewHorizontalInset, 0, kFooterTextViewHorizontalInset);
-  [self.footerTextView sizeToFit];
+  self.footerView.authUI = self.authUI;
+  [self.footerView useFooterMessage];
 }
 
 #pragma mark - Actions
@@ -180,29 +149,56 @@ static const CGFloat kFooterTextViewHorizontalInset = 8.0f;
 
   [self incrementActivity];
 
-  [self.auth createUserWithEmail:email
-                        password:password
-                      completion:^(FIRAuthDataResult *_Nullable authDataResult,
-                                   NSError *_Nullable error) {
-    if (error) {
-      [self decrementActivity];
-
-      [self finishSignUpWithAuthDataResult:nil error:error];
-      return;
-    }
-
-    FIRUserProfileChangeRequest *request = [authDataResult.user profileChangeRequest];
-    request.displayName = username;
-    [request commitChangesWithCompletion:^(NSError *_Nullable error) {
-      [self decrementActivity];
-
+  // Check for the presence of an anonymous user and whether automatic upgrade is enabled.
+  if (self.auth.currentUser.isAnonymous && self.authUI.shouldAutoUpgradeAnonymousUsers) {
+    FIRAuthCredential *credential =
+        [FIREmailAuthProvider credentialWithEmail:email password:password];
+    [self.auth.currentUser
+      linkAndRetrieveDataWithCredential:credential
+                             completion:^(FIRAuthDataResult *_Nullable authResult,
+                                          NSError * _Nullable error) {
       if (error) {
+        [self decrementActivity];
         [self finishSignUpWithAuthDataResult:nil error:error];
         return;
       }
-      [self finishSignUpWithAuthDataResult:authDataResult error:nil];
+      FIRUserProfileChangeRequest *request = [authResult.user profileChangeRequest];
+      request.displayName = username;
+      [request commitChangesWithCompletion:^(NSError *_Nullable error) {
+        [self decrementActivity];
+
+        if (error) {
+          [self finishSignUpWithAuthDataResult:nil error:error];
+          return;
+        }
+        [self finishSignUpWithAuthDataResult:authResult error:nil];
+      }];
     }];
-  }];
+  } else {
+    [self.auth createUserWithEmail:email
+                          password:password
+                        completion:^(FIRAuthDataResult *_Nullable authDataResult,
+                                     NSError *_Nullable error) {
+      if (error) {
+        [self decrementActivity];
+
+        [self finishSignUpWithAuthDataResult:nil error:error];
+        return;
+      }
+
+      FIRUserProfileChangeRequest *request = [authDataResult.user profileChangeRequest];
+      request.displayName = username;
+      [request commitChangesWithCompletion:^(NSError *_Nullable error) {
+        [self decrementActivity];
+
+        if (error) {
+          [self finishSignUpWithAuthDataResult:nil error:error];
+          return;
+        }
+        [self finishSignUpWithAuthDataResult:authDataResult error:nil];
+      }];
+    }];
+  }
 }
 
 - (void)finishSignUpWithAuthDataResult:(nullable FIRAuthDataResult *)authDataResult
@@ -270,6 +266,9 @@ static const CGFloat kFooterTextViewHorizontalInset = 8.0f;
     _emailField.keyboardType = UIKeyboardTypeEmailAddress;
     _emailField.autocorrectionType = UITextAutocorrectionTypeNo;
     _emailField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    if (@available(iOS 11.0, *)) {
+      _emailField.textContentType = UITextContentTypeUsername;
+    }
   } else if (indexPath.row == 1) {
     cell.label.text = FUILocalizedString(kStr_Name);
     cell.accessibilityIdentifier = kNameSignUpCellAccessibilityID;
@@ -278,6 +277,9 @@ static const CGFloat kFooterTextViewHorizontalInset = 8.0f;
     _nameField.secureTextEntry = NO;
     _nameField.returnKeyType = UIReturnKeyNext;
     _nameField.keyboardType = UIKeyboardTypeDefault;
+    if (@available(iOS 10.0, *)) {
+      _nameField.textContentType = UITextContentTypeName;
+    }
   } else if (indexPath.row == 2) {
     cell.label.text = FUILocalizedString(kStr_Password);
     cell.accessibilityIdentifier = kPasswordSignUpCellAccessibilityID;
@@ -288,6 +290,9 @@ static const CGFloat kFooterTextViewHorizontalInset = 8.0f;
     _passwordField.rightViewMode = UITextFieldViewModeAlways;
     _passwordField.returnKeyType = UIReturnKeyNext;
     _passwordField.keyboardType = UIKeyboardTypeDefault;
+    if (@available(iOS 11.0, *)) {
+      _passwordField.textContentType = UITextContentTypePassword;
+    }
   }
   [cell.textField addTarget:self
                      action:@selector(textFieldDidChange)

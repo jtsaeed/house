@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Eureka
+import HousePalsCore
 
 class NewDebtViewController: FormViewController {
 

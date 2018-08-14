@@ -8,6 +8,7 @@
 
 import UIKit
 import SwipeCellKit
+import HousePalsCore
 
 class ShoppingViewController: UIViewController {
     

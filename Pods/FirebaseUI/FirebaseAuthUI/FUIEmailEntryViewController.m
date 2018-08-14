@@ -25,6 +25,7 @@
 #import "FUIAuth_Internal.h"
 #import "FUIPasswordSignInViewController.h"
 #import "FUIPasswordSignUpViewController.h"
+#import "FUIPrivacyAndTermsOfServiceView.h"
 
 /** @var kCellReuseIdentifier
     @brief The reuse identifier for table view cell.
@@ -64,6 +65,12 @@ static NSString *const kNextButtonAccessibilityID = @"NextButtonAccessibilityID"
       @brief The @c UITableView used to store all UI elements.
    */
   __weak IBOutlet UITableView *_tableView;
+
+  /** @var _termsOfServiceView
+   @brief The @c Text view which displays Terms of Service.
+   */
+  __weak IBOutlet FUIPrivacyAndTermsOfServiceView *_termsOfServiceView;
+
 }
 
 - (instancetype)initWithAuthUI:(FUIAuth *)authUI {
@@ -94,6 +101,8 @@ static NSString *const kNextButtonAccessibilityID = @"NextButtonAccessibilityID"
                                            action:@selector(next)];
   nextButtonItem.accessibilityIdentifier = kNextButtonAccessibilityID;
   self.navigationItem.rightBarButtonItem = nextButtonItem;
+  _termsOfServiceView.authUI = self.authUI;
+  [_termsOfServiceView useFullMessage];
 
   [self enableDynamicCellHeightForTableView:_tableView];
 }
@@ -226,6 +235,9 @@ static NSString *const kNextButtonAccessibilityID = @"NextButtonAccessibilityID"
   cell.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
   cell.textField.returnKeyType = UIReturnKeyNext;
   cell.textField.keyboardType = UIKeyboardTypeEmailAddress;
+  if (@available(iOS 11.0, *)) {
+    cell.textField.textContentType = UITextContentTypeUsername; 
+  }
   [cell.textField addTarget:self
                      action:@selector(textFieldDidChange)
            forControlEvents:UIControlEventEditingChanged];

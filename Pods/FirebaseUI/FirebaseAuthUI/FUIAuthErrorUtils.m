@@ -26,6 +26,15 @@
   return [self errorWithCode:FUIAuthErrorCodeUserCancelledSignIn userInfo:nil];
 }
 
++ (NSError *)mergeConflictErrorWithUserInfo:(NSDictionary *)userInfo
+                            underlyingError:(NSError *)underlyingError {
+  NSMutableDictionary *errorInfo = [userInfo mutableCopy];
+  if (underlyingError != nil) {
+    errorInfo[NSUnderlyingErrorKey] = underlyingError;
+  }
+  return [self errorWithCode:FUIAuthErrorCodeMergeConflict userInfo:[errorInfo copy]];
+}
+
 + (NSError *)providerErrorWithUnderlyingError:(NSError *)underlyingError
                                    providerID:(NSString *)providerID {
   return [self errorWithCode:FUIAuthErrorCodeProviderError

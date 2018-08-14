@@ -12,6 +12,7 @@ import FirebaseAuth
 import FirebaseUI
 import IQKeyboardManagerSwift
 import UserNotifications
+import HousePalsCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -93,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     private func firebaseSetup() {
         FirebaseApp.configure()
+        DataService.instance.configure()
         Messaging.messaging().delegate = self
         Database.database().isPersistenceEnabled = true
     }

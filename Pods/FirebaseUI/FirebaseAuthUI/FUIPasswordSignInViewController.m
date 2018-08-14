@@ -14,15 +14,18 @@
 //  limitations under the License.
 //
 
-#import "FUIPasswordSignInViewController.h"
+#import "FUIPasswordSignInViewController_Internal.h"
 
 #import <FirebaseAuth/FirebaseAuth.h>
 #import "FUIAuthBaseViewController_Internal.h"
+#import "FUIAuthErrorUtils.h"
 #import "FUIAuthStrings.h"
 #import "FUIAuthTableViewCell.h"
 #import "FUIAuthUtils.h"
 #import "FUIAuth_Internal.h"
+#import "FUIAuthErrors.h"
 #import "FUIPasswordRecoveryViewController.h"
+#import "FUIPrivacyAndTermsOfServiceView.h"
 
 /** @var kCellReuseIdentifier
     @brief The reuse identifier for table view cell.
@@ -57,6 +60,12 @@ static NSString *const kCellReuseIdentifier = @"cellReuseIdentifier";
       @brief The @c UIButton which handles forgot password action.
    */
   __weak IBOutlet UIButton *_forgotPasswordButton;
+
+  /** @var _termsOfServiceView
+   @brief The @c Text view which displays Terms of Service.
+   */
+  __weak IBOutlet FUIPrivacyAndTermsOfServiceView *_termsOfServiceView;
+
 }
 
 - (instancetype)initWithAuthUI:(FUIAuth *)authUI
@@ -78,6 +87,10 @@ static NSString *const kCellReuseIdentifier = @"cellReuseIdentifier";
     _email = [email copy];
 
     self.title = FUILocalizedString(kStr_SignInTitle);
+    __weak FUIPasswordSignInViewController *weakself = self;
+    _onDismissCallback = ^(FIRAuthDataResult *authResult, NSError *error){
+      [weakself.authUI invokeResultCallbackWithAuthDataResult:authResult error:error];
+    };
   }
   return self;
 }
@@ -90,7 +103,10 @@ static NSString *const kCellReuseIdentifier = @"cellReuseIdentifier";
                                            target:self
                                            action:@selector(signIn)];
   self.navigationItem.rightBarButtonItem = signInButtonItem;
-  [_forgotPasswordButton setTitle:FUILocalizedString(kStr_ForgotPasswordTitle) forState:UIControlStateNormal];
+  [_forgotPasswordButton setTitle:FUILocalizedString(kStr_ForgotPasswordTitle)
+                         forState:UIControlStateNormal];
+  _termsOfServiceView.authUI = self.authUI;
+  [_termsOfServiceView useFooterMessage];
 
   [self enableDynamicCellHeightForTableView:_tableView];
 }
@@ -127,35 +143,58 @@ static NSString *const kCellReuseIdentifier = @"cellReuseIdentifier";
   }
 
   [self incrementActivity];
-
   FIRAuthCredential *credential =
       [FIREmailAuthProvider credentialWithEmail:email password:password];
-  [self.auth signInAndRetrieveDataWithCredential:credential
-                                      completion:^(FIRAuthDataResult *_Nullable authResult,
-                                                   NSError *_Nullable error) {
-    [self decrementActivity];
 
-    if (error) {
-      switch (error.code) {
-        case FIRAuthErrorCodeWrongPassword:
-          [self showAlertWithMessage:FUILocalizedString(kStr_WrongPasswordError)];
-          return;
-        case FIRAuthErrorCodeUserNotFound:
-          [self showAlertWithMessage:FUILocalizedString(kStr_UserNotFoundError)];
-          return;
-        case FIRAuthErrorCodeUserDisabled:
-          [self showAlertWithMessage:FUILocalizedString(kStr_AccountDisabledError)];
-          return;
-        case FIRAuthErrorCodeTooManyRequests:
-          [self showAlertWithMessage:FUILocalizedString(kStr_SignInTooManyTimesError)];
-          return;
+    void (^completeSignInBlock)(FIRAuthDataResult *, NSError *) = ^(FIRAuthDataResult *authResult,
+                                                                    NSError *error) {
+      [self decrementActivity];
+
+      if (error) {
+        switch (error.code) {
+          case FIRAuthErrorCodeWrongPassword:
+            [self showAlertWithMessage:FUILocalizedString(kStr_WrongPasswordError)];
+            return;
+          case FIRAuthErrorCodeUserNotFound:
+            [self showAlertWithMessage:FUILocalizedString(kStr_UserNotFoundError)];
+            return;
+          case FIRAuthErrorCodeUserDisabled:
+            [self showAlertWithMessage:FUILocalizedString(kStr_AccountDisabledError)];
+            return;
+          case FIRAuthErrorCodeTooManyRequests:
+            [self showAlertWithMessage:FUILocalizedString(kStr_SignInTooManyTimesError)];
+            return;
+        }
       }
-    }
-    
-    [self dismissNavigationControllerAnimated:YES completion:^{
-      [self.authUI invokeResultCallbackWithAuthDataResult:authResult error:error];
+      [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        if (self->_onDismissCallback) {
+          self->_onDismissCallback(authResult, error);
+        }
+      }];
+    };
+
+  // Check for the presence of an anonymous user and whether automatic upgrade is enabled.
+  if (self.auth.currentUser.isAnonymous && self.authUI.shouldAutoUpgradeAnonymousUsers) {
+    [self.auth.currentUser
+        linkAndRetrieveDataWithCredential:credential
+                               completion:^(FIRAuthDataResult *_Nullable authResult,
+                                            NSError *_Nullable error) {
+      if (error) {
+        if (error.code == FIRAuthErrorCodeEmailAlreadyInUse) {
+          NSDictionary *userInfo = @{ FUIAuthCredentialKey : credential };
+          NSError *mergeError = [FUIAuthErrorUtils mergeConflictErrorWithUserInfo:userInfo
+                                                                  underlyingError:error];
+          completeSignInBlock(nil, mergeError);
+          return;
+        }
+        completeSignInBlock(nil, error);
+        return;
+      }
+      completeSignInBlock(authResult, nil);
     }];
-  }];
+  } else {
+    [self.auth signInAndRetrieveDataWithCredential:credential completion:completeSignInBlock];
+  }
 }
 
 - (void)signIn {
@@ -214,6 +253,9 @@ static NSString *const kCellReuseIdentifier = @"cellReuseIdentifier";
     _emailField.keyboardType = UIKeyboardTypeEmailAddress;
     _emailField.autocorrectionType = UITextAutocorrectionTypeNo;
     _emailField.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    if (@available(iOS 11.0, *)) {
+      _emailField.textContentType = UITextContentTypeUsername;
+    }
   } else if (indexPath.row == 1) {
     cell.label.text = FUILocalizedString(kStr_Password);
     _passwordField = cell.textField;
@@ -221,6 +263,9 @@ static NSString *const kCellReuseIdentifier = @"cellReuseIdentifier";
     _passwordField.secureTextEntry = YES;
     _passwordField.returnKeyType = UIReturnKeyNext;
     _passwordField.keyboardType = UIKeyboardTypeDefault;
+    if (@available(iOS 11.0, *)) {
+      _passwordField.textContentType = UITextContentTypePassword;
+    }
   }
   [cell.textField addTarget:self
                      action:@selector(textFieldDidChange)

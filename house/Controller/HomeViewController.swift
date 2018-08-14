@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import HousePalsCore
 
 class HomeViewController: UIViewController {
     
