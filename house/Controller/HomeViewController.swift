@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func moreButtonPressed(_ sender: Any) {
-        presentMoreActionSheet()
+        presentMoreActionSheet(sender)
     }
 }
 
@@ -70,7 +70,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController {
     
-    private func presentMoreActionSheet() {
+    private func presentMoreActionSheet(_ sender: Any) {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         sheet.addAction(UIAlertAction(title: "Sign Out", style: .destructive) { (action) in
@@ -85,6 +85,10 @@ extension HomeViewController {
         sheet.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action) in
             sheet.dismiss(animated: true, completion: nil)
         })
+        
+        if let popoverController = sheet.popoverPresentationController {
+            popoverController.barButtonItem = sender as? UIBarButtonItem
+        }
         
         present(sheet, animated: true, completion: nil)
     }

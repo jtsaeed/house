@@ -60,7 +60,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0E9F3517D5E9502DB6F34392 /* Pods-HousePalsCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HousePalsCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HousePalsCore/Pods-HousePalsCore.debug.xcconfig"; sourceTree = "<group>"; };
 		1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.release.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.release.xcconfig"; sourceTree = "<group>"; };
 		2315805720F4A8B0009ABD48 /* UITextFieldX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldX.swift; sourceTree = "<group>"; };
 		2322441920BCA43B008F80FC /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
@@ -94,12 +93,7 @@
 		23F3638020F7A59700DAF4BB /* CreateJoinHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJoinHouseViewController.swift; sourceTree = "<group>"; };
 		23F883E220C1839700970225 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		434973F18E889D11359FC786 /* Pods_house.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_house.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6470AEC9A113CD9EF1AE0720 /* Pods_HousePalsCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HousePalsCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7158CB821B23CF257C1DDFD2 /* Pods_HousePalsToday.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HousePalsToday.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85447691396B100E1449D03C /* Pods-HousePalsCore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HousePalsCore.release.xcconfig"; path = "Pods/Target Support Files/Pods-HousePalsCore/Pods-HousePalsCore.release.xcconfig"; sourceTree = "<group>"; };
 		9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-house.debug.xcconfig"; path = "Pods/Target Support Files/Pods-house/Pods-house.debug.xcconfig"; sourceTree = "<group>"; };
-		B20AF0BDEED0156144B94B86 /* Pods-HousePalsToday.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HousePalsToday.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HousePalsToday/Pods-HousePalsToday.debug.xcconfig"; sourceTree = "<group>"; };
-		B4CE33B03A48D4846214A9FF /* Pods-HousePalsToday.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HousePalsToday.release.xcconfig"; path = "Pods/Target Support Files/Pods-HousePalsToday/Pods-HousePalsToday.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,10 +113,6 @@
 			children = (
 				9D8F5BAA93C5CA4105F84533 /* Pods-house.debug.xcconfig */,
 				1E544F8441A08D81FFB9F3D6 /* Pods-house.release.xcconfig */,
-				0E9F3517D5E9502DB6F34392 /* Pods-HousePalsCore.debug.xcconfig */,
-				85447691396B100E1449D03C /* Pods-HousePalsCore.release.xcconfig */,
-				B20AF0BDEED0156144B94B86 /* Pods-HousePalsToday.debug.xcconfig */,
-				B4CE33B03A48D4846214A9FF /* Pods-HousePalsToday.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -140,6 +130,9 @@
 		23DC45A320B04256009E9C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				23AA095B20B082A10020FEC9 /* Chore.swift */,
+				23AA095D20B083300020FEC9 /* Debt.swift */,
+				23313C4220CD3E0800429687 /* Shopping.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,9 +187,6 @@
 		23E82E0320A348650073981E /* house */ = {
 			isa = PBXGroup;
 			children = (
-				23AA095B20B082A10020FEC9 /* Chore.swift */,
-				23AA095D20B083300020FEC9 /* Debt.swift */,
-				23313C4220CD3E0800429687 /* Shopping.swift */,
 				23DC45A320B04256009E9C3D /* Model */,
 				23DC45A120B0424B009E9C3D /* Services */,
 				23DC45A420B04260009E9C3D /* View */,
@@ -217,9 +207,7 @@
 			children = (
 				434973F18E889D11359FC786 /* Pods_house.framework */,
 				23F883E220C1839700970225 /* IntentsUI.framework */,
-				6470AEC9A113CD9EF1AE0720 /* Pods_HousePalsCore.framework */,
 				23A6501A2123204D00B2C7D5 /* NotificationCenter.framework */,
-				7158CB821B23CF257C1DDFD2 /* Pods_HousePalsToday.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
