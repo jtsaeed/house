@@ -20,10 +20,6 @@ public class DataService {
     private var REF_SHOPPING: DatabaseReference { return Database.database().reference().child("shopping") }
     private var REF_DEBTS: DatabaseReference { return Database.database().reference().child("debts") }
     
-    public func configure() {
-        FirebaseApp.configure()
-    }
-    
     /// Accesses the database and pulls the User ID and their respective house ID
     private func attemptDatabaseAccess(completion: @escaping (_ userId: String, _ houseId: String) -> ()) {
         guard let userId = Auth.auth().currentUser?.uid else { return }

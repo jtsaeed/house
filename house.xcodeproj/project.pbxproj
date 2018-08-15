@@ -23,6 +23,9 @@
 		23DC45A020B041FF009E9C3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 23DC459F20B041FF009E9C3D /* GoogleService-Info.plist */; };
 		23DC45A720B0436F009E9C3D /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A620B0436F009E9C3D /* AuthService.swift */; };
 		23E433CC212461CE00C3A493 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DC45A820B0437B009E9C3D /* DataService.swift */; };
+		23E433CD2124666B00C3A493 /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095B20B082A10020FEC9 /* Chore.swift */; };
+		23E433CE2124666B00C3A493 /* Debt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23AA095D20B083300020FEC9 /* Debt.swift */; };
+		23E433CF2124666B00C3A493 /* Shopping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23313C4220CD3E0800429687 /* Shopping.swift */; };
 		23E82E0520A348650073981E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E82E0420A348650073981E /* AppDelegate.swift */; };
 		23E82E0720A348650073981E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E82E0620A348650073981E /* HomeViewController.swift */; };
 		23E82E0920A348650073981E /* ChoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E82E0820A348650073981E /* ChoresViewController.swift */; };
@@ -137,9 +140,6 @@
 		23DC45A320B04256009E9C3D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				23AA095B20B082A10020FEC9 /* Chore.swift */,
-				23AA095D20B083300020FEC9 /* Debt.swift */,
-				23313C4220CD3E0800429687 /* Shopping.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -194,6 +194,9 @@
 		23E82E0320A348650073981E /* house */ = {
 			isa = PBXGroup;
 			children = (
+				23AA095B20B082A10020FEC9 /* Chore.swift */,
+				23AA095D20B083300020FEC9 /* Debt.swift */,
+				23313C4220CD3E0800429687 /* Shopping.swift */,
 				23DC45A320B04256009E9C3D /* Model */,
 				23DC45A120B0424B009E9C3D /* Services */,
 				23DC45A420B04260009E9C3D /* View */,
@@ -402,8 +405,11 @@
 				235BA08E20C71FAC000D2FBB /* PrepareHouseViewController.swift in Sources */,
 				23E82E0920A348650073981E /* ChoresViewController.swift in Sources */,
 				23E433CC212461CE00C3A493 /* DataService.swift in Sources */,
+				23E433CD2124666B00C3A493 /* Chore.swift in Sources */,
 				2381BD6720B0F67A000682EB /* UIViewX.swift in Sources */,
+				23E433CE2124666B00C3A493 /* Debt.swift in Sources */,
 				23313C4520CD3FF000429687 /* ShoppingCell.swift in Sources */,
+				23E433CF2124666B00C3A493 /* Shopping.swift in Sources */,
 				23E82E0520A348650073981E /* AppDelegate.swift in Sources */,
 				2315805820F4A8B0009ABD48 /* UITextFieldX.swift in Sources */,
 				23B2E5B520DAC9470066A797 /* Util.swift in Sources */,
@@ -564,7 +570,10 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -583,7 +592,10 @@
 				DEVELOPMENT_TEAM = 577WSH643L;
 				INFOPLIST_FILE = house/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.evh98.house;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

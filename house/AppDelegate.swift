@@ -94,12 +94,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     private func firebaseSetup() {
         FirebaseApp.configure()
-        DataService.instance.configure()
         Messaging.messaging().delegate = self
         Database.database().isPersistenceEnabled = true
     }
     
     private func checkAuthentication() {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.value(forKey: "appFirstTimeOpend") == nil {
+            userDefaults.setValue(true, forKey: "appFirstTimeOpend")
+            do {
+                try Auth.auth().signOut()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        
         if Auth.auth().currentUser == nil {
             displayLogin()
         } else {
