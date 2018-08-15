@@ -18,8 +18,12 @@ class NewDebtViewController: FormViewController {
         super.viewDidLoad()
         
         DataService.instance.getUsersNameIdPair { (pulledPairs) in
-            self.people = pulledPairs
-            self.createForm()
+            if pulledPairs.isEmpty {
+                self.presentEmptyHouseDialog()
+            } else {
+                self.people = pulledPairs
+                self.createForm()
+            }
         }
     }
 
@@ -73,5 +77,10 @@ extension NewDebtViewController {
         DataService.instance.createDebt(for: payer, with: amount, and: reason)
         
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func presentEmptyHouseDialog() {
+        self.navigationController?.popViewController(animated: true)
+        Util.instance.presentErrorDialog(withMessage: .debtParticipantsInvalid, context: self)
     }
 }

@@ -44,5 +44,5 @@ enum ErrorMessage: String {
     case houseFailedValidation = "The house name and code combination does not match, please make sure you have entered the correct details"
     
     case debtAmountInvalid = "Failed to edit debt due to an invalid debt amount, please enter a whole number"
-    
+    case debtParticipantsInvalid = "You cannot create a new debt as there is currently nobody else in the house"
 }
