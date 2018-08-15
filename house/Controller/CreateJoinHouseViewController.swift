@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import UserNotifications
-import HousePalsCore
 
 class CreateJoinHouseViewController: UIViewController {
     

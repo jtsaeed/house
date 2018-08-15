@@ -8,7 +8,6 @@
 
 import UIKit
 import SwipeCellKit
-import HousePalsCore
 
 class ShoppingCell: SwipeTableViewCell {
     
