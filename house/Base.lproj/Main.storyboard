@@ -566,7 +566,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="zf3-KG-3hb" kind="show" identifier="createHouse" id="ABW-DI-Pz7"/>
+                                            <segue destination="zf3-KG-3hb" kind="presentation" identifier="createHouse" id="ABW-DI-Pz7"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VR5-jE-kBR" customClass="UIButtonX" customModule="house" customModuleProvider="target">
@@ -584,7 +584,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="zf3-KG-3hb" kind="show" identifier="joinHouse" id="Ywt-xz-9rs"/>
+                                            <segue destination="zf3-KG-3hb" kind="presentation" identifier="joinHouse" id="Ywt-xz-9rs"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -763,15 +763,35 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDP-zu-BOO" customClass="UIButtonX" customModule="house" customModuleProvider="target">
+                                <rect key="frame" x="40" y="573.5" width="295" height="50"/>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="295" id="VUZ-Ui-yyX"/>
+                                    <constraint firstAttribute="height" constant="50" id="ilg-SE-cjF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Back"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="zf3-KG-3hb" eventType="touchUpInside" id="ugh-d6-8Yd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Co0-2r-xZP" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="Fw2-fT-aCk"/>
                             <constraint firstItem="IYq-yk-skT" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="H52-Hc-x8H"/>
+                            <constraint firstItem="sDP-zu-BOO" firstAttribute="top" secondItem="Co0-2r-xZP" secondAttribute="bottom" constant="32" id="IZ6-lI-Y0v"/>
                             <constraint firstItem="zs6-xJ-5bQ" firstAttribute="top" secondItem="oH8-Bg-Har" secondAttribute="top" constant="64" id="Zs5-ru-Q7T"/>
                             <constraint firstItem="Co0-2r-xZP" firstAttribute="top" secondItem="IYq-yk-skT" secondAttribute="bottom" constant="32" id="axL-QA-65T"/>
                             <constraint firstItem="IYq-yk-skT" firstAttribute="centerY" secondItem="zcP-FJ-Mnt" secondAttribute="centerY" id="azd-pV-Rgg"/>
                             <constraint firstItem="zs6-xJ-5bQ" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="fdZ-QG-las"/>
+                            <constraint firstItem="sDP-zu-BOO" firstAttribute="centerX" secondItem="zcP-FJ-Mnt" secondAttribute="centerX" id="mgY-QJ-52f"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oH8-Bg-Har"/>
                     </view>
@@ -785,7 +805,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zDd-21-4wd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-22" y="-912"/>
+            <point key="canvasLocation" x="-23.199999999999999" y="-912.5937031484259"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -1048,6 +1068,6 @@
         <image name="store" width="72" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABW-DI-Pz7"/>
+        <segue reference="Ywt-xz-9rs"/>
     </inferredMetricsTieBreakers>
 </document>
