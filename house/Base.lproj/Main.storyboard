@@ -840,6 +840,7 @@
                     </tabBar>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="heroTabBarAnimationTypeString" value="fade"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="i25-9P-Zoh" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
