@@ -11,10 +11,9 @@ target 'house' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'FirebaseUI/Auth'
-  pod 'FirebaseUI/Facebook'
   pod 'SwipeCellKit'
   pod 'Eureka'
   pod 'IQKeyboardManagerSwift'
-  pod 'SwiftLint'
+  pod 'Hero'
 
 end

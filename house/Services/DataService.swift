@@ -42,7 +42,7 @@ extension DataService {
             guard let snapshot = snapshot.children.allObjects as? [DataSnapshot] else { return }
             
             for house in snapshot {
-                if (name == house.childSnapshot(forPath: "name").value as? String) {
+                if (name.lowercased() == (house.childSnapshot(forPath: "name").value as? String)?.lowercased()) {
                     if (code == house.childSnapshot(forPath: "code").value as? String) {
                         completion(house.key)
                         return

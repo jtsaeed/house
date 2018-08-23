@@ -176,7 +176,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="104" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1oW-kV-8B7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
-                                <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="debtCell" rowHeight="104" id="8GL-yS-CSA" customClass="DebtCell" customModule="house" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="104"/>
@@ -343,7 +343,7 @@
                     <view key="view" contentMode="scaleToFill" id="uNQ-AI-VcG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="tdX-Ts-ZtD"/>
                     </view>
@@ -550,6 +550,10 @@
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                         <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="houseHeader"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rnx-du-qlh" customClass="UIButtonX" customModule="house" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="117" width="295" height="50"/>
@@ -564,6 +568,8 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="houseButtonFirst"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="zf3-KG-3hb" kind="presentation" identifier="createHouse" id="ABW-DI-Pz7"/>
@@ -582,6 +588,8 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="houseButtonSecond"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="zf3-KG-3hb" kind="presentation" identifier="joinHouse" id="Ywt-xz-9rs"/>
@@ -597,6 +605,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xuc-yF-c0k"/>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S2M-3W-Ohi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -619,6 +630,10 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <color key="textColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="houseHeader"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Co0-2r-xZP" customClass="UIButtonX" customModule="house" customModuleProvider="target">
                                 <rect key="frame" x="40" y="491.5" width="295" height="50"/>
@@ -633,6 +648,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="houseButtonFirst"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="finishButtonPressed:" destination="zf3-KG-3hb" eventType="touchUpInside" id="oy1-yV-VOB"/>
@@ -776,6 +792,8 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="heroID" value="houseButtonSecond"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="zf3-KG-3hb" eventType="touchUpInside" id="ugh-d6-8Yd"/>
@@ -796,6 +814,9 @@
                         <viewLayoutGuide key="safeArea" id="oH8-Bg-Har"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="rPx-0J-Tsu"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="codeField" destination="CJd-dX-BN6" id="e2Q-Vx-RX4"/>
                         <outlet property="nameField" destination="2Bg-tn-ldf" id="0fl-8z-xna"/>

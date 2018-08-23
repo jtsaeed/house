@@ -103,6 +103,7 @@ extension CreateJoinHouseViewController {
         validateFields { (houseName, houseCode, nickname) in
             DataService.instance.joinHouse(houseName, houseCode, nickname, completion: { (success) in
                 if success {
+                    print("HELLOOOOOOOO")
                     self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
                     self.notificationsSetup()
                 } else {

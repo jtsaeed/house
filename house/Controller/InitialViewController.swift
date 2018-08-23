@@ -27,9 +27,6 @@ class InitialViewController: UIViewController, FUIAuthDelegate {
         let authUI = FUIAuth.defaultAuthUI()
         authUI?.delegate = self
         
-        let providers: [FUIAuthProvider] = [FUIFacebookAuth()]
-        authUI?.providers = providers
-        
         let authViewController = authUI?.authViewController()
         present(authViewController!, animated: true, completion: nil)
     }
