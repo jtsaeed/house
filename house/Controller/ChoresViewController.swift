@@ -111,7 +111,6 @@ extension ChoresViewController {
         let alert = UIAlertController(title: "What chore?", message: nil, preferredStyle: .alert)
         
         alert.addTextField { (textfield) in
-            textfield.placeholder = "Type here..."
             textfield.autocorrectionType = .yes
         }
         
